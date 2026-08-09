@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STACK TEST — diagnostic mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: system-ui, sans-serif; overflow-x: hidden; background: #444; }
+
+  main { position: relative; }
+  .panel { position: sticky; top: 0; width: 100%; }
+
+  .stack-gap {
+    height: 140vh;
+    height: 140dvh;
+  }
+
+  h1 { font-size: 48px; margin-bottom: 16px; }
+  h2 { font-size: 28px; margin: 24px 0 10px; }
+  p.item { font-size: 20px; padding: 14px; margin-bottom: 8px; background: rgba(255,255,255,0.15); border-radius: 8px; }
+  .end-marker { font-size: 28px; font-weight: 900; padding: 20px; margin-top: 20px; border: 4px dashed #fff; text-align: center; }
+
+  .panel--hero { z-index: 1; min-height: 100vh; min-height: 100dvh; background: #2b2450; color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  .panel--about { z-index: 2; }
+  .about { background: #f5e8f5; color: #3b224c; padding: 60px 60px 60px; border-radius: 60px 60px 0 0; min-height: 100vh; }
+
+  .panel--work { z-index: 3; }
+  .work { background: #b888b8; color: #2b1a33; padding: 60px 60px 60px; border-radius: 80px 80px 0 0; min-height: 100vh; }
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+  .card { background: #fff; border-radius: 14px; padding: 40px; font-size: 22px; font-weight: 700; text-align: center; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+  .stars-marker { margin-top: 40px; padding: 30px; background: #fff3; border: 4px dashed gold; border-radius: 14px; text-align: center; font-size: 32px; }
+
+  .panel--footer { z-index: 4; min-height: 90vh; min-height: 90dvh; background: #17233f; color: #fff; border-radius: 60px 60px 0 0; display: flex; align-items: center; justify-content: center; }
+
+  #debug {
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    z-index: 9999;
+    background: #000;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    line-height: 1.5;
+    white-space: pre;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="debug">loading…</div>
+
+<main>
+
+  <section class="panel panel--hero">
+    <div>
+      <h1>① HERO</h1>
+      <p>(sticky, ~1 viewport tall)</p>
+    </div>
+  </section>
+
+  <div class="stack-gap"></div>
+
+  <section class="panel panel--about">
+    <div class="about">
+      <h1>② ABOUT (mockup)</h1>
+      <p>Simulates the real About/CV section's content length.</p>
+      <h2>Column-length filler</h2>
+      <p class="item">Item 1 of 10</p>
+      <p class="item">Item 2 of 10</p>
+      <p class="item">Item 3 of 10</p>
+      <p class="item">Item 4 of 10</p>
+      <p class="item">Item 5 of 10</p>
+      <p class="item">Item 6 of 10</p>
+      <p class="item">Item 7 of 10</p>
+      <p class="item">Item 8 of 10</p>
+      <p class="item">Item 9 of 10</p>
+      <p class="item">Item 10 of 10</p>
+      <div class="end-marker">✅ END OF ABOUT — if you can read this before WORK covers the screen, the stack fix works.</div>
+    </div>
+  </section>
+
+  <div class="stack-gap"></div>
+
+  <section class="panel panel--work">
+    <div class="work">
+      <h1>③ WORK (mockup)</h1>
+      <div class="cards">
+        <div class="card">Card 1</div>
+        <div class="card">Card 2</div>
+        <div class="card">Card 3</div>
+        <div class="card">Card 4</div>
+      </div>
+      <div class="stars-marker">★ STARS WOULD BE HERE ★<br>✅ if you can read this before FOOTER covers the screen, the fix works.</div>
+    </div>
+  </section>
+
+  <div class="stack-gap"></div>
+
+  <section class="panel panel--footer">
+    <div>
+      <h1>④ FOOTER — end of page</h1>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const debug = document.getElementById('debug');
+  function update() {
+    debug.textContent =
+      'scrollY: ' + Math.round(window.scrollY) +
+      '\ninnerHeight: ' + window.innerHeight +
+      '\ndocHeight: ' + document.documentElement.scrollHeight +
+      '\nDPR: ' + window.devicePixelRatio +
+      '\nzoom~: ' + Math.round(window.outerWidth / window.innerWidth * 100) + '%';
+  }
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+</script>
+
+</body>
+</html>
