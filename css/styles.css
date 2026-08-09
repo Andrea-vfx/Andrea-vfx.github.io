@@ -220,30 +220,36 @@ body {
 
 /* ============================================================
    STACKING SECTIONS — shared
+
+   Root-caused the earlier cut-off bug: position:sticky on a tall
+   section never actually releases when its containing block is
+   <main> (the whole page) — there's always "room" for it to stay
+   glued to top:0, so it just gets painted over by the next, higher
+   z-index section once that one scrolls into view, without ever
+   scrolling its own remaining content into view first. No buffer
+   size fixes that, because the section's content never moves.
+
+   Fix: only Hero (content ≈ 1 viewport, safe to pin) is sticky.
+   About/Work/Footer are normal flow — ALL their content is
+   guaranteed to scroll past naturally, nothing can ever be hidden —
+   and a small negative margin + higher z-index makes the next
+   section's rounded top still slide over the previous one's tail at
+   the seam, keeping the "stacking cards" look without the risk.
    ============================================================ */
 main { position: relative; }
 
-.panel {
+.panel--hero {
   position: sticky;
   top: 0;
   width: 100%;
 }
 
-/* Buffer between stacked sections whose content is taller than one
-   viewport. Without it, the next section's sticky cover-slide begins
-   while the previous section is still scrolling its last stretch of
-   content into view, so that content gets cut off mid-reveal. This
-   plain (non-sticky) spacer guarantees the previous section has fully
-   scrolled past before the next one starts sliding over it.
-   Deliberately generous (well beyond the bare-minimum 100vh) so real-
-   world slop — web fonts reflowing line-heights after load, scrollbar
-   width, mobile's dynamic 100vh, sub-pixel rounding — can't eat into
-   the margin and reopen the cut-off bug. Both neighboring sections use
-   --bg-mid, so the gap is visually seamless — it just reads as more
-   of that same background. */
-.stack-gap {
-  height: 140vh;
-  height: 140dvh; /* dynamic viewport height — accounts for mobile browser chrome show/hide */
+.panel--about,
+.panel--work,
+.panel--footer {
+  position: relative;
+  width: 100%;
+  margin-top: -80px;
 }
 
 /* ============================================================
