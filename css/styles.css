@@ -229,6 +229,20 @@ main { position: relative; }
   width: 100%;
 }
 
+/* Buffer between stacked sections whose content is taller than one
+   viewport. Without it, the next section's sticky cover-slide begins
+   while the previous section is still scrolling its last stretch of
+   content into view, so that content gets cut off mid-reveal. This
+   plain (non-sticky) spacer guarantees the previous section has fully
+   scrolled past before the next one starts sliding over it. Height
+   matches viewport so the math always works out regardless of how
+   tall the section's actual content is. Both neighboring sections use
+   --bg-mid, so the gap is visually seamless — it just reads as more
+   of that same background. */
+.stack-gap {
+  height: 100vh;
+}
+
 /* ============================================================
    HERO
    ============================================================ */

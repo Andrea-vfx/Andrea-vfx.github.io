@@ -279,6 +279,13 @@
     </div>
   </section>
 
+  <!-- Scroll buffer — lets About's last stretch of content (later
+       experience items, education, CUSMA badge) fully scroll into view
+       BEFORE Work starts sliding up to cover it. Without this, Work's
+       cover-transition and About's final reveal overlap and content
+       gets cut off. -->
+  <div class="stack-gap" aria-hidden="true"></div>
+
   <!-- ============================================================
        WORK — SECTION NAV
        ============================================================ -->
@@ -425,6 +432,11 @@
       </div>
     </div>
   </section>
+
+  <!-- Scroll buffer — same reasoning as above: lets Work's full grid
+       (all 4 cards + social box + stars) finish revealing before
+       Footer slides up to cover it. -->
+  <div class="stack-gap" aria-hidden="true"></div>
 
   <!-- ============================================================
        FOOTER / CONTACT
