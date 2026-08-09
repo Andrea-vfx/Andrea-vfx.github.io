@@ -234,13 +234,16 @@ main { position: relative; }
    while the previous section is still scrolling its last stretch of
    content into view, so that content gets cut off mid-reveal. This
    plain (non-sticky) spacer guarantees the previous section has fully
-   scrolled past before the next one starts sliding over it. Height
-   matches viewport so the math always works out regardless of how
-   tall the section's actual content is. Both neighboring sections use
+   scrolled past before the next one starts sliding over it.
+   Deliberately generous (well beyond the bare-minimum 100vh) so real-
+   world slop — web fonts reflowing line-heights after load, scrollbar
+   width, mobile's dynamic 100vh, sub-pixel rounding — can't eat into
+   the margin and reopen the cut-off bug. Both neighboring sections use
    --bg-mid, so the gap is visually seamless — it just reads as more
    of that same background. */
 .stack-gap {
-  height: 100vh;
+  height: 140vh;
+  height: 140dvh; /* dynamic viewport height — accounts for mobile browser chrome show/hide */
 }
 
 /* ============================================================
@@ -249,6 +252,7 @@ main { position: relative; }
 .panel--hero {
   z-index: 1;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   padding: 96px 40px 24px;
@@ -260,6 +264,7 @@ main { position: relative; }
   width: 100%;
   aspect-ratio: 1.84 / 1;
   max-height: calc(100vh - 120px);
+  max-height: calc(100dvh - 120px);
   min-height: 420px;
   margin: 0 auto;
   border-radius: clamp(24px, 4vw, 48px);
@@ -788,6 +793,7 @@ main { position: relative; }
 .footer {
   position: relative;
   min-height: 90vh;
+  min-height: 90dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
