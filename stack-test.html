@@ -10,11 +10,21 @@
   body { font-family: system-ui, sans-serif; overflow-x: hidden; background: #444; }
 
   main { position: relative; }
-  .panel { position: sticky; top: 0; width: 100%; }
 
-  .stack-gap {
-    height: 140vh;
-    height: 140dvh;
+  /* Only short (~1 viewport) sections get true sticky pinning — that's
+     safe. Tall content sections are NORMAL flow (all content scrolls
+     through naturally, nothing hidden) and just overlap the previous
+     section by a fixed amount with a higher z-index + rounded top,
+     which gives the "next card slides over" look at the seam without
+     ever freezing/hiding content. */
+  .panel--hero { position: sticky; top: 0; width: 100%; }
+
+  .panel--about,
+  .panel--work,
+  .panel--footer {
+    position: relative;
+    width: 100%;
+    margin-top: -80px;
   }
 
   h1 { font-size: 48px; margin-bottom: 16px; }
@@ -65,7 +75,6 @@
     </div>
   </section>
 
-  <div class="stack-gap"></div>
 
   <section class="panel panel--about">
     <div class="about">
@@ -86,7 +95,6 @@
     </div>
   </section>
 
-  <div class="stack-gap"></div>
 
   <section class="panel panel--work">
     <div class="work">
@@ -101,7 +109,6 @@
     </div>
   </section>
 
-  <div class="stack-gap"></div>
 
   <section class="panel panel--footer">
     <div>
