@@ -1,0 +1,12 @@
+# Raw/source video masters — huge, not needed for the deployed site.
+# The compressed, web-ready versions actually used by index.html live in
+# assets/video/ and ARE tracked.
+assets/bg.mov
+assets/WAVES.mp4
+
+# Figma reference screenshot used only during build — not a site asset
+assets/homepage-full.png
+
+# OS cruft
+.DS_Store
+Thumbs.db

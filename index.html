@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrea Guerrero Aviña — Portfolio</title>
+<meta name="description" content="Compositing & Lighting Artist — VFX, 3D, Motion, Illustration and UX/UI portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     SVG SPRITE — reusable star shape (from Figma vector, all star
+     instances in the design share this exact 6-petal silhouette)
+     ============================================================ -->
+<svg class="svg-sprite" aria-hidden="true">
+  <defs>
+    <symbol id="star-shape" viewBox="0 0 254 233">
+      <path d="M244.654 140.733L195.964 164.036L192.065 216.85C191.832 219.971 190.456 222.385 189.276 224.939C188.737 225.031 188.568 225.502 188.146 226.029C182.289 233.32 171.878 234.905 164.062 229.547L120.672 199.81C118.76 200.212 117.339 201.599 115.781 202.354L70.8353 224.077C70.3173 223.651 69.918 223.79 69.3119 223.923C63.3745 225.233 57.3061 223.685 52.6202 219.14C48.8749 215.511 46.9371 210.071 47.4031 204.151L51.4785 152.523L7.79477 122.813C2.32044 119.091 -0.354521 112.743 0.0376596 106.825C0.507934 99.7339 4.75894 94.3888 10.9414 91.4486L57.7797 69.1626L61.6807 16.3797C62.1693 9.78517 66.2454 4.31237 72.1485 1.61635C77.54 -0.846156 84.2242 -0.586827 89.4951 3.02924L133.225 33.0183L179.405 10.6095C189.16 5.87453 200.348 9.09204 205.217 18.8278C205.663 21.5568 206.711 24.0985 206.442 27.1351L202.456 78.7669C202.35 79.1075 202.044 79.9898 202.6 80.371L246.227 110.099C250.884 113.271 253.378 118.553 253.686 123.271C254.095 129.506 251.646 134.653 247.302 138.409L244.661 140.744L244.654 140.733ZM184.5 136.969C175.302 142.685 160.949 143.864 149.989 143.726C146.691 143.686 144.221 146.277 144.25 149.509C144.281 152.558 146.737 155.041 150.044 155.096C162.328 155.3 176.78 153.788 187.723 148.225C196.919 143.547 203.151 135.444 202.233 124.946C200.775 108.236 183.315 89.589 171.049 78.3592C168.511 76.0331 164.832 76.2056 162.691 78.7035C160.55 81.2014 160.907 84.5723 163.368 86.7897C172.898 95.3719 185.261 108.571 189.599 120.385C192.227 127.538 191.116 132.853 184.501 136.965L184.5 136.969ZM89.3499 65.1478C75.4565 66.9995 58.3732 71.1293 48.5162 80.9808C44.6115 84.8802 41.9966 89.7359 41.5042 95.2327C39.8081 114.128 64.5673 133.861 79.1985 144.028C82.0716 146.023 85.7293 145.288 87.4652 142.557C89.3861 139.534 88.1695 136.264 85.2596 134.311C74.1544 126.859 59.0286 114.392 53.8845 102.317C49.7051 92.5038 58.2932 86.0017 67.2751 82.3057C74.8501 79.1889 82.7091 77.4186 90.8617 76.468C94.2163 76.0779 96.5196 73.2249 96.0822 70.0717C95.6404 66.8747 92.8151 64.6862 89.3531 65.1492L89.3499 65.1478Z"/>
+    </symbol>
+    <symbol id="icon-envelope" viewBox="0 0 37 35">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.16667 6.19792C3.82521 6.19792 1.92708 7.99345 1.92708 10.2083V24.7917C1.92708 27.0066 3.82521 28.8021 6.16667 28.8021H30.8333C33.1748 28.8021 35.0729 27.0066 35.0729 24.7917V10.2083C35.0729 7.99345 33.1748 6.19792 30.8333 6.19792H6.16667ZM11.4547 12.229C10.9316 11.8826 10.2106 12.0029 9.84444 12.4978C9.47823 12.9926 9.60546 13.6746 10.1286 14.021L17.8369 19.1252C18.235 19.3888 18.765 19.3888 19.1631 19.1252L26.8714 14.021C27.3945 13.6746 27.5218 12.9926 27.1555 12.4978C26.7894 12.0029 26.0684 11.8826 25.5453 12.229L18.5 16.8941L11.4547 12.229Z"/>
+    </symbol>
+    <symbol id="icon-planet" viewBox="0 0 73 59">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M36.738 0C20.6297 0 7.57129 13.0584 7.57129 29.1667C7.57129 45.275 20.6297 58.3333 36.738 58.3333C52.8463 58.3333 65.9046 45.275 65.9046 29.1667C65.9046 13.0584 52.8463 0 36.738 0ZM18.5195 42.784C17.1848 43.1373 16.3892 44.506 16.7425 45.8407C17.0958 47.1753 18.4643 47.971 19.799 47.6177C26.2291 45.9153 33.846 42.9993 41.6916 39.0877C49.505 35.192 56.393 30.8837 61.6143 26.788C62.7006 25.9357 62.8903 24.3643 62.0383 23.278C61.186 22.1916 59.6146 22.0017 58.5283 22.854C53.6196 26.7043 47.0293 30.8393 39.4606 34.613C31.8603 38.4023 24.5631 41.1843 18.5195 42.784Z"/>
+      <path d="M64.5255 11.6839C62.3782 11.5496 59.3595 11.8898 55.6405 12.7616L54.4995 7.89355C58.4405 6.96968 61.9972 6.51608 64.8375 6.69361C67.4748 6.85845 70.4672 7.64255 71.7675 10.251C72.9825 12.6877 72.0268 15.3453 70.7592 17.4211C69.4125 19.6262 67.2368 21.9893 64.5292 24.3726L61.2255 20.6194C63.7575 18.3909 65.5172 16.411 66.4918 14.8152C67.5452 13.0901 67.2962 12.4888 67.2928 12.482C67.2838 12.4639 66.8758 11.8308 64.5255 11.6839Z"/>
+      <path d="M16.1958 48.4707C12.6628 49.199 9.46619 49.5143 6.89469 49.2627C4.47399 49.0257 1.77636 48.1897 0.561461 45.753C-0.736132 43.1503 0.430694 40.2957 1.87963 38.0947C3.43936 35.7257 5.93043 33.1653 9.02593 30.581L12.2304 34.419C9.31029 36.857 7.23353 39.0553 6.05589 40.844C4.76746 42.8013 5.02739 43.5043 5.03616 43.522C5.03956 43.5287 5.36989 44.0897 7.38163 44.2863C9.24259 44.4687 11.883 44.2547 15.1864 43.5737L16.1958 48.4707Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" id="siteNav">
+  <div class="nav__links">
+    <a href="#about" class="nav__pill is-active">about · CV</a>
+    <button class="nav__work" id="workToggle" aria-expanded="false" aria-controls="workDropdown">
+      work <span class="nav__work-arrow">↓</span>
+    </button>
+    <a href="#contact" class="nav__pill">contact</a>
+  </div>
+  <div class="nav__logo star star--gold" style="--star-size:46px; --star-off: rgba(94,56,120,0.4);" data-star>
+    <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+  </div>
+
+  <div class="work-dropdown" id="workDropdown" role="menu">
+    <a class="work-dropdown__item" role="menuitem" href="vfx/index.html">
+      <span class="work-dropdown__num">01</span>
+      <span class="work-dropdown__label">VFX & Compositing</span>
+      <span class="work-dropdown__arrow">↗</span>
+    </a>
+    <a class="work-dropdown__item" role="menuitem" href="3d/index.html">
+      <span class="work-dropdown__num">02</span>
+      <span class="work-dropdown__label">3D & Lighting</span>
+      <span class="work-dropdown__arrow">↗</span>
+    </a>
+    <a class="work-dropdown__item" role="menuitem" href="motion/index.html">
+      <span class="work-dropdown__num">03</span>
+      <span class="work-dropdown__label">Motion & Editing</span>
+      <span class="work-dropdown__arrow">↗</span>
+    </a>
+    <a class="work-dropdown__item" role="menuitem" href="illustration/index.html">
+      <span class="work-dropdown__num">04</span>
+      <span class="work-dropdown__label">Illustration</span>
+      <span class="work-dropdown__arrow">↗</span>
+    </a>
+    <a class="work-dropdown__item" role="menuitem" href="design/index.html">
+      <span class="work-dropdown__num">05</span>
+      <span class="work-dropdown__label">Design & UX/UI</span>
+      <span class="work-dropdown__arrow">↗</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="panel panel--hero" id="hero">
+    <div class="hero" id="heroCard">
+      <video class="hero__video" autoplay muted loop playsinline preload="auto">
+        <source src="assets/video/hero-waves.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT ME / CV
+       ============================================================ -->
+  <section class="panel panel--about" id="about">
+    <div class="about">
+      <div class="container">
+
+        <div class="about__hero">
+          <div>
+            <p class="about__eyebrow">About me</p>
+            <p class="about__name">Andrea Guerrero Aviña</p>
+          </div>
+          <a class="btn-download" href="assets/cv/Andrea-Guerrero-Avina-CV.pdf" download>
+            <span aria-hidden="true">↓</span> Download CV <span class="pdf-tag">PDF</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <span>VFX Compositing ✦</span><span>3D Lookdev ✦</span><span>Motion Graphics ✦</span><span>Illustration ✦</span><span>Film &amp; TV ✦</span><span>Nuke · After Effects ✦</span><span>CUSMA Eligible ✦</span>
+          <span>VFX Compositing ✦</span><span>3D Lookdev ✦</span><span>Motion Graphics ✦</span><span>Illustration ✦</span><span>Film &amp; TV ✦</span><span>Nuke · After Effects ✦</span><span>CUSMA Eligible ✦</span>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="about__body">
+
+          <!-- Col 1 — Bio + Skills -->
+          <div class="col-bio">
+            <p class="col-title">About</p>
+            <p class="about__bio">Artist with experience in Film &amp; TV, highly skilled in the fundamental principles of cinematography. I work to place each visual element with intention — achieving scenes and compositions that capture the viewer's gaze and emotions.</p>
+            <p class="about__bio-star">✦ ...like stars in space. ✦</p>
+
+            <hr class="divider">
+
+            <p class="col-title">Skills</p>
+
+            <div class="skill-row">
+              <div class="skill-row__head">
+                <div>
+                  <p class="skill-row__cat">Compositing &amp; VFX</p>
+                  <p class="skill-row__tools">Nuke · After Effects · Mocha · Photoshop</p>
+                </div>
+                <div class="skill-badges">
+                  <span class="skill-badge" style="background:#101010;color:#fbc02d;">Nu</span>
+                  <span class="skill-badge" style="background:#00005b;color:#9999ff;">Ae</span>
+                  <span class="skill-badge" style="background:#f26522;">Mo</span>
+                  <span class="skill-badge" style="background:#001e36;color:#31a8ff;">Ps</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-row__head">
+                <div>
+                  <p class="skill-row__cat">3D &amp; Lighting</p>
+                  <p class="skill-row__tools">Maya · Arnold · Blender</p>
+                </div>
+                <div class="skill-badges">
+                  <span class="skill-badge" style="background:#00a99d;">Ma</span>
+                  <span class="skill-badge" style="background:#000;color:#ffd54f;">Ar</span>
+                  <span class="skill-badge" style="background:#e87d0d;">Bl</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-row__head">
+                <div>
+                  <p class="skill-row__cat">Motion &amp; Editing</p>
+                  <p class="skill-row__tools">Premiere Pro · After Effects · CapCut</p>
+                </div>
+                <div class="skill-badges">
+                  <span class="skill-badge" style="background:#00005b;color:#ea77ff;">Pr</span>
+                  <span class="skill-badge" style="background:#00005b;color:#9999ff;">Ae</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <p class="skill-row__cat">Design &amp; Tools</p>
+              <p class="skill-row__tools">Figma · Illustrator · UX/UI</p>
+            </div>
+
+            <div class="skill-row">
+              <p class="skill-row__cat">Pipeline &amp; Dev</p>
+              <p class="skill-row__tools">Ftrack · ShotGrid · Python · Slack</p>
+            </div>
+          </div>
+
+          <!-- Col 2 — Experience -->
+          <div class="col-exp">
+            <p class="col-title">Experience</p>
+
+            <div class="exp-item">
+              <div class="exp-item__head">
+                <p class="exp-item__role">VFX Compositing Artist ·</p>
+                <p class="exp-item__date">FEB 2026–PRESENT</p>
+              </div>
+              <p class="exp-item__company">Taller Chucho — Guillermo del Toro</p>
+              <p class="exp-item__desc">Rig removal, 2D/3D tracking and matte painting for "Munstro" (2027).</p>
+              <div class="exp-item__chips">
+                <span class="chip">Nuke</span>
+                <span class="chip">Matte Painting</span>
+                <span class="chip">Stop-Motion</span>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-item__head">
+                <p class="exp-item__role">VFX Compositing Artist</p>
+                <p class="exp-item__date">OCT 2022–MAR 2025</p>
+              </div>
+              <p class="exp-item__company">Welab Animation &amp; Post-Production</p>
+              <p class="exp-item__desc">Tipline Mysteries (Hallmark 2024): CG comp from Unreal in Nuke. La Guadalupana: dawn look-dev tracking 50+ shots. ACES pipeline. Python gizmos.</p>
+              <div class="exp-item__chips">
+                <span class="chip">Nuke</span>
+                <span class="chip">ACES Pipeline</span>
+                <span class="chip">Python</span>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-item__head">
+                <p class="exp-item__role">Compositing · 3D · Illustration</p>
+                <p class="exp-item__date">2020–PRESENT</p>
+              </div>
+              <p class="exp-item__company">Freelance</p>
+              <p class="exp-item__desc">"Teatro Secreto" (Taller Chucho) — Annecy 2024 official selection. 3D lookdev for FEBRA. Streampack &amp; illustration for @DRE_ow.</p>
+              <div class="exp-item__chips">
+                <span class="chip">Lookdev 3D</span>
+                <span class="chip">Illustration</span>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-item__head">
+                <p class="exp-item__role">Content &amp; Project Manager</p>
+                <p class="exp-item__date">JAN 2021–FEB 2022</p>
+              </div>
+              <p class="exp-item__company">Tecnológico de Monterrey</p>
+              <p class="exp-item__desc">Management of @PrepatecGDL &amp; @BorregosGDL. Video editing, motion graphics for IG, TikTok, YouTube.</p>
+              <div class="exp-item__chips">
+                <span class="chip">Premiere Pro</span>
+                <span class="chip">After Effects</span>
+                <span class="chip">Social Media</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Col 3 — Education + Languages -->
+          <div class="col-edu">
+            <p class="col-title">Education</p>
+
+            <div class="edu-item">
+              <p class="edu-item__title">BA Animation &amp; Digital Art</p>
+              <p class="edu-item__subtitle">Visual Dev &amp; Compositing VFX</p>
+              <p class="edu-item__meta">Tecnológico de Monterrey · 2018–2023</p>
+            </div>
+
+            <div class="edu-item">
+              <p class="edu-item__title">Visual Effects Workshop</p>
+              <p class="edu-item__meta">Vancouver Film School · Oct 2022</p>
+            </div>
+
+            <hr class="divider">
+
+            <p class="col-title">Languages</p>
+            <div class="lang-row"><span class="lang-row__name">Spanish</span><span class="lang-row__level">Native</span></div>
+            <div class="lang-row"><span class="lang-row__name">English</span><span class="lang-row__level">B2 — Cambridge</span></div>
+            <div class="lang-row"><span class="lang-row__name">French</span><span class="lang-row__level">A1</span></div>
+
+            <hr class="divider">
+
+            <div class="cusma-badge">
+              <div class="cusma-badge__icon">
+                <svg viewBox="0 0 73 59" fill="var(--color-ocean)"><use href="#icon-planet"></use></svg>
+              </div>
+              <div>
+                <p class="cusma-badge__title">CUSMA / USMCA Eligible</p>
+                <p class="cusma-badge__desc">Open to work remote &amp; relocation available</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WORK — SECTION NAV
+       ============================================================ -->
+  <section class="panel panel--work" id="work">
+    <div class="work">
+      <div class="container">
+        <div class="work__header">
+          <div>
+            <p class="work__eyebrow">Category</p>
+            <h2 class="work__title">Work</h2>
+          </div>
+        </div>
+
+        <div class="work__layout">
+          <div class="work__cards">
+
+            <a class="card" href="vfx/index.html">
+              <div class="card__thumb">
+                <div class="card__thumb-top">
+                  <span class="card__num">01</span>
+                  <span class="card__arrow">↗</span>
+                </div>
+                <div class="card__tags">
+                  <span>VFX</span><span>2D/3D Comp</span><span>50+ shots</span><span>Render</span><span>Hallmark</span>
+                </div>
+              </div>
+              <div class="card__info">
+                <h3>VFX Compositing &amp; Lighting<br>3D &amp; Lookdev</h3>
+                <p>Nuke · Maya · After Effects</p>
+                <div class="card__accent"></div>
+              </div>
+            </a>
+
+            <a class="card" href="illustration/index.html">
+              <div class="card__thumb">
+                <div class="card__thumb-top">
+                  <span class="card__num">02</span>
+                  <span class="card__arrow">↗</span>
+                </div>
+                <div class="card__tags">
+                  <span>Hallmark</span><span>50+ shots</span><span>CG Comp</span>
+                </div>
+              </div>
+              <div class="card__info">
+                <h3>Illustration<br>Visual Development</h3>
+                <p>Photoshop · ClipStudio Paint · Illustrator · Blender</p>
+                <div class="card__accent"></div>
+              </div>
+            </a>
+
+            <a class="card" href="motion/index.html">
+              <div class="card__thumb">
+                <div class="card__thumb-top">
+                  <span class="card__num">03</span>
+                  <span class="card__arrow">↗</span>
+                </div>
+                <div class="card__tags">
+                  <span>Hallmark</span><span>50+ shots</span><span>CG Comp</span>
+                </div>
+              </div>
+              <div class="card__info">
+                <h3>Video Editing<br>Motion Graphics</h3>
+                <p>Premiere · After Effects · CapCut</p>
+                <div class="card__accent"></div>
+              </div>
+            </a>
+
+            <a class="card" href="design/index.html">
+              <div class="card__thumb">
+                <div class="card__thumb-top">
+                  <span class="card__num">04</span>
+                  <span class="card__arrow">↗</span>
+                </div>
+                <div class="card__tags">
+                  <span>Hallmark</span><span>50+ shots</span><span>CG Comp</span>
+                </div>
+              </div>
+              <div class="card__info">
+                <h3>Design<br>&amp; UX/UI</h3>
+                <p>Figma · Illustrator · Photoshop</p>
+                <div class="card__accent"></div>
+              </div>
+            </a>
+
+          </div>
+
+          <aside class="social-box" id="contact">
+            <div class="social-box__head">
+              <div class="social-box__name-row">
+                <p class="social-box__name">Andrea<br>Guerrero<br>Aviña</p>
+                <span class="avail-pill"><span class="avail-pill__dot"></span>Open to work</span>
+              </div>
+              <p class="social-box__label">Find me on</p>
+            </div>
+
+            <a class="social-row" href="https://vimeo.com/andreagvfx" target="_blank" rel="noopener">
+              <span class="social-row__icon">V</span>
+              <span class="social-row__text">
+                <span class="social-row__platform" style="display:block;">Vimeo</span>
+                <span class="social-row__handle">/@andreagvfx</span>
+              </span>
+              <span class="social-row__go">↗</span>
+            </a>
+            <a class="social-row" href="https://linkedin.com/in/andrea-vfx" target="_blank" rel="noopener">
+              <span class="social-row__icon">in</span>
+              <span class="social-row__text">
+                <span class="social-row__platform" style="display:block;">LinkedIn</span>
+                <span class="social-row__handle">/andrea-vfx</span>
+              </span>
+              <span class="social-row__go">↗</span>
+            </a>
+            <a class="social-row" href="https://behance.net/guerreroandrea" target="_blank" rel="noopener">
+              <span class="social-row__icon">Bē</span>
+              <span class="social-row__text">
+                <span class="social-row__platform" style="display:block;">Behance</span>
+                <span class="social-row__handle">/guerreroandrea</span>
+              </span>
+              <span class="social-row__go">↗</span>
+            </a>
+            <a class="social-row" href="https://artstation.com/andreaguerrero" target="_blank" rel="noopener">
+              <span class="social-row__icon">A</span>
+              <span class="social-row__text">
+                <span class="social-row__platform" style="display:block;">ArtStation</span>
+                <span class="social-row__handle">/andreaguerrero</span>
+              </span>
+              <span class="social-row__go">↗</span>
+            </a>
+
+            <a class="social-box__cta" href="mailto:a.guerreavi@gmail.com">
+              <svg viewBox="0 0 37 35" fill="var(--bg-light)"><use href="#icon-envelope"></use></svg>
+              <span>a.guerreavi@gmail.com</span>
+            </a>
+          </aside>
+        </div>
+      </div>
+
+      <div class="work__stars" aria-hidden="true">
+        <div class="star star--white star--sm" style="--float-delay:-1.2s;" data-star>
+          <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+        </div>
+        <div class="star star--white star--lg" style="--star-rot:20deg;" data-star>
+          <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use><path class="star__doodle" d="M95 90 q-22 20 0 40 M150 90 q22 20 0 40"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER / CONTACT
+       ============================================================ -->
+  <section class="panel panel--footer" id="contact-footer">
+    <div class="footer">
+      <video class="footer__video" autoplay muted loop playsinline preload="auto">
+        <source src="assets/video/footer-bg.mp4" type="video/mp4">
+      </video>
+      <div class="container footer__inner">
+        <div class="footer__top">
+          <h2 class="footer__title">Let's create<br>ART together!</h2>
+
+          <div class="contact-card">
+            <p class="contact-card__name">Andrea Guerrero Aviña</p>
+
+            <a class="contact-row" href="mailto:a.guerreavi@gmail.com">
+              <span class="contact-row__icon"><svg viewBox="0 0 37 35" fill="var(--color-ocean)"><use href="#icon-envelope"></use></svg></span>
+              <span class="contact-row__text">
+                <span class="contact-row__label">Email</span>
+                <span class="contact-row__value">a.guerreavi@gmail.com</span>
+              </span>
+              <span class="contact-row__go">↗</span>
+            </a>
+
+            <a class="contact-row" href="https://linkedin.com/in/andrea-vfx" target="_blank" rel="noopener">
+              <span class="contact-row__icon is-text">in</span>
+              <span class="contact-row__text">
+                <span class="contact-row__label">LinkedIn</span>
+                <span class="contact-row__value">linkedin.com/in/andrea-vfx/</span>
+              </span>
+              <span class="contact-row__go">↗</span>
+            </a>
+
+            <a class="contact-row" href="https://andreagvfx.github.io" target="_blank" rel="noopener">
+              <span class="contact-row__icon is-text" style="font-size:20px;">✦</span>
+              <span class="contact-row__text">
+                <span class="contact-row__label">Portfolio</span>
+                <span class="contact-row__value">andreagvfx.github.io</span>
+              </span>
+              <span class="contact-row__go">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span class="avail-pill"><span class="avail-pill__dot"></span>Open to work</span>
+        </div>
+      </div>
+
+      <div class="footer__stars">
+        <div class="star star--pink star--sm" style="--float-delay:-3s;" data-star>
+          <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/main.js?v=4"></script>
+</body>
+</html>
