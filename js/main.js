@@ -76,13 +76,24 @@
     star.addEventListener('mousemove', (e) => {
       if (raf) return;
       raf = requestAnimationFrame(() => {
-        const rect = star.getBoundingClientRect();
+        const rect = star.getBoundingClientRect(); // the icon's own (small) box
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
-        const dx = ((e.clientX - cx) / (rect.width / 2)) * MAX_DRIFT;
-        const dy = ((e.clientY - cy) / (rect.height / 2)) * MAX_DRIFT;
-        star.style.setProperty('--drift-x', `${dx}px`);
-        star.style.setProperty('--drift-y', `${dy}px`);
+        const distX = e.clientX - cx;
+        const distY = e.clientY - cy;
+        // Lighting up works across the whole (possibly much bigger)
+        // --hit-pad zone, but the star should only visually nudge/drift
+        // once the cursor is actually near the icon itself — otherwise
+        // it'd look like it teleports to the mouse the instant you enter
+        // a wide hit zone. Outside this radius, position is left alone
+        // (it stays wherever it last was, like a real loose object).
+        const touchRadius = Math.max(rect.width, rect.height) * 0.9;
+        if (Math.hypot(distX, distY) <= touchRadius) {
+          const dx = (distX / (rect.width / 2)) * MAX_DRIFT;
+          const dy = (distY / (rect.height / 2)) * MAX_DRIFT;
+          star.style.setProperty('--drift-x', `${dx}px`);
+          star.style.setProperty('--drift-y', `${dy}px`);
+        }
         star.classList.add('is-lit');
         raf = null;
       });
