@@ -297,7 +297,7 @@ main { position: relative; }
   background: var(--bg-light);
   border-radius: var(--radius-stack) var(--radius-stack) 0 0;
   padding-top: clamp(40px, 5vw, 72px);
-  padding-bottom: 40px;
+  padding-bottom: 130px; /* breathing room before Work's rounded top slides over */
 }
 
 .about__hero {
@@ -363,7 +363,7 @@ main { position: relative; }
 .ticker__track {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 32s linear infinite;
+  animation: ticker-scroll 64s linear infinite;
 }
 .ticker__track span {
   font-family: var(--font-body);
@@ -778,19 +778,23 @@ main { position: relative; }
   word-break: break-all;
 }
 
-/* Decorative stars in work section */
+/* Sidebar: social box + decorative stars sit in a column together, so
+   the stars naturally land in the gap below the (shorter) social box
+   instead of guessing at an absolute offset — matches the Figma
+   composition regardless of how tall the social box or cards get. */
+.work__sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 28px;
+}
 .work__stars {
-  position: absolute;
-  right: clamp(16px, 5vw, 70px);
-  bottom: clamp(20px, 3vw, 50px);
-  z-index: 2;
   display: flex;
   align-items: flex-end;
   gap: clamp(4px, 1vw, 16px);
-  pointer-events: none;
+  padding-right: clamp(4px, 2vw, 24px);
 }
-.work__stars .star { pointer-events: auto; --star-off: rgba(255,255,255,0.92); }
-.work__stars .star__doodle { --star-off: rgba(30,104,152,0.6); }
+.work__stars .star { --star-off: rgba(255,255,255,0.92); }
 
 /* ============================================================
    FOOTER / CONTACT
@@ -943,27 +947,32 @@ main { position: relative; }
   fill: var(--star-off, rgba(245,232,245,0.35));
   transition: fill .5s steps(6, end);
 }
-.star__doodle {
-  stroke: var(--star-off, rgba(245,232,245,0.35));
-  fill: none;
-  stroke-width: 7;
-  stroke-linecap: round;
-  opacity: 0.55;
-  transition: opacity .5s steps(6, end), stroke .5s steps(6, end);
+
+/* Ambient glow — a soft halo that sits behind the star and washes the
+   page background around it a little when lit, not just the star
+   shape itself. */
+.star::before {
+  content: "";
+  position: absolute;
+  inset: -90%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--star-on, #ffe9a8) 0%, transparent 68%);
+  opacity: 0;
+  filter: blur(14px);
+  transition: opacity .5s steps(6, end);
+  pointer-events: none;
+  z-index: -1;
 }
+.star:hover::before,
+.star.is-lit::before { opacity: 0.55; }
 
 .star:hover .star__svg,
 .star.is-lit .star__svg {
   animation: star-wiggle 1s steps(12, end) infinite;
-  filter: drop-shadow(0 0 16px rgba(255,225,150,0.75));
+  filter: drop-shadow(0 0 16px var(--star-glow, rgba(255,225,150,0.75)));
 }
 .star:hover .star__shape,
 .star.is-lit .star__shape { fill: var(--star-on, #ffe9a8); }
-.star:hover .star__doodle,
-.star.is-lit .star__doodle {
-  stroke: var(--star-on-line, #c98b3d);
-  opacity: 1;
-}
 
 @keyframes star-float {
   0%, 100% { translate: 0 0; }
@@ -978,10 +987,12 @@ main { position: relative; }
   .star:hover .star__svg, .star.is-lit .star__svg { animation: none; transform: scale(1.1); }
 }
 
-/* Star color variants (matching Figma instances) */
-.star--gold  { --star-on: #ffe9a8; --star-on-line: #b57a2e; }
-.star--pink  { --star-on: #ffd7ef; --star-on-line: #b0559a; }
-.star--white { --star-on: #ffffff; --star-on-line: var(--color-ocean); }
+/* Star color palette — randomly assigned per star by main.js */
+.star--gold   { --star-on: #ffe9a8; --star-glow: rgba(255,225,150,0.8); }
+.star--pink   { --star-on: #ffd7ef; --star-glow: rgba(255,180,225,0.8); }
+.star--white  { --star-on: #ffffff; --star-glow: rgba(255,255,255,0.85); }
+.star--green  { --star-on: #c8f5c2; --star-glow: rgba(160,230,150,0.8); }
+.star--blue   { --star-on: #cfeaff; --star-glow: rgba(150,205,255,0.8); }
 
 /* ============================================================
    RESPONSIVE
@@ -1005,8 +1016,6 @@ main { position: relative; }
 
   .footer__top { flex-direction: column; }
   .contact-card { width: 100%; }
-
-  .work__stars { position: static; margin-top: 40px; justify-content: flex-end; display: flex; }
 }
 
 @media (max-width: 560px) {

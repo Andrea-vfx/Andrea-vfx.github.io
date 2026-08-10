@@ -45,6 +45,18 @@
   --------------------------------------------------------- */
   const stars = document.querySelectorAll('[data-star]');
   const MAX_DRIFT = 10; // px
+  const COLOR_VARIANTS = ['star--gold', 'star--pink', 'star--white', 'star--green', 'star--blue'];
+
+  // Randomly color any star that doesn't already carry a fixed variant
+  // (the nav logo keeps its brand gold; loose/decorative stars get a
+  // random pick from the palette each page load).
+  stars.forEach((star) => {
+    const hasColor = COLOR_VARIANTS.some((c) => star.classList.contains(c));
+    if (!hasColor) {
+      const pick = COLOR_VARIANTS[Math.floor(Math.random() * COLOR_VARIANTS.length)];
+      star.classList.add(pick);
+    }
+  });
 
   stars.forEach((star) => {
     let raf = null;
