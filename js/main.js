@@ -44,7 +44,7 @@
      so they feel loose/floating rather than glued in place.
   --------------------------------------------------------- */
   const stars = document.querySelectorAll('[data-star]');
-  const MAX_DRIFT = 10; // px
+  const MAX_DRIFT = 13; // px (10 * 1.3 — 30% wider drift radius)
   const COLOR_VARIANTS = ['star--gold', 'star--pink', 'star--white', 'star--green', 'star--blue'];
 
   // Randomly color any star that doesn't already carry a fixed variant
@@ -77,8 +77,10 @@
     });
 
     star.addEventListener('mouseleave', () => {
-      star.style.removeProperty('--drift-x');
-      star.style.removeProperty('--drift-y');
+      // Deliberately NOT resetting --drift-x/--drift-y here — the star
+      // stays put at the last spot the cursor pushed it to within its
+      // radius, like it's actually loose, instead of snapping back to
+      // center. Only the lit/glow state turns off.
       star.classList.remove('is-lit');
     });
 
@@ -91,25 +93,27 @@
   });
 
   /* ---------------------------------------------------------
-     ACTIVE NAV PILL — highlight "about · CV" vs "contact"
-     depending on which section is in view.
+     ACTIVE NAV PILL — "about · CV" / "work" / "contact" all
+     highlight based on which section is currently in view.
   --------------------------------------------------------- */
-  const aboutPill = document.querySelector('.nav__pill[href="#about"]');
-  const contactPill = document.querySelector('.nav__pill[href="#contact"]');
-  const workSection = document.getElementById('work');
+  const navSections = ['about', 'work', 'contact']
+    .map((name) => ({
+      pill: document.querySelector(`.nav__pill[data-nav-pill="${name}"]`),
+      el: document.getElementById(name),
+    }))
+    .filter((s) => s.pill && s.el);
 
-  if (aboutPill && contactPill && workSection) {
-    const setActive = (pill) => {
-      [aboutPill, contactPill].forEach((p) => p.classList.remove('is-active'));
-      pill.classList.add('is-active');
-    };
-
-    // Sections are stacked with position:sticky, so the reliable signal is
-    // simply: has the "work" panel's top edge reached the mid-viewport yet?
+  if (navSections.length) {
     let ticking = false;
     const updateActivePill = () => {
-      const workTop = workSection.getBoundingClientRect().top;
-      setActive(workTop <= window.innerHeight * 0.5 ? contactPill : aboutPill);
+      const threshold = window.innerHeight * 0.5;
+      // Pick the last section whose top has scrolled up past the
+      // midpoint — generalizes cleanly to any number of sections.
+      let current = navSections[0];
+      navSections.forEach((s) => {
+        if (s.el.getBoundingClientRect().top <= threshold) current = s;
+      });
+      navSections.forEach((s) => s.pill.classList.toggle('is-active', s === current));
       ticking = false;
     };
     const onScroll = () => {

@@ -142,24 +142,29 @@ body {
   color: var(--color-iris);
 }
 
+/* "work" is a real nav pill (same active/inactive treatment as
+   about/contact) with a small separate arrow button that opens the
+   sub-sections dropdown — two click targets, one visual unit. */
 .nav__work {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 4px;
-  font-size: 16px;
-  color: var(--bg-mid);
-  text-decoration: underline;
-  text-decoration-style: wavy;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1px;
-  transition: color var(--transition);
+  gap: 2px;
 }
-.nav__work:hover,
-.nav__work[aria-expanded="true"] { color: var(--color-iris); }
+.nav__work-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--bg-mid);
+  transition: background var(--transition), color var(--transition);
+}
+.nav__work-toggle:hover { background: var(--iris-8); color: var(--color-iris); }
 .nav__work-arrow { display: inline-block; transition: transform var(--transition); font-size: 13px; }
-.nav__work[aria-expanded="true"] .nav__work-arrow { transform: rotate(180deg); }
+.nav__work-toggle[aria-expanded="true"] { background: var(--iris-8); color: var(--color-iris); }
+.nav__work-toggle[aria-expanded="true"] .nav__work-arrow { transform: rotate(180deg); }
 
 .nav__logo {
   width: 46px;
@@ -187,7 +192,6 @@ body {
   transition: opacity .25s ease, transform .25s ease, visibility .25s;
   z-index: 999;
 }
-.nav__work[aria-expanded="true"] + .work-dropdown,
 .work-dropdown.is-open {
   opacity: 1;
   visibility: visible;
@@ -968,7 +972,8 @@ main { position: relative; }
 
 .star:hover .star__svg,
 .star.is-lit .star__svg {
-  animation: star-wiggle 1s steps(12, end) infinite;
+  /* 1s * 1.3 = 1.3s (30% slower); steps = 1.3s * 8fps ≈ 10 */
+  animation: star-wiggle 1.3s steps(10, end) infinite;
   filter: drop-shadow(0 0 16px var(--star-glow, rgba(255,225,150,0.75)));
 }
 .star:hover .star__shape,

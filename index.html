@@ -7,7 +7,7 @@
 <meta name="description" content="Compositing & Lighting Artist — VFX, 3D, Motion, Illustration and UX/UI portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="css/styles.css?v=5">
+<link rel="stylesheet" href="css/styles.css?v=6">
 </head>
 <body>
 
@@ -36,11 +36,14 @@
      ============================================================ -->
 <nav class="nav" id="siteNav">
   <div class="nav__links">
-    <a href="#about" class="nav__pill is-active">about · CV</a>
-    <button class="nav__work" id="workToggle" aria-expanded="false" aria-controls="workDropdown">
-      work <span class="nav__work-arrow">↓</span>
-    </button>
-    <a href="#contact" class="nav__pill">contact</a>
+    <a href="#about" class="nav__pill is-active" data-nav-pill="about">about · CV</a>
+    <div class="nav__work">
+      <a href="#work" class="nav__pill" data-nav-pill="work">work</a>
+      <button class="nav__work-toggle" id="workToggle" aria-expanded="false" aria-controls="workDropdown" aria-label="Work sections menu">
+        <span class="nav__work-arrow">↓</span>
+      </button>
+    </div>
+    <a href="#contact" class="nav__pill" data-nav-pill="contact">contact</a>
   </div>
   <div class="nav__logo star star--gold" style="--star-size:46px; --star-off: rgba(94,56,120,0.4);" data-star>
     <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
@@ -368,7 +371,7 @@
           </div>
 
           <div class="work__sidebar">
-            <aside class="social-box" id="contact">
+            <aside class="social-box" id="social">
               <div class="social-box__head">
                 <div class="social-box__name-row">
                   <p class="social-box__name">Andrea<br>Guerrero<br>Aviña</p>
@@ -433,7 +436,7 @@
   <!-- ============================================================
        FOOTER / CONTACT
        ============================================================ -->
-  <section class="panel panel--footer" id="contact-footer">
+  <section class="panel panel--footer" id="contact">
     <div class="footer">
       <video class="footer__video" autoplay muted loop playsinline preload="auto">
         <source src="assets/video/footer-bg.mp4" type="video/mp4">
@@ -489,6 +492,6 @@
 
 </main>
 
-<script src="js/main.js?v=5"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>
