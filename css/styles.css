@@ -939,6 +939,17 @@ main { position: relative; }
 .star--lg { --star-size: clamp(76px, 8.5vw, 150px); animation-duration: 8s; animation-timing-function: steps(96, end); }
 .star--floating { position: absolute; z-index: 3; }
 
+/* Invisible, oversized hover/hit zone — the star icon stays its normal
+   visual size, but the area that actually responds to the mouse is
+   much bigger (set per-instance via --hit-pad), so you don't have to
+   land the cursor precisely on the small icon to wake it up. */
+.star::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--hit-pad, 0px));
+  z-index: 1;
+}
+
 .star__svg {
   width: 100%;
   height: 100%;

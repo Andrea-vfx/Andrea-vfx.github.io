@@ -61,6 +61,18 @@
   stars.forEach((star) => {
     let raf = null;
 
+    // Each time the cursor lands on a star, swap it to a fresh random
+    // color (never repeating the one it just had) — the nav logo stays
+    // its fixed brand gold.
+    star.addEventListener('mouseenter', () => {
+      if (star.classList.contains('nav__logo')) return;
+      const current = COLOR_VARIANTS.find((c) => star.classList.contains(c));
+      const choices = COLOR_VARIANTS.filter((c) => c !== current);
+      const pick = choices[Math.floor(Math.random() * choices.length)];
+      if (current) star.classList.remove(current);
+      star.classList.add(pick);
+    });
+
     star.addEventListener('mousemove', (e) => {
       if (raf) return;
       raf = requestAnimationFrame(() => {
