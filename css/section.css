@@ -583,33 +583,38 @@ body { background: var(--bg-mid); }
   gap: clamp(20px, 3vw, 40px);
   align-items: start;
 }
+/* Real illustrated phone-mockup asset (Andrea's export). The video
+   sits behind, cropped to the exact screen cutout measured from the
+   source SVG's own path geometry (546x1050 canvas — screen path was
+   x:44 y:36 w:468 h:980, i.e. the % insets below), then the frame art
+   — same file with the two screen-fill paths removed, leaving a
+   transparent hole — lays on top so it reads as one real device. */
 .phone-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 9 / 16;
-  border-radius: 32px;
-  border: 8px solid #14101f;
-  background: #0a0810;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(59,34,76,0.3);
+  aspect-ratio: 546 / 1050;
+  filter: drop-shadow(0 20px 40px rgba(59,34,76,0.3));
 }
 .phone-frame video {
+  position: absolute;
+  top: 3.43%;
+  left: 8.06%;
+  right: 6.23%;
+  bottom: 3.24%;
+  width: 85.71%;
+  height: 93.33%;
+  border-radius: 22px;
+  object-fit: cover;
+  background: #0a0810;
+  z-index: 1;
+}
+.phone-frame__art {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-.phone-frame__notch {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 8px;
-  border-radius: 4px;
-  background: #14101f;
   z-index: 2;
+  pointer-events: none;
 }
 
 .video-info__title {
