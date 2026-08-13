@@ -271,6 +271,18 @@ body { background: var(--bg-mid); }
   overflow: hidden;
   background: linear-gradient(0deg, var(--thumb-c1, #1a0810), var(--thumb-c2, #301420));
 }
+.reel-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.reel-thumb:hover img {
+  transform: scale(1.05);
+}
 .reel-thumb span {
   position: absolute;
   left: 8px;

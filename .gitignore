@@ -5,6 +5,11 @@ assets/bg.mov
 assets/WAVES.mp4
 assets/media/video editing page/
 
+# Downloaded Vimeo reel footage + contact sheets used only to extract the
+# "From the reel" gallery thumbnails — the thumbnails themselves
+# (assets/media/vfx/reel-thumbs/) ARE tracked; this raw source is not.
+assets/media/vfx/reel-source/
+
 # Figma reference screenshots/exports used only during build — not site assets
 assets/homepage-full.png
 
