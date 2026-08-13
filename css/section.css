@@ -708,61 +708,204 @@ body { background: var(--bg-mid); }
 .horiz-info__tools img,
 .horiz-info__tools .tool-icon-fallback { width: 46px; height: 46px; border-radius: 12px; }
 
-.mascot-sticker {
+/* Process/assets gallery — a full-width row below the video+info
+   block (not confined to the right column), matching Figma's
+   'Proj / Process Gallery' which spans the full 1920 canvas. Item
+   widths are proportional flex-basis values matching the source
+   frame's pixel widths (maskot 404 : mancha-sola 240 : breakdown 500
+   : breakdown 500). */
+.process-gallery-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  padding: 32px var(--padding-page) 0;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  overflow-x: auto;
+}
+.process-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  flex-shrink: 0;
+}
+.process-item--maskot { flex: 0 0 21vw; max-width: 404px; aspect-ratio: 404/349; background: transparent; }
+.process-item--mancha { flex: 0 0 12.5vw; max-width: 240px; aspect-ratio: 240/267; }
+.process-item--breakdown { flex: 0 0 26vw; max-width: 500px; aspect-ratio: 500/281; }
+.process-item img,
+.process-item video {
   position: absolute;
-  width: clamp(90px, 9vw, 150px);
-  height: auto;
-  filter: drop-shadow(0 10px 20px rgba(59,34,76,0.3));
-  pointer-events: none;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.process-item--maskot img { object-fit: contain; object-position: bottom; }
+.process-item__caption {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.75);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  z-index: 1;
 }
 
-/* Process/assets gallery */
-.process-gallery__label {
+/* ── PROJECT HEADER (shared: Video Campaing / Pomo Delivery) ────── */
+.proj-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 52px var(--padding-page) 36px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.proj-header__num {
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(94,56,120,0.5);
-  text-align: center;
-  margin-top: 16px;
+  color: rgba(94,56,120,0.4);
 }
-.process-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 12px;
-}
-.process-card {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--proc-c1, #e8d8ee), var(--proc-c2, #d8c4e2));
-  aspect-ratio: 1 / 1;
-  grid-column: span 1;
-}
-.process-card--wide { grid-column: 1 / -1; aspect-ratio: 2.2 / 1; }
-.process-card span {
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 11px;
-  color: rgba(94,56,120,0.6);
-}
-.process-card__plus {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.6);
-  display: grid;
-  place-items: center;
-  font-weight: 700;
+.proj-header__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   color: var(--color-iris);
 }
+.proj-header__subtitle {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-purple);
+}
+.proj-divider {
+  height: 1px;
+  background: rgba(94,56,120,0.1);
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* ── VIDEO CAMPAIGN (2 videos side by side, no per-video info) ── */
+.campaign-row {
+  display: flex;
+  gap: 26px;
+  justify-content: center;
+  padding: 32px var(--padding-page);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.campaign-video {
+  position: relative;
+  flex: 1 1 460px;
+  max-width: 940px;
+  aspect-ratio: 940/529;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0a0810;
+}
+.campaign-video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── MOTION GRAPHICS GRID ─────────────────────────────────── */
+.mg-section {
+  background: var(--bg-mid);
+  border-radius: 100px 100px 0 0;
+  padding-bottom: 60px;
+}
+.mg-numband {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 40px var(--padding-page) 28px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.mg-numband span {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ocean);
+  white-space: nowrap;
+}
+.mg-numband .rule { flex: 1; height: 1px; background: var(--color-ocean); }
+.mg-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 0 var(--padding-page) 36px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.mg-header__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 6vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--bg-light);
+}
+.mg-header__badge {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  color: rgba(94,56,120,0.55);
+  white-space: nowrap;
+}
+
+.mg-grid {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  gap: 14px;
+  max-width: var(--content-max);
+  margin: 0 auto 14px;
+  padding: 0 var(--padding-page);
+}
+.mg-grid__col { display: flex; flex-direction: column; gap: 14px; }
+.mg-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0a0810;
+}
+.mg-item--16-9 { aspect-ratio: 1920/1080; }
+.mg-item--jaz { aspect-ratio: 679/1176; }
+.mg-item img,
+.mg-item video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mg-bottom-row {
+  display: grid;
+  grid-template-columns: 41fr 59fr;
+  gap: 20px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--padding-page);
+}
+.mg-bottom-row .mg-item { aspect-ratio: 699/894; }
+.mg-bottom-row .mg-item:last-child { aspect-ratio: 1006/894; }
 
 /* ── SIDE DRAWER ─────────────────────────────────────────── */
 .drawer-overlay {
