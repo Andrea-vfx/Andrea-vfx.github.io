@@ -95,4 +95,94 @@
       star._litTimeout = setTimeout(() => star.classList.remove('is-lit'), 1400);
     }, { passive: true });
   });
+
+  /* ---------------------------------------------------------
+     LIGHTBOX — product-gallery style modal used by the
+     Illustration featured-projects grid and the Design page's
+     UI project cards. Triggers carry their content as data-*
+     attributes (see markup); this reads them and renders once,
+     reusing a single overlay/panel already in the page.
+  --------------------------------------------------------- */
+  const lightboxOverlay = document.getElementById('lightboxOverlay');
+  if (lightboxOverlay) {
+    const lightboxImg = lightboxOverlay.querySelector('.lightbox__main img');
+    const lightboxThumbs = lightboxOverlay.querySelector('.lightbox__thumbs');
+    const lightboxEyebrow = lightboxOverlay.querySelector('.lightbox__eyebrow');
+    const lightboxTitle = lightboxOverlay.querySelector('.lightbox__title');
+    const lightboxTags = lightboxOverlay.querySelector('.lightbox__tags');
+    const lightboxDesc = lightboxOverlay.querySelector('.lightbox__desc');
+    const lightboxCounter = lightboxOverlay.querySelector('.lightbox__counter');
+    const lightboxLink = lightboxOverlay.querySelector('.lightbox__link');
+    const btnPrev = lightboxOverlay.querySelector('.lightbox__arrow--prev');
+    const btnNext = lightboxOverlay.querySelector('.lightbox__arrow--next');
+    const btnClose = lightboxOverlay.querySelector('.lightbox__close');
+
+    let images = [];
+    let index = 0;
+
+    function renderImage() {
+      lightboxImg.src = images[index];
+      lightboxCounter.textContent = `Image ${index + 1} of ${images.length}`;
+      lightboxThumbs.querySelectorAll('img').forEach((t, i) => {
+        t.classList.toggle('is-active', i === index);
+      });
+      const active = lightboxThumbs.querySelector('img.is-active');
+      active?.scrollIntoView({ block: 'nearest' });
+    }
+
+    function openLightbox(trigger) {
+      const d = trigger.dataset;
+      images = (d.lightboxImages || '').split(',').map((s) => s.trim()).filter(Boolean);
+      index = 0;
+      lightboxEyebrow.textContent = d.lightboxEyebrow || '';
+      lightboxTitle.textContent = d.lightboxTitle || '';
+      lightboxTags.textContent = d.lightboxTags || '';
+      lightboxDesc.textContent = d.lightboxDesc || '';
+      if (d.lightboxLink) {
+        lightboxLink.href = d.lightboxLink;
+        lightboxLink.textContent = d.lightboxLinkLabel || 'View full project ↗';
+        lightboxLink.style.display = '';
+      } else {
+        lightboxLink.style.display = 'none';
+      }
+
+      lightboxThumbs.innerHTML = '';
+      images.forEach((src, i) => {
+        const t = document.createElement('img');
+        t.src = src;
+        t.loading = 'lazy';
+        t.addEventListener('click', () => { index = i; renderImage(); });
+        lightboxThumbs.appendChild(t);
+      });
+      lightboxThumbs.style.display = images.length > 1 ? '' : 'none';
+      btnPrev.style.display = btnNext.style.display = images.length > 1 ? '' : 'none';
+
+      renderImage();
+      lightboxOverlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightboxOverlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-lightbox-trigger]').forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLightbox(trigger);
+      });
+    });
+
+    btnPrev.addEventListener('click', () => { index = (index - 1 + images.length) % images.length; renderImage(); });
+    btnNext.addEventListener('click', () => { index = (index + 1) % images.length; renderImage(); });
+    btnClose.addEventListener('click', closeLightbox);
+    lightboxOverlay.addEventListener('click', (e) => { if (e.target === lightboxOverlay) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxOverlay.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') btnPrev.click();
+      if (e.key === 'ArrowRight') btnNext.click();
+    });
+  }
 })();
