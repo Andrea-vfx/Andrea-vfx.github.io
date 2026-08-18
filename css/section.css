@@ -519,6 +519,7 @@ body { background: var(--bg-mid); }
 /* ── MOTION PAGE — title band ────────────────────────────── */
 .motion-title {
   background: var(--bg-mid);
+  border-radius: var(--radius-stack) var(--radius-stack) 0 0;
   padding: 68px var(--padding-page) 40px;
   position: relative;
   overflow: hidden;
