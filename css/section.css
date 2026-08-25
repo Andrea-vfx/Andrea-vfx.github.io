@@ -678,7 +678,9 @@ body { background: var(--bg-mid); }
   margin-top: calc(-1 * var(--radius-stack-tight));
   background: var(--bg-mid);
   border-radius: var(--radius-stack-tight) var(--radius-stack-tight) 0 0;
-  padding: 68px var(--padding-page) 40px;
+  /* generous bottom padding: #vertical-label overlaps -100px onto this
+     (see #vertical-label), needs room to not crowd the heading above */
+  padding: 68px var(--padding-page) 140px;
   overflow: hidden;
 }
 .motion-title__layout {
@@ -743,9 +745,26 @@ body { background: var(--bg-mid); }
 .section-label--light span { color: var(--color-iris); }
 .section-label--light .rule { background: rgba(94,56,120,0.15); }
 
+/* This is the ONLY label instance sitting right under a color change
+   (.motion-title's purple) — per Figma it's bg-light with its own
+   rounded-top-100px reveal, ocean-blue label text and a solid bg-mid
+   rule line (not the translucent rgba used by the other labels). The
+   other .section-label instances on this page stay purple/pink-on-
+   pink with no color transition, so they don't need this. */
+#vertical-label {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(-1 * var(--radius-stack));
+  background: var(--bg-light);
+  border-radius: var(--radius-stack) var(--radius-stack) 0 0;
+  padding-top: 48px;
+}
+#vertical-label span { color: var(--color-ocean); }
+#vertical-label .rule { background: var(--bg-mid); }
+
 /* ── VERTICAL VIDEO PAIRS ────────────────────────────────── */
 .vertical-row {
-  background: var(--bg-mid);
+  background: var(--bg-light);
   padding: 20px var(--padding-page) 80px;
 }
 .vertical-row__grid {
@@ -800,7 +819,7 @@ body { background: var(--bg-mid); }
   font-weight: 900;
   font-size: clamp(1.3rem, 2vw, 1.7rem);
   line-height: 1.15;
-  color: var(--bg-light);
+  color: var(--color-iris);
   margin-bottom: 6px;
 }
 .video-info__studio {
@@ -809,21 +828,16 @@ body { background: var(--bg-mid); }
   color: var(--color-purple);
   margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(245,232,245,0.2);
+  border-bottom: 1px solid rgba(94,56,120,0.2);
 }
 .video-info__desc {
   font-family: var(--font-body);
   font-size: 14.5px;
   line-height: 1.6;
-  color: rgba(245,232,245,0.85);
+  color: rgba(94,56,120,0.8);
   margin-bottom: 18px;
 }
 .video-info__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-.video-info__chips .tech-chip {
-  background: rgba(245,232,245,0.1);
-  border-color: rgba(245,232,245,0.4);
-  color: var(--bg-light);
-}
 .video-info__tools { display: flex; gap: 8px; }
 .video-info__tools img,
 .video-info__tools .tool-icon-fallback { width: 44px; height: 44px; border-radius: 10px; }
