@@ -68,7 +68,17 @@ body { background: var(--bg-mid); }
 .section-nav__hamburger span:nth-child(3) { width: 22px; }
 
 /* ── REEL HERO ───────────────────────────────────────────── */
+/* position:relative + negative margin-top + z-index: without this,
+   the rounded top corner has nothing behind it to reveal but the
+   plain <body> background — which is the same --bg-mid purple as
+   this section's own fill, so the "rounding" is invisible even
+   though border-radius is correctly applied. The overlap is what
+   makes the previous (lighter) section peek through the curve —
+   same mechanic as the homepage's .panel--about/work/footer stack. */
 .reel-hero {
+  position: relative;
+  z-index: 1;
+  margin-top: -24px;
   background: var(--bg-mid);
   border-radius: var(--radius-stack) var(--radius-stack) 0 0;
   padding: 64px var(--padding-page) 88px;
@@ -357,6 +367,8 @@ body { background: var(--bg-mid); }
 /* ── POSTER GALLERY ──────────────────────────────────────── */
 .poster-gallery {
   position: relative;
+  z-index: 2;
+  margin-top: -40px;
   background: var(--bg-mid);
   border-radius: 100px 100px 0 0;
   padding: 44px 0 140px;
@@ -387,7 +399,10 @@ body { background: var(--bg-mid); }
   display: flex;
   gap: 20px;
   overflow-x: auto;
-  padding: 4px var(--padding-page) 12px;
+  /* left padding clears the big glowing star (positioned absolutely,
+     up to ~320px from the edge on large screens) instead of the
+     cards starting right underneath it */
+  padding: 4px var(--padding-page) 12px clamp(100px, 20vw, 360px);
   scroll-snap-type: x mandatory;
 }
 .poster-card {
@@ -459,9 +474,23 @@ body { background: var(--bg-mid); }
   z-index: 0;
 }
 .poster-gallery__star .star--lg { --star-size: clamp(120px, 12vw, 190px); }
+/* Big decorative stars (poster-gallery, "more of my work" header) are
+   ambient/passive in Figma — always glowing, not a hover state like
+   the small interactive nav/CTA stars. */
+.star--lg .star__svg,
+.also-header .star__svg {
+  filter: drop-shadow(0 0 20px var(--star-glow, rgba(255,255,255,0.75)));
+}
+.star--lg .star__shape,
+.also-header .star__shape {
+  fill: var(--star-on, #ffffff);
+}
 
 /* ── "MORE OF MY WORK" cross-promo (bottom of section pages) ── */
 .also-header {
+  position: relative;
+  z-index: 3;
+  margin-top: -50px;
   background: var(--bg-light);
   border-radius: var(--radius-stack) var(--radius-stack) 0 0;
   display: flex;
@@ -481,7 +510,9 @@ body { background: var(--bg-mid); }
   background: var(--bg-light);
   display: flex;
   gap: 24px;
-  padding: 0 var(--padding-page) 56px;
+  /* generous bottom padding so the footer's own -80px pull-up
+     (shared .panel--footer rule) doesn't crowd these cards */
+  padding: 0 var(--padding-page) 130px;
   flex-wrap: wrap;
 }
 .also-card {
