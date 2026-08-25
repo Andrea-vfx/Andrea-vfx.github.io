@@ -1796,10 +1796,14 @@ body { background: var(--bg-mid); }
   border-radius: 24px;
   overflow: hidden;
 }
+/* Was positioned at -22px/-22px (outside .lightbox's own box) to sit
+   just past its corner — but .lightbox has overflow:hidden (needed to
+   clip the image/thumbs to its rounded corners), which also clipped
+   this button since it never leaves that box. Moved fully inside. */
 .lightbox__close {
   position: absolute;
-  top: -22px;
-  right: -22px;
+  top: 16px;
+  right: 16px;
   width: 44px; height: 44px;
   border-radius: 50%;
   background: var(--bg-mid);
