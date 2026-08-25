@@ -669,10 +669,16 @@ body { background: var(--bg-mid); }
 
 /* ── MOTION PAGE — title band ────────────────────────────── */
 .motion-title {
-  background: var(--bg-mid);
-  border-radius: var(--radius-stack) var(--radius-stack) 0 0;
-  padding: 68px var(--padding-page) 40px;
   position: relative;
+  z-index: 1;
+  /* same corner-stacking mechanic as .reel-hero on the VFX page: the
+     overlap MUST equal the radius exactly, or the curve cuts off
+     partway into a visible straight edge — nav is only ~88px tall so
+     this uses the smaller --radius-stack-tight, not --radius-stack */
+  margin-top: calc(-1 * var(--radius-stack-tight));
+  background: var(--bg-mid);
+  border-radius: var(--radius-stack-tight) var(--radius-stack-tight) 0 0;
+  padding: 68px var(--padding-page) 40px;
   overflow: hidden;
 }
 .motion-title__layout {
@@ -926,6 +932,11 @@ body { background: var(--bg-mid); }
   text-shadow: 0 1px 4px rgba(0,0,0,0.4);
   z-index: 1;
 }
+/* #tiki is the section directly above .mg-section, which slides up
+   -100px over it (see .mg-section) — extra bottom padding on top of
+   .horizontal-row's default 80px so that overlap doesn't crowd the
+   process gallery above it. */
+#tiki { padding-bottom: 180px; }
 
 /* ── PROJECT HEADER (shared: Video Campaing / Pomo Delivery) ────── */
 .proj-header {
@@ -994,9 +1005,12 @@ body { background: var(--bg-mid); }
 
 /* ── MOTION GRAPHICS GRID ─────────────────────────────────── */
 .mg-section {
+  position: relative;
+  z-index: 2;
+  margin-top: -100px; /* matches border-radius exactly — see #tiki */
   background: var(--bg-mid);
   border-radius: 100px 100px 0 0;
-  padding-bottom: 60px;
+  padding-bottom: 160px; /* extra room for the also-header's 100px overlap on top of the original 60px */
 }
 .mg-numband {
   display: flex;

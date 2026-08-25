@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="../css/styles.css?v=9">
-<link rel="stylesheet" href="../css/section.css?v=5">
+<link rel="stylesheet" href="../css/section.css?v=6">
 </head>
 <body>
 
@@ -264,9 +264,76 @@
   </section>
 
   <!-- ============================================================
+       MORE OF MY WORK — cross-promo to other sections
+       ============================================================ -->
+  <div class="also-header">
+    <h2 class="also-header__title">More of my work</h2>
+    <span class="star star--gold" style="--float-delay:-1.5s;" data-star>
+      <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+    </span>
+  </div>
+  <div class="also-row">
+    <a class="also-card" href="../vfx/index.html#compositing-reel">
+      <div class="also-card__label">
+        You may also like
+        <span class="star star--white" data-star>
+          <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+        </span>
+      </div>
+      <div class="also-card__thumbs">
+        <div class="also-card__thumb" style="--thumb-c1:#1a0810;--thumb-c2:#301420;"><span class="play">▶</span></div>
+        <div class="also-card__thumb" style="--thumb-c1:#081024;--thumb-c2:#102040;"><span class="play">▶</span></div>
+        <div class="also-card__thumb" style="--thumb-c1:#120820;--thumb-c2:#221238;"><span class="play">▶</span></div>
+      </div>
+      <div class="also-card__rule"></div>
+      <div class="also-card__section">
+        <span class="also-card__icon">◉</span>
+        <div class="also-card__section-text">
+          <p class="also-card__num">Section 01</p>
+          <p class="also-card__title">VFX &amp; Compositing</p>
+        </div>
+        <span class="also-card__arrow">↗</span>
+      </div>
+      <div class="also-card__rule also-card__rule--light"></div>
+      <div class="also-card__bottom">
+        <p class="also-card__tags">Compositing reel · Film &amp; TV · Nuke</p>
+        <p class="also-card__sub">WeLab · Hallmark · El Taller del Chucho</p>
+      </div>
+    </a>
+
+    <a class="also-card" href="../vfx/index.html#lighting-reel">
+      <div class="also-card__label">
+        You may also like
+        <span class="star star--white" data-star>
+          <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+        </span>
+      </div>
+      <div class="also-card__thumbs">
+        <div class="also-card__thumb" style="--thumb-c1:#040c1c;--thumb-c2:#082040;"><span class="play">▶</span></div>
+        <div class="also-card__thumb" style="--thumb-c1:#1c1004;--thumb-c2:#38240c;"><span class="play">▶</span></div>
+        <div class="also-card__thumb" style="--thumb-c1:#100820;--thumb-c2:#201038;"><span class="play">▶</span></div>
+      </div>
+      <div class="also-card__rule"></div>
+      <div class="also-card__section">
+        <span class="also-card__icon">◉</span>
+        <div class="also-card__section-text">
+          <p class="also-card__num">Section 02</p>
+          <p class="also-card__title">VFX &amp; Lighting</p>
+        </div>
+        <span class="also-card__arrow">↗</span>
+      </div>
+      <div class="also-card__rule also-card__rule--light"></div>
+      <div class="also-card__bottom">
+        <p class="also-card__tags">Lighting reel · Lookdev · Maya · Arnold</p>
+        <p class="also-card__sub">Day/Night Lookdev · CG · Additive method</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- ============================================================
        FOOTER / CONTACT (same component as homepage)
        ============================================================ -->
-  <section id="contact">
+  <section class="panel--footer" id="contact">
     <div class="footer">
       <video class="footer__video" autoplay muted loop playsinline preload="auto">
         <source src="../assets/media/footer-bg.mp4" type="video/mp4">
