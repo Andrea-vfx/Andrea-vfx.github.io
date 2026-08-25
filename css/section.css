@@ -795,7 +795,7 @@ body { background: var(--bg-mid); }
   display: grid;
   grid-template-columns: minmax(200px, 260px) 1fr;
   gap: clamp(20px, 3vw, 40px);
-  align-items: start;
+  align-items: center;
 }
 /* phone-mockup.png (Andrea's newer export, 760x1462) is a flat raster
    with the phone body/bezel AND a solid placeholder "screen" fill
@@ -836,11 +836,18 @@ body { background: var(--bg-mid); }
   z-index: 2;
 }
 
+/* Figma (688:783 "Caleb Content ad") sets this text at a flat 60px —
+   the phone mockup column here is deliberately scaled down to 260px
+   vs Figma's 380px (a ~0.68 ratio, see .video-pair's grid-template),
+   so title/icon sizes scale down by the same ratio rather than
+   copying the raw px value. Was clamp(1.3rem,2vw,1.7rem) (~21-27px),
+   nowhere near even the scaled-down target (~41px). */
 .video-info__title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(1.3rem, 2vw, 1.7rem);
-  line-height: 1.15;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: var(--color-iris);
   margin-bottom: 6px;
 }
@@ -862,7 +869,7 @@ body { background: var(--bg-mid); }
 .video-info__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 .video-info__tools { display: flex; gap: 8px; }
 .video-info__tools img,
-.video-info__tools .tool-icon-fallback { width: 44px; height: 44px; border-radius: 10px; }
+.video-info__tools .tool-icon-fallback { width: 48px; height: 48px; border-radius: 10px; }
 
 /* ── HORIZONTAL VIDEO SECTION ────────────────────────────── */
 .horizontal-row {
