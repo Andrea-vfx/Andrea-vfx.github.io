@@ -78,9 +78,12 @@ body { background: var(--bg-mid); }
 .reel-hero {
   position: relative;
   z-index: 1;
-  margin-top: -24px;
+  /* overlap MUST equal the radius exactly, or the curve cuts off
+     partway into a visible straight edge — nav is only ~100px tall
+     so this uses the smaller --radius-stack-tight, not --radius-stack */
+  margin-top: calc(-1 * var(--radius-stack-tight));
   background: var(--bg-mid);
-  border-radius: var(--radius-stack) var(--radius-stack) 0 0;
+  border-radius: var(--radius-stack-tight) var(--radius-stack-tight) 0 0;
   padding: 64px var(--padding-page) 88px;
 }
 .reel-hero__layout {
@@ -200,6 +203,13 @@ body { background: var(--bg-mid); }
 .info-band {
   background: var(--bg-light);
   padding: 64px var(--padding-page);
+}
+/* Credits is immediately followed by .poster-gallery, whose rounded
+   top needs a full 100px overlap to reveal (see .poster-gallery) —
+   extra bottom room here so that overlap doesn't eat into the
+   credit-rows content above it. */
+#credits {
+  padding-bottom: 180px;
 }
 .info-band__layout {
   display: grid;
@@ -368,7 +378,7 @@ body { background: var(--bg-mid); }
 .poster-gallery {
   position: relative;
   z-index: 2;
-  margin-top: -40px;
+  margin-top: -100px; /* matches border-radius exactly, see #credits */
   background: var(--bg-mid);
   border-radius: 100px 100px 0 0;
   padding: 44px 0 140px;
@@ -490,7 +500,7 @@ body { background: var(--bg-mid); }
 .also-header {
   position: relative;
   z-index: 3;
-  margin-top: -50px;
+  margin-top: calc(-1 * var(--radius-stack)); /* poster-gallery's 140px bottom padding covers this */
   background: var(--bg-light);
   border-radius: var(--radius-stack) var(--radius-stack) 0 0;
   display: flex;

@@ -54,6 +54,13 @@ ul { list-style: none; }
   --radius-sm:    12px;
   --radius-stack: clamp(28px, 5vw, 100px);
   --radius-stack-sm: clamp(20px, 3vw, 80px);
+  /* For a stacked-corner reveal against a short predecessor (e.g. the
+     ~100px-tall section-page nav): the negative margin-top overlap
+     MUST be >= the border-radius, or the curve only partially reveals
+     and cuts off into a visible straight edge partway through. Nav
+     doesn't have room for a 100px overlap, so this stays intentionally
+     small — always paired 1:1 with margin-top: calc(-1 * this). */
+  --radius-stack-tight: clamp(20px, 3vw, 40px);
 
   --transition: 0.3s ease;
 }
