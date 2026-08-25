@@ -67,6 +67,16 @@ body { background: var(--bg-mid); }
 .section-nav__hamburger span:nth-child(2) { width: 14px; }
 .section-nav__hamburger span:nth-child(3) { width: 22px; }
 
+/* Motion page only: per Figma its nav sits on bg-mid instead of the
+   default bg-light — hamburger pill + separator invert to read
+   against the darker fill. */
+.section-nav--muted { background: var(--bg-mid); }
+.section-nav--muted .section-nav__crumb span.sep { color: rgba(94,56,120,0.25); }
+.section-nav--muted .section-nav__hamburger { background: var(--bg-light); }
+.section-nav--muted .section-nav__hamburger span { background: var(--bg-mid); }
+.section-nav--muted .section-nav__hamburger:hover { background: var(--color-iris); }
+.section-nav--muted .section-nav__hamburger:hover span { background: var(--bg-light); }
+
 /* ── REEL HERO ───────────────────────────────────────────── */
 /* position:relative + negative margin-top + z-index: without this,
    the rounded top corner has nothing behind it to reveal but the
@@ -676,11 +686,14 @@ body { background: var(--bg-mid); }
      partway into a visible straight edge — nav is only ~88px tall so
      this uses the smaller --radius-stack-tight, not --radius-stack */
   margin-top: calc(-1 * var(--radius-stack-tight));
-  background: var(--bg-mid);
+  /* bg-light, not bg-mid: per Figma this whole band down through the
+     vertical row is bg-light — the ONLY purple here is the nav behind
+     it (also bg-mid, see .section-nav--muted) revealed through this
+     curve, and the muted-purple heading TEXT below. Both were wrong
+     in the previous pass (band was filled solid purple). */
+  background: var(--bg-light);
   border-radius: var(--radius-stack-tight) var(--radius-stack-tight) 0 0;
-  /* generous bottom padding: #vertical-label overlaps -100px onto this
-     (see #vertical-label), needs room to not crowd the heading above */
-  padding: 68px var(--padding-page) 140px;
+  padding: 68px var(--padding-page) 40px;
   overflow: hidden;
 }
 .motion-title__layout {
@@ -698,7 +711,7 @@ body { background: var(--bg-mid); }
   font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-ocean);
+  color: rgba(94,56,120,0.45);
   margin-bottom: 12px;
 }
 .motion-title__heading {
@@ -707,24 +720,28 @@ body { background: var(--bg-mid); }
   font-size: clamp(2.4rem, 5vw, 4.5rem);
   line-height: 1;
   letter-spacing: -0.03em;
-  color: var(--bg-light);
+  color: var(--bg-mid);
 }
 .format-pills { display: flex; gap: 10px; }
 .format-pill {
   display: inline-flex;
   align-items: center;
   padding: 6px 14px;
-  border-radius: 20px;
-  background: rgba(245,232,245,0.15);
-  border: 1px solid rgba(245,232,245,0.4);
+  border-radius: 6px;
+  background: rgba(94,56,120,0.08);
+  border: 0.5px solid var(--color-iris);
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 13px;
-  color: var(--bg-light);
+  color: rgba(94,56,120,0.65);
   white-space: nowrap;
 }
+/* Small, plain, muted-purple — not the big glowing ambient stars used
+   elsewhere (poster-gallery, also-header), which only glow on a DARK
+   fill. This one sits on bg-light. */
 .motion-title__star { position: absolute; right: clamp(20px, 8vw, 160px); top: 30%; z-index: 0; }
-.motion-title__star .star--lg { --star-size: clamp(80px, 8vw, 130px); }
+.motion-title__star .star { --star-size: clamp(70px, 7vw, 126px); --star-off: var(--bg-mid); }
+.motion-title__star .star__svg { filter: none; }
 
 .section-label {
   display: flex;
@@ -745,20 +762,11 @@ body { background: var(--bg-mid); }
 .section-label--light span { color: var(--color-iris); }
 .section-label--light .rule { background: rgba(94,56,120,0.15); }
 
-/* This is the ONLY label instance sitting right under a color change
-   (.motion-title's purple) — per Figma it's bg-light with its own
-   rounded-top-100px reveal, ocean-blue label text and a solid bg-mid
-   rule line (not the translucent rgba used by the other labels). The
-   other .section-label instances on this page stay purple/pink-on-
-   pink with no color transition, so they don't need this. */
-#vertical-label {
-  position: relative;
-  z-index: 2;
-  margin-top: calc(-1 * var(--radius-stack));
-  background: var(--bg-light);
-  border-radius: var(--radius-stack) var(--radius-stack) 0 0;
-  padding-top: 48px;
-}
+/* Per Figma this label is bg-light with ocean-blue text and a solid
+   bg-mid rule line (not the translucent rgba the other labels use).
+   .motion-title is ALSO bg-light now (see above), so this is a flat
+   same-color continuation — no corner-reveal overlap needed here. */
+#vertical-label { background: var(--bg-light); }
 #vertical-label span { color: var(--color-ocean); }
 #vertical-label .rule { background: var(--bg-mid); }
 
@@ -780,38 +788,43 @@ body { background: var(--bg-mid); }
   gap: clamp(20px, 3vw, 40px);
   align-items: start;
 }
-/* Real illustrated phone-mockup asset (Andrea's export). The video
-   sits behind, cropped to the exact screen cutout measured from the
-   source SVG's own path geometry (546x1050 canvas — screen path was
-   x:44 y:36 w:468 h:980, i.e. the % insets below), then the frame art
-   — same file with the two screen-fill paths removed, leaving a
-   transparent hole — lays on top so it reads as one real device. */
+/* phone-mockup.png (Andrea's newer export, 760x1462) is a flat raster
+   with the phone body/bezel AND a solid placeholder "screen" fill
+   baked into one image — there's no transparent cutout. So instead of
+   the old hole-punch approach (frame on top, video behind), the video
+   sits ON TOP, sized/positioned to exactly cover that placeholder
+   fill (bounds measured directly off the PNG's pixels), while the
+   frame art stays behind as the base layer — bezel shows around the
+   video's edges since the video doesn't extend past the screen area. */
 .phone-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 546 / 1050;
+  aspect-ratio: 760 / 1462;
   filter: drop-shadow(0 20px 40px rgba(59,34,76,0.3));
-}
-.phone-frame video {
-  position: absolute;
-  top: 3.43%;
-  left: 8.06%;
-  right: 6.23%;
-  bottom: 3.24%;
-  width: 85.71%;
-  height: 93.33%;
-  border-radius: 22px;
-  object-fit: cover;
-  background: #0a0810;
-  z-index: 1;
 }
 .phone-frame__art {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
+}
+.phone-frame video {
+  position: absolute;
+  /* <video> is a replaced element with its own intrinsic size (the
+     source file's pixel resolution) — top/left + explicit width/
+     height is used instead of all 4 insets, since a replaced element
+     with all 4 insets AND an explicit width becomes over-constrained
+     and the browser just drops 'right', overflowing past it. */
+  top: 4.24%;
+  left: 8.16%;
+  width: 83.68%;
+  height: 92.34%;
+  border-radius: 22px;
+  object-fit: cover;
+  background: #0a0810;
+  z-index: 2;
 }
 
 .video-info__title {
@@ -1016,6 +1029,14 @@ body { background: var(--bg-mid); }
   height: 100%;
   object-fit: cover;
 }
+.campaign-tools {
+  display: flex;
+  gap: 8px;
+  padding: 0 var(--padding-page) 40px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.campaign-tools img { width: 46px; height: 46px; border-radius: 10px; }
 
 /* ── MOTION GRAPHICS GRID ─────────────────────────────────── */
 .mg-section {
@@ -1062,6 +1083,9 @@ body { background: var(--bg-mid); }
   letter-spacing: -0.02em;
   color: var(--bg-light);
 }
+.mg-header__right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.mg-header__right .star { --star-size: clamp(50px, 5vw, 80px); }
+.mg-header__right .star__svg { filter: drop-shadow(0 0 14px var(--star-glow, rgba(255,255,255,0.75))); }
 .mg-header__badge {
   font-family: var(--font-body);
   font-weight: 300;

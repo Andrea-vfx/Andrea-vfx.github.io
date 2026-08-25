@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="../css/styles.css?v=9">
-<link rel="stylesheet" href="../css/section.css?v=7">
+<link rel="stylesheet" href="../css/section.css?v=10">
 </head>
 <body>
 
@@ -26,7 +26,7 @@
 <!-- ============================================================
      NAV
      ============================================================ -->
-<nav class="section-nav">
+<nav class="section-nav section-nav--muted">
   <a href="../index.html" class="section-nav__logo">
     <span class="star star--gold" style="--star-size:40px; --star-off:rgba(94,56,120,0.4);" data-star>
       <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
@@ -50,7 +50,7 @@
        ============================================================ -->
   <section class="motion-title">
     <div class="motion-title__star" aria-hidden="true">
-      <div class="star star--white star--lg" data-star>
+      <div class="star" data-star>
         <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
       </div>
     </div>
@@ -79,7 +79,7 @@
 
       <div class="video-pair" id="caleb">
         <div class="phone-frame">
-          <img class="phone-frame__art" src="../assets/phone-frame-overlay.svg" alt="" aria-hidden="true">
+          <img class="phone-frame__art" src="../assets/phone-mockup.png" alt="" aria-hidden="true">
           <video autoplay muted loop playsinline controls preload="auto">
             <source src="../assets/media/motion/caleb-content-ad.mp4" type="video/mp4">
           </video>
@@ -102,7 +102,7 @@
 
       <div class="video-pair" id="own-your-style">
         <div class="phone-frame">
-          <img class="phone-frame__art" src="../assets/phone-frame-overlay.svg" alt="" aria-hidden="true">
+          <img class="phone-frame__art" src="../assets/phone-mockup.png" alt="" aria-hidden="true">
           <video autoplay muted loop playsinline controls preload="auto">
             <source src="../assets/media/motion/own-your-style.mp4" type="video/mp4">
           </video>
@@ -151,6 +151,10 @@
           <source src="../assets/media/motion/video-campaign/lydia.mp4" type="video/mp4">
         </video>
       </div>
+    </div>
+    <div class="campaign-tools">
+      <img src="../assets/icons/after-effects-icon.png" alt="After Effects" width="46" height="46">
+      <img src="../assets/icons/premiere-icon.svg" alt="Premiere Pro" width="46" height="46">
     </div>
   </section>
 
@@ -228,7 +232,12 @@
     </div>
     <div class="mg-header">
       <h2 class="mg-header__title">Motion Graphics</h2>
-      <p class="mg-header__badge">Playing automatically</p>
+      <div class="mg-header__right">
+        <span class="star star--white" data-star>
+          <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+        </span>
+        <p class="mg-header__badge">Playing automatically</p>
+      </div>
     </div>
 
     <div class="mg-grid">
