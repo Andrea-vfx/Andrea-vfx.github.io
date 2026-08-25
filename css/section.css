@@ -751,33 +751,33 @@ body { background: var(--bg-mid); }
    --content-max (1760px) the background stopped at 1760px while the
    element itself kept centering, leaving bare body-colored strips on
    both sides. */
-.section-label { padding: 28px var(--padding-page); }
+/* Checked directly against both label nodes in Figma (539:446 and
+   715:965) — they're identical: DM Sans Medium 20px, 6% tracking
+   (1.2px @ 20px), uppercase, accent.ocean text, solid bg-mid rule.
+   Both sit on bg-light with no color transition needed — .motion-title
+   and .vertical-row are already bg-light (see above). Previously this
+   used the display font, 18px, no tracking, and a translucent
+   iris/light color guessed from screenshots instead of read off the
+   actual text node — the exact values were sitting right there in
+   get_design_context the whole time. */
+.section-label { background: var(--bg-light); padding: 28px var(--padding-page); }
 .section-label__row {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   max-width: var(--content-max);
   margin: 0 auto;
 }
 .section-label__row span {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--bg-light);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ocean);
   white-space: nowrap;
 }
-.section-label__row .rule { flex: 1; height: 1px; background: rgba(245,232,245,0.25); }
-.section-label--light { background: var(--bg-light); }
-.section-label--light .section-label__row span { color: var(--color-iris); }
-.section-label--light .section-label__row .rule { background: rgba(94,56,120,0.15); }
-
-/* Per Figma this label is bg-light with ocean-blue text and a solid
-   bg-mid rule line (not the translucent rgba the other labels use).
-   .motion-title is ALSO bg-light now (see above), so this is a flat
-   same-color continuation — no corner-reveal overlap needed here. */
-#vertical-label { background: var(--bg-light); }
-#vertical-label .section-label__row span { color: var(--color-ocean); }
-#vertical-label .section-label__row .rule { background: var(--bg-mid); }
+.section-label__row .rule { flex: 1; height: 1px; background: var(--bg-mid); }
 
 /* ── VERTICAL VIDEO PAIRS ────────────────────────────────── */
 .vertical-row {
@@ -893,22 +893,16 @@ body { background: var(--bg-mid); }
   height: 100%;
   object-fit: cover;
 }
-.horiz-info { padding-top: 12px; }
-.horiz-info__title {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  color: var(--color-iris);
-  margin-bottom: 8px;
-}
-.horiz-info__role {
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--color-ocean);
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(94,56,120,0.15);
-}
+/* .proj-header--compact: same typography as the page-wide .proj-header
+   (Video Campaing's own header, which really is full-width in Figma),
+   just without the page-level padding/max-width/centering — this one
+   is nested inside .horiz-info, which is already inside the
+   constrained info column. Pomo Delivery's title sits INSIDE that
+   column right above its own divider in Figma (712:446 "Info Block"),
+   not as a separate banner spanning the whole video+info row like it
+   was before. */
+.proj-header--compact { padding: 0; max-width: none; margin: 0 0 20px; }
+.horiz-info__divider { height: 1px; background: rgba(94,56,120,0.15); margin-bottom: 20px; }
 .horiz-info__desc {
   font-family: var(--font-body);
   font-size: 15px;
