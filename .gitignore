@@ -13,6 +13,14 @@ assets/media/vfx/reel-source/
 # Figma reference screenshots/exports used only during build — not site assets
 assets/homepage-full.png
 
+# Full-page Figma "MAIN" reference exports (PDF/SVG) — used locally to audit
+# each page against the current design, never linked from the live site.
+# Some of these SVG exports run 15-20MB+ each; keep them out of the repo.
+design/pdfs references figma/
+
+# Unused stray export, not referenced anywhere in the site
+illustration/thumb.png
+
 # OS cruft
 .DS_Store
 Thumbs.db
