@@ -743,32 +743,41 @@ body { background: var(--bg-mid); }
 .motion-title__star .star { --star-size: clamp(70px, 7vw, 126px); --star-off: var(--bg-mid); }
 .motion-title__star .star__svg { filter: none; }
 
-.section-label {
+/* Full-bleed background (this element), max-width content row
+   (.section-label__row) — NOT combined on one element. Every other
+   background-bearing section in this file follows that split (see
+   .reel-hero + .reel-hero__layout, .info-band + .info-band__layout,
+   etc.); this one didn't, so on any viewport wider than
+   --content-max (1760px) the background stopped at 1760px while the
+   element itself kept centering, leaving bare body-colored strips on
+   both sides. */
+.section-label { padding: 28px var(--padding-page); }
+.section-label__row {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 28px var(--padding-page);
   max-width: var(--content-max);
   margin: 0 auto;
 }
-.section-label span {
+.section-label__row span {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 18px;
   color: var(--bg-light);
   white-space: nowrap;
 }
-.section-label .rule { flex: 1; height: 1px; background: rgba(245,232,245,0.25); }
-.section-label--light span { color: var(--color-iris); }
-.section-label--light .rule { background: rgba(94,56,120,0.15); }
+.section-label__row .rule { flex: 1; height: 1px; background: rgba(245,232,245,0.25); }
+.section-label--light { background: var(--bg-light); }
+.section-label--light .section-label__row span { color: var(--color-iris); }
+.section-label--light .section-label__row .rule { background: rgba(94,56,120,0.15); }
 
 /* Per Figma this label is bg-light with ocean-blue text and a solid
    bg-mid rule line (not the translucent rgba the other labels use).
    .motion-title is ALSO bg-light now (see above), so this is a flat
    same-color continuation — no corner-reveal overlap needed here. */
 #vertical-label { background: var(--bg-light); }
-#vertical-label span { color: var(--color-ocean); }
-#vertical-label .rule { background: var(--bg-mid); }
+#vertical-label .section-label__row span { color: var(--color-ocean); }
+#vertical-label .section-label__row .rule { background: var(--bg-mid); }
 
 /* ── VERTICAL VIDEO PAIRS ────────────────────────────────── */
 .vertical-row {
@@ -868,15 +877,14 @@ body { background: var(--bg-mid); }
   margin: 0 auto;
   align-items: start;
 }
+/* Plain flat rectangle, no border/radius/shadow — Figma's "Video
+   Block" (712:439) is an unstyled placeholder box, nothing else. */
 .screen-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 16px;
-  border: 8px solid var(--color-iris);
+  aspect-ratio: 1016 / 536;
   background: #0a0810;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(59,34,76,0.2);
 }
 .screen-frame video {
   position: absolute;
