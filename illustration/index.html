@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="../css/styles.css?v=9">
-<link rel="stylesheet" href="../css/section.css?v=13">
+<link rel="stylesheet" href="../css/section.css?v=14">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
 <!-- ============================================================
      NAV
      ============================================================ -->
-<nav class="section-nav">
+<nav class="section-nav section-nav--muted">
   <a href="../index.html" class="section-nav__logo">
     <span class="star star--gold" style="--star-size:40px; --star-off:rgba(94,56,120,0.4);" data-star>
       <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
@@ -59,9 +59,10 @@
         <p class="motion-title__eyebrow">Section 04</p>
         <h1 class="motion-title__heading">Illustration</h1>
       </div>
-      <div style="text-align:right; font-family:var(--font-body); font-size:14px; color:rgba(245,232,245,0.7); line-height:1.7;">
-        <p>Concept Art · Digital · Branding</p>
-        <p>Photoshop · Illustrator · Procreate</p>
+      <div class="title-tools">
+        <img src="../assets/icons/clipstudiopaint.png" alt="Clip Studio Paint">
+        <img src="../assets/icons/photoshop-icon.svg" alt="Photoshop">
+        <img src="../assets/icons/blender-icon.svg" alt="Blender">
       </div>
     </div>
   </div>
@@ -74,28 +75,34 @@
     <div class="intro-bio__inner">
       <div class="intro-bio__text">
         <p class="intro-bio__eyebrow">Hi, I'm Andrea</p>
-        <h2 class="intro-bio__heading">Illustration is where I let color and story lead.</h2>
+        <h2 class="intro-bio__heading">Where it all starts...</h2>
         <p class="intro-bio__body">I'm a VFX artist who also builds worlds through illustration — character design, background exploration, and concept art for animation and games, alongside personal narrative pieces. I place every element with the kind of intention that catches the viewer's gaze, like stars in the sky.</p>
       </div>
       <div class="intro-bio__avatar">
-        <img src="../assets/media/illustration/intro-avatar.png" alt="Andrea Guerrero Aviña — illustrated self portrait" loading="lazy">
+        <img src="../assets/media/illustration/intro-avatar-2.png" alt="Detail from one of Andrea's illustrations" loading="lazy">
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       FEATURED PROJECTS
+       01 — FEATURED PROJECTS
        ============================================================ -->
+  <div class="section-label">
+    <div class="section-label__row">
+      <span>01</span>
+      <span class="rule"></span>
+    </div>
+  </div>
+
   <section class="featured-projects">
     <div class="content-header">
       <div>
-        <p class="content-header__eyebrow">01</p>
         <h2 class="content-header__title">Featured Projects</h2>
         <p class="content-header__sub">9 projects · Concept art, illustration &amp; visual development</p>
       </div>
       <a class="content-header__cta content-header__cta--artstation" href="https://andreaguerrero.artstation.com" target="_blank" rel="noopener">
         <span class="content-header__cta-badge">As</span>
-        View full profile on ArtStation ↗
+        View full project on ArtStation ↗
       </a>
     </div>
 
@@ -256,12 +263,18 @@
   </section>
 
   <!-- ============================================================
-       PROCESS & SKETCHES
+       02 — PROCESS & SKETCHES
        ============================================================ -->
+  <div class="section-label">
+    <div class="section-label__row">
+      <span>02</span>
+      <span class="rule"></span>
+    </div>
+  </div>
+
   <section class="process-sketches">
-    <div class="content-header content-header--on-dark">
+    <div class="content-header">
       <div>
-        <p class="content-header__eyebrow">02</p>
         <h2 class="content-header__title">Process &amp; Sketches</h2>
         <p class="content-header__sub">A look behind the final pieces — layout iteration, value studies, and concept exploration.</p>
       </div>
@@ -296,12 +309,15 @@
        OMEGA — BEHANCE EMBED
        ============================================================ -->
   <section class="behance-section">
-    <div class="content-header content-header--on-dark">
+    <div class="content-header">
       <div>
-        <p class="content-header__eyebrow">03</p>
         <h2 class="content-header__title">Omega</h2>
         <p class="content-header__sub">Branding · Logo Design · Gaming/Esports</p>
       </div>
+      <a class="content-header__cta content-header__cta--behance" href="https://www.behance.net/guerreroandrea" target="_blank" rel="noopener">
+        <span class="content-header__cta-badge">Bē</span>
+        View full project on Behance ↗
+      </a>
     </div>
     <div class="behance-embed">
       <div class="behance-embed__window">
@@ -319,6 +335,72 @@
       </div>
     </div>
   </section>
+
+  <!-- ============================================================
+       MORE OF MY WORK — cross-promo to other sections
+       ============================================================ -->
+  <div class="also-header">
+    <h2 class="also-header__title">More of my work</h2>
+    <span class="star star--gold" style="--float-delay:-1.5s;" data-star>
+      <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+    </span>
+  </div>
+  <div class="also-row">
+    <a class="also-card" href="../motion/index.html#motion-graphics">
+      <div class="also-card__label">
+        You may also like
+        <span class="star star--white" data-star>
+          <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+        </span>
+      </div>
+      <div class="also-card__thumbs">
+        <div class="also-card__thumb" style="--thumb-c1:#1a0810;--thumb-c2:#301420;"><span class="play">▶</span></div>
+        <div class="also-card__thumb" style="--thumb-c1:#081024;--thumb-c2:#102040;"><span class="play">▶</span></div>
+        <div class="also-card__thumb" style="--thumb-c1:#120820;--thumb-c2:#221238;"><span class="play">▶</span></div>
+      </div>
+      <div class="also-card__rule"></div>
+      <div class="also-card__section">
+        <span class="also-card__icon">◉</span>
+        <div class="also-card__section-text">
+          <p class="also-card__num">Section 02</p>
+          <p class="also-card__title">Motion Graphics</p>
+        </div>
+        <span class="also-card__arrow">↗</span>
+      </div>
+      <div class="also-card__rule also-card__rule--light"></div>
+      <div class="also-card__bottom">
+        <p class="also-card__tags">After Effects · Film &amp; TV · Graphics</p>
+      </div>
+    </a>
+
+    <a class="also-card" href="../vfx/index.html#lighting-reel">
+      <div class="also-card__label">
+        You may also like
+        <span class="star star--white" data-star>
+          <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+        </span>
+      </div>
+      <div class="also-card__thumbs">
+        <div class="also-card__thumb" style="--thumb-c1:#040c1c;--thumb-c2:#082040;"><span class="play">▶</span></div>
+        <div class="also-card__thumb" style="--thumb-c1:#1c1004;--thumb-c2:#38240c;"><span class="play">▶</span></div>
+        <div class="also-card__thumb" style="--thumb-c1:#100820;--thumb-c2:#201038;"><span class="play">▶</span></div>
+      </div>
+      <div class="also-card__rule"></div>
+      <div class="also-card__section">
+        <span class="also-card__icon">◉</span>
+        <div class="also-card__section-text">
+          <p class="also-card__num">Section 02</p>
+          <p class="also-card__title">Lighting &amp; 3D</p>
+        </div>
+        <span class="also-card__arrow">↗</span>
+      </div>
+      <div class="also-card__rule also-card__rule--light"></div>
+      <div class="also-card__bottom">
+        <p class="also-card__tags">Lighting reel · Lookdev · Maya · Arnold</p>
+        <p class="also-card__sub">Day/Night Lookdev · CG · Additive method</p>
+      </div>
+    </a>
+  </div>
 
   <!-- ============================================================
        FOOTER / CONTACT (same component as homepage)

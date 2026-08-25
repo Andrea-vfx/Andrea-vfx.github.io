@@ -743,6 +743,13 @@ body { background: var(--bg-mid); }
 .motion-title__star .star { --star-size: clamp(70px, 7vw, 126px); --star-off: var(--bg-mid); }
 .motion-title__star .star__svg { filter: none; }
 
+/* Illustration title band's tool-icon row (Figma: ClipStudioPaint,
+   Photoshop, Blender at 94-114px in a 19px gap — scaled down ~0.7x
+   to match how much smaller this title band renders vs Figma's flat
+   1920 canvas, same ratio used for .video-info__title on Motion). */
+.title-tools { display: flex; gap: 14px; align-items: center; }
+.title-tools img { height: 64px; width: auto; border-radius: 8px; }
+
 /* Full-bleed background (this element), max-width content row
    (.section-label__row) — NOT combined on one element. Every other
    background-bearing section in this file follows that split (see
@@ -1352,7 +1359,7 @@ body { background: var(--bg-mid); }
   font-weight: 700;
   font-size: 13px;
 }
-.content-header__cta--artstation { background: #13aff0; }
+.content-header__cta--artstation { background: var(--color-ocean); }
 .content-header--on-dark .content-header__eyebrow { color: rgba(245,232,245,0.5); }
 .content-header--on-dark .content-header__title { color: var(--bg-light); }
 .content-header--on-dark .content-header__sub { color: rgba(245,232,245,0.7); }
@@ -1374,8 +1381,8 @@ body { background: var(--bg-mid); }
 .intro-bio__text { max-width: 900px; }
 .intro-bio__avatar {
   flex-shrink: 0;
-  width: 220px;
-  height: 213px;
+  width: 300px;
+  height: 291px; /* Figma's ellipse is 361x350 (0.97 ratio), scaled down to fit this column */
   border-radius: 50%;
   overflow: hidden;
 }
@@ -1386,15 +1393,15 @@ body { background: var(--bg-mid); }
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(94,56,120,0.4);
+  color: var(--color-ocean);
   margin-bottom: 8px;
 }
 .intro-bio__heading {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  font-size: clamp(1.8rem, 2.6vw, 2.125rem);
   line-height: 1.18;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: var(--color-iris);
   max-width: 900px;
   margin-bottom: 16px;
@@ -1412,6 +1419,7 @@ body { background: var(--bg-mid); }
 .featured-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  row-gap: 32px; /* Figma: 0 column-gap (cards touch edge to edge), ~32-44px between rows */
   max-width: var(--content-max);
   margin: 0 auto;
   padding: 0 var(--padding-page) 60px;
@@ -1427,6 +1435,8 @@ body { background: var(--bg-mid); }
   position: relative;
   aspect-ratio: 864/540;
   overflow: hidden;
+  border: 1px solid var(--bg-mid);
+  border-radius: 8px;
   background: linear-gradient(0deg, var(--thumb-c1, #1a0810), var(--thumb-c2, #301420));
 }
 .featured-card__image img {
@@ -1461,7 +1471,7 @@ body { background: var(--bg-mid); }
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 20px;
-  color: var(--color-iris);
+  color: var(--color-ocean);
 }
 .featured-card__cat {
   font-family: var(--font-body);
@@ -1502,7 +1512,10 @@ body { background: var(--bg-mid); }
 }
 
 /* ── ILLUSTRATION — process & sketches row ── */
-.process-sketches { background: var(--bg-mid); }
+/* Figma (802:427) is bg-light with iris text throughout — this was
+   built as a dark bg-mid section with content-header--on-dark
+   (light-on-dark) instead, the opposite of what's actually there. */
+.process-sketches { background: var(--bg-light); }
 .process-sketch-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1530,17 +1543,22 @@ body { background: var(--bg-mid); }
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 13px;
-  color: var(--bg-light);
+  color: var(--color-iris);
   margin-top: 10px;
 }
 .process-sketch-cell__cap {
   font-family: var(--font-body);
   font-size: 12px;
-  color: rgba(245,232,245,0.6);
+  color: var(--color-iris);
 }
 
 /* ── BEHANCE / project embed window ── */
-.behance-section { background: var(--bg-mid); padding-bottom: 60px; }
+/* Same bg-mid-instead-of-bg-light mistake as .process-sketches
+   above — Figma's Omega section (763:450) is bg-light with iris
+   header text. The dark "browser chrome" look around the actual
+   iframe (.behance-embed__window and its children, below) is a
+   deliberate device-mockup frame and stays dark regardless. */
+.behance-section { background: var(--bg-light); padding-bottom: 160px; } /* room for .also-header's up-to-100px overlap on top of the original 60px */
 .behance-embed {
   max-width: var(--content-max);
   margin: 0 auto;
