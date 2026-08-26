@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VFX Compositing & Lighting · Andrea Guerrero Aviña</title>
+<title data-i18n="vfx.title">VFX Compositing & Lighting · Andrea Guerrero Aviña</title>
 <meta name="description" content="Compositing, lighting and 3D lookdev reel — Nuke, ACES pipeline, Maya/Arnold.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../css/styles.css?v=12">
-<link rel="stylesheet" href="../css/section.css?v=21">
+<link rel="stylesheet" href="../css/styles.css?v=13">
+<link rel="stylesheet" href="../css/section.css?v=23">
 </head>
 <body>
 
@@ -32,20 +32,23 @@
      NAV
      ============================================================ -->
 <nav class="section-nav" id="top">
-  <a href="../index.html" class="section-nav__logo">
-    <span class="star star--gold" style="--star-size:40px; --star-off:rgba(94,56,120,0.4);" data-star>
-      <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
-    </span>
-    <span>AG</span>
-  </a>
-  <div class="section-nav__crumb">
-    <a href="../index.html">Portfolio</a>
-    <span class="sep">/</span>
-    <span class="current">VFX &amp; Compositing &amp; Lighting</span>
+  <div class="section-nav__inner">
+    <a href="../index.html" class="section-nav__logo">
+      <span class="star star--gold" style="--star-size:40px; --star-off:rgba(94,56,120,0.4);" data-star>
+        <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+      </span>
+      <span>AG</span>
+    </a>
+    <div class="section-nav__crumb">
+      <a href="../index.html" data-i18n="shared.crumb.portfolio">Portfolio</a>
+      <span class="sep">/</span>
+      <span class="current" data-i18n="shared.crumb.vfx">VFX &amp; Compositing &amp; Lighting</span>
+    </div>
+    <button class="section-nav__hamburger" id="hamburger" aria-expanded="false" aria-controls="drawer" aria-label="Open navigation" data-i18n-attr="aria-label:shared.menuAria">
+      <span class="section-nav__hamburger-label" data-i18n="shared.menuLabel">Portfolio Menu</span>
+      <span class="section-nav__hamburger-bars"><span></span><span></span><span></span></span>
+    </button>
   </div>
-  <button class="section-nav__hamburger" id="hamburger" aria-expanded="false" aria-controls="drawer" aria-label="Open navigation">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
 <main>
@@ -56,14 +59,14 @@
   <section class="reel-hero" id="compositing-reel">
     <div class="reel-hero__layout">
       <div>
-        <p class="reel-hero__eyebrow">Reel 2026 · Film &amp; TV</p>
-        <h1 class="reel-hero__title">VFX &amp;<br>Compositing</h1>
+        <p class="reel-hero__eyebrow" data-i18n="vfx.reel1.eyebrow">Reel 2026 · Film &amp; TV</p>
+        <h1 class="reel-hero__title" data-i18n="vfx.reel1.title">VFX &amp;<br>Compositing</h1>
         <div class="reel-hero__divider"></div>
 
         <div class="stats-row">
-          <div class="stats-row__stat"><strong>50+</strong><span>shots composited</span></div>
-          <div class="stats-row__stat"><strong>3</strong><span>studio productions</span></div>
-          <div class="stats-row__stat"><strong>5</strong><span>yr experience</span></div>
+          <div class="stats-row__stat"><strong>50+</strong><span data-i18n="vfx.reel1.stat1">shots composited</span></div>
+          <div class="stats-row__stat"><strong>3</strong><span data-i18n="vfx.reel1.stat2">studio productions</span></div>
+          <div class="stats-row__stat"><strong>5</strong><span data-i18n="vfx.reel1.stat3">yr experience</span></div>
         </div>
 
         <div class="tool-icons">
@@ -78,7 +81,7 @@
           <span class="star star--gold" style="--star-size:30px;" data-star>
             <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
           </span>
-          View on Vimeo ↗
+          <span data-i18n="shared.viewOnVimeo">View on Vimeo ↗</span>
         </a>
       </div>
 
@@ -91,32 +94,32 @@
   <section class="info-band">
     <div class="info-band__layout">
       <div>
-        <p class="info-band__desc">A compositing reel spanning live action, stop-motion, and CG productions. From building the dawn look-dev on La Guadalupana to integrating CG from Unreal Engine on a Hallmark special, every shot crafted with intention, technical precision, and the pipeline knowledge to back it up.</p>
+        <p class="info-band__desc" data-i18n="vfx.info1.desc">A compositing reel spanning live action, stop-motion, and CG productions. From building the dawn look-dev on La Guadalupana to integrating CG from Unreal Engine on a Hallmark special, every shot crafted with intention, technical precision, and the pipeline knowledge to back it up.</p>
 
         <div class="tech-chips">
-          <span class="tech-chip">3D Lighting</span>
+          <span class="tech-chip" data-i18n="vfx.chip.3dLighting">3D Lighting</span>
           <span class="tech-chip">Matte Painting</span>
-          <span class="tech-chip">2D/3D Tracking</span>
-          <span class="tech-chip">Color Grading</span>
-          <span class="tech-chip">Rig Cleaning</span>
-          <span class="tech-chip tech-chip--muted">Stop-Motion Comp</span>
-          <span class="tech-chip">ACES Pipeline</span>
-          <span class="tech-chip">Python Scripting</span>
-          <span class="tech-chip tech-chip--muted">Look Development</span>
+          <span class="tech-chip" data-i18n="vfx.chip.2d3dTracking">2D/3D Tracking</span>
+          <span class="tech-chip" data-i18n="vfx.chip.colorGrading">Color Grading</span>
+          <span class="tech-chip" data-i18n="vfx.chip.rigCleaning">Rig Cleaning</span>
+          <span class="tech-chip tech-chip--muted" data-i18n="vfx.chip.stopMotionComp">Stop-Motion Comp</span>
+          <span class="tech-chip" data-i18n="shared.chip.acesPipeline">ACES Pipeline</span>
+          <span class="tech-chip" data-i18n="vfx.chip.pythonScripting">Python Scripting</span>
+          <span class="tech-chip tech-chip--muted" data-i18n="vfx.chip.lookDevelopment">Look Development</span>
         </div>
 
         <dl class="credit-rows">
-          <div class="credit-row is-strong"><dt>Artist</dt><dd>Andrea Guerrero Aviña</dd></div>
-          <div class="credit-row"><dt>Specialty</dt><dd>Compositing &amp; Lighting · CG Integration · Python</dd></div>
+          <div class="credit-row is-strong"><dt data-i18n="shared.credit.artist">Artist</dt><dd>Andrea Guerrero Aviña</dd></div>
+          <div class="credit-row"><dt data-i18n="shared.credit.specialty">Specialty</dt><dd data-i18n="vfx.credit1.specialty.value">Compositing &amp; Lighting · CG Integration · Python</dd></div>
           <div class="credit-row"><dt>Pipeline</dt><dd>Nuke · ACES · After Effects · Mocha · Photoshop</dd></div>
-          <div class="credit-row"><dt>Studios</dt><dd>Taller Chucho (Guillermo del Toro) · Welab Animation</dd></div>
+          <div class="credit-row"><dt data-i18n="shared.credit.studios">Studios</dt><dd>Taller Chucho (Guillermo del Toro) · Welab Animation</dd></div>
         </dl>
       </div>
 
       <div class="info-band__rule"></div>
 
       <div>
-        <p class="reel-thumbs__label">From the reel</p>
+        <p class="reel-thumbs__label" data-i18n="shared.fromReel">From the reel</p>
         <div class="reel-thumbs__grid">
           <div class="reel-thumb"><img src="../assets/media/vfx/reel-thumbs/compositing-thumb-1.jpg" alt="Compositing reel still — CG water lookdev, keying &amp; compositing" loading="lazy"><span class="play">▶</span></div>
           <div class="reel-thumb"><img src="../assets/media/vfx/reel-thumbs/compositing-thumb-2.jpg" alt="Compositing reel still — CG crowd cleanup &amp; VFX compositing" loading="lazy"><span class="play">▶</span></div>
@@ -127,15 +130,15 @@
         </div>
 
         <a class="btn-contact-cta" href="#contact">
-          <span class="btn-contact-cta__label"><span class="dot"></span>Let's work together</span>
-          <span class="btn-contact-cta__go">↓ Contact me</span>
+          <span class="btn-contact-cta__label"><span class="dot"></span><span data-i18n="shared.letsWork">Let's work together</span></span>
+          <span class="btn-contact-cta__go" data-i18n="shared.contactMe">↓ Contact me</span>
         </a>
 
         <div class="cusma-badge-lg">
           <svg viewBox="0 0 73 59" fill="var(--color-ocean)"><use href="#icon-planet"></use></svg>
           <div>
-            <p class="cusma-badge-lg__title">CUSMA / USMCA Eligible</p>
-            <p class="cusma-badge-lg__desc">Open to work remote &amp; relocation available</p>
+            <p class="cusma-badge-lg__title" data-i18n="home.cusma.title">CUSMA / USMCA Eligible</p>
+            <p class="cusma-badge-lg__desc" data-i18n="home.cusma.desc">Open to work remote &amp; relocation available</p>
           </div>
         </div>
       </div>
@@ -148,13 +151,13 @@
   <section class="reel-hero" id="lighting-reel">
     <div class="reel-hero__layout">
       <div>
-        <p class="reel-hero__eyebrow">Reel 2026 · 3D &amp; Lookdev</p>
-        <h1 class="reel-hero__title">Lighting &amp; 3D</h1>
+        <p class="reel-hero__eyebrow" data-i18n="vfx.reel2.eyebrow">Reel 2026 · 3D &amp; Lookdev</p>
+        <h1 class="reel-hero__title" data-i18n="vfx.reel2.title">Lighting &amp; 3D</h1>
         <div class="reel-hero__divider"></div>
 
         <div class="stats-row">
-          <div class="stats-row__stat"><strong>Additive</strong><span>compositing method</span></div>
-          <div class="stats-row__stat"><strong>Render</strong><span>passes &amp; AOVs</span></div>
+          <div class="stats-row__stat"><strong data-i18n="vfx.reel2.stat1a">Additive</strong><span data-i18n="vfx.reel2.stat1b">compositing method</span></div>
+          <div class="stats-row__stat"><strong>Render</strong><span data-i18n="vfx.reel2.stat2b">passes &amp; AOVs</span></div>
         </div>
 
         <div class="tool-icons">
@@ -169,7 +172,7 @@
           <span class="star star--gold" style="--star-size:30px;" data-star>
             <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
           </span>
-          View on Vimeo ↗
+          <span data-i18n="shared.viewOnVimeo">View on Vimeo ↗</span>
         </a>
       </div>
 
@@ -182,32 +185,32 @@
   <section class="info-band" id="credits">
     <div class="info-band__layout">
       <div>
-        <p class="info-band__desc">A lighting and lookdev reel spanning stop-motion, 3D animation, and CG productions. From building the visual language of a Day/Night Camper outdoor scene to FEBRA's fiber optics, to VFX and previs work, crafted with a strong foundation in cinematography and light.</p>
+        <p class="info-band__desc" data-i18n="vfx.info2.desc">A lighting and lookdev reel spanning stop-motion, 3D animation, and CG productions. From building the visual language of a Day/Night Camper outdoor scene to FEBRA's fiber optics, to VFX and previs work, crafted with a strong foundation in cinematography and light.</p>
 
         <div class="tech-chips">
-          <span class="tech-chip">2D &amp; 3D Integration</span>
+          <span class="tech-chip" data-i18n="vfx.chip.2d3dIntegration">2D &amp; 3D Integration</span>
           <span class="tech-chip">Matte Painting</span>
-          <span class="tech-chip">2D/3D Tracking</span>
-          <span class="tech-chip">Color Grading</span>
-          <span class="tech-chip">Rig Cleaning</span>
-          <span class="tech-chip tech-chip--muted">Stop-Motion Comp</span>
-          <span class="tech-chip">ACES Pipeline</span>
-          <span class="tech-chip">Python Scripting</span>
-          <span class="tech-chip tech-chip--muted">Look Development</span>
+          <span class="tech-chip" data-i18n="vfx.chip.2d3dTracking">2D/3D Tracking</span>
+          <span class="tech-chip" data-i18n="vfx.chip.colorGrading">Color Grading</span>
+          <span class="tech-chip" data-i18n="vfx.chip.rigCleaning">Rig Cleaning</span>
+          <span class="tech-chip tech-chip--muted" data-i18n="vfx.chip.stopMotionComp">Stop-Motion Comp</span>
+          <span class="tech-chip" data-i18n="shared.chip.acesPipeline">ACES Pipeline</span>
+          <span class="tech-chip" data-i18n="vfx.chip.pythonScripting">Python Scripting</span>
+          <span class="tech-chip tech-chip--muted" data-i18n="vfx.chip.lookDevelopment">Look Development</span>
         </div>
 
         <dl class="credit-rows">
-          <div class="credit-row is-strong"><dt>Artist</dt><dd>Andrea Guerrero Aviña</dd></div>
-          <div class="credit-row"><dt>Specialty</dt><dd>Lighting · Lookdev · Previs · 3D Modeling</dd></div>
+          <div class="credit-row is-strong"><dt data-i18n="shared.credit.artist">Artist</dt><dd>Andrea Guerrero Aviña</dd></div>
+          <div class="credit-row"><dt data-i18n="shared.credit.specialty">Specialty</dt><dd data-i18n="vfx.credit2.specialty.value">Lighting · Lookdev · Previs · 3D Modeling</dd></div>
           <div class="credit-row"><dt>Pipeline</dt><dd>Maya · Arnold · Nuke · Blender · Photoshop</dd></div>
-          <div class="credit-row"><dt>Studios</dt><dd>Espíritu Santo Cine · Ploop VFX · Freelance</dd></div>
+          <div class="credit-row"><dt data-i18n="shared.credit.studios">Studios</dt><dd>Espíritu Santo Cine · Ploop VFX · Freelance</dd></div>
         </dl>
       </div>
 
       <div class="info-band__rule"></div>
 
       <div>
-        <p class="reel-thumbs__label">From the reel</p>
+        <p class="reel-thumbs__label" data-i18n="shared.fromReel">From the reel</p>
         <div class="reel-thumbs__grid">
           <div class="reel-thumb"><img src="../assets/media/vfx/reel-thumbs/lighting-thumb-1.jpg" alt="Lighting &amp; 3D reel still — texturing, lighting &amp; multipass render" loading="lazy"><span class="play">▶</span></div>
           <div class="reel-thumb"><img src="../assets/media/vfx/reel-thumbs/lighting-thumb-2.jpg" alt="Lighting &amp; 3D reel still — colorkey illustration to render" loading="lazy"><span class="play">▶</span></div>
@@ -218,15 +221,15 @@
         </div>
 
         <a class="btn-contact-cta" href="#contact">
-          <span class="btn-contact-cta__label"><span class="dot"></span>Let's work together</span>
-          <span class="btn-contact-cta__go">↓ Contact me</span>
+          <span class="btn-contact-cta__label"><span class="dot"></span><span data-i18n="shared.letsWork">Let's work together</span></span>
+          <span class="btn-contact-cta__go" data-i18n="shared.contactMe">↓ Contact me</span>
         </a>
 
         <div class="cusma-badge-lg">
           <svg viewBox="0 0 73 59" fill="var(--color-ocean)"><use href="#icon-planet"></use></svg>
           <div>
-            <p class="cusma-badge-lg__title">CUSMA / USMCA Eligible</p>
-            <p class="cusma-badge-lg__desc">Open to work remote &amp; relocation available</p>
+            <p class="cusma-badge-lg__title" data-i18n="home.cusma.title">CUSMA / USMCA Eligible</p>
+            <p class="cusma-badge-lg__desc" data-i18n="home.cusma.desc">Open to work remote &amp; relocation available</p>
           </div>
         </div>
       </div>
@@ -244,8 +247,8 @@
     </div>
 
     <div class="poster-gallery__header">
-      <p class="poster-gallery__eyebrow">Credits</p>
-      <h2 class="poster-gallery__title">Productions I've worked on</h2>
+      <p class="poster-gallery__eyebrow" data-i18n="vfx.poster.eyebrow">Credits</p>
+      <h2 class="poster-gallery__title" data-i18n="vfx.poster.title">Productions I've worked on</h2>
     </div>
 
     <div class="poster-rail">
@@ -253,31 +256,31 @@
         <div class="poster-card__image"><span>IMAGE</span></div>
         <p class="poster-card__title">La Guadalupana</p>
         <p class="poster-card__studio">Welab Animation</p>
-        <p class="poster-card__meta">Compositing Artist · 2024</p>
+        <p class="poster-card__meta" data-i18n="vfx.poster1.meta">Compositing Artist · 2024</p>
       </div>
       <div class="poster-card">
         <div class="poster-card__image"><img src="../assets/media/vfx/posters/tipline-mysteries.jpg" alt="Tipline Mysteries: Dial 1 for Murder poster" loading="lazy"></div>
         <p class="poster-card__title">Tipline Mysteries</p>
         <p class="poster-card__studio">Welab / Hallmark</p>
-        <p class="poster-card__meta">CG Compositor · 2024</p>
+        <p class="poster-card__meta" data-i18n="vfx.poster2.meta">CG Compositor · 2024</p>
       </div>
       <div class="poster-card">
         <div class="poster-card__image"><img src="../assets/media/vfx/posters/teatro-secreto.jpg" alt="Teatro Secreto poster" loading="lazy"></div>
         <p class="poster-card__title">Teatro Secreto</p>
         <p class="poster-card__studio">Taller Chucho</p>
-        <p class="poster-card__meta">Cleanup · Light Enhancement · 2024</p>
+        <p class="poster-card__meta" data-i18n="vfx.poster3.meta">Cleanup · Light Enhancement · 2024</p>
       </div>
       <div class="poster-card" style="--poster-c1:#140808;--poster-c2:#281010;">
         <div class="poster-card__image"><span>IMAGE</span></div>
         <p class="poster-card__title">Munstro</p>
         <p class="poster-card__studio">Taller Chucho / del Toro</p>
-        <p class="poster-card__meta">Compositing Artist · 2027</p>
+        <p class="poster-card__meta" data-i18n="vfx.poster4.meta">Compositing Artist · 2027</p>
       </div>
       <div class="poster-card">
         <div class="poster-card__image"><img src="../assets/media/vfx/posters/shadow-of-god.jpg" alt="Shadow of God poster" loading="lazy"></div>
         <p class="poster-card__title">Shadow of God</p>
         <p class="poster-card__studio">Welab Animation</p>
-        <p class="poster-card__meta">Visual Development · 2025</p>
+        <p class="poster-card__meta" data-i18n="vfx.poster5.meta">Visual Development · 2025</p>
       </div>
       <div class="poster-card">
         <div class="poster-card__image"><img src="../assets/media/vfx/posters/an-easter-bloom.jpg" alt="An Easter Bloom poster" loading="lazy"></div>
@@ -300,11 +303,11 @@
       <div class="poster-card">
         <div class="poster-card__image"><img src="../assets/media/vfx/posters/gloomies.jpg" alt="GLOOM-IES poster" loading="lazy"></div>
         <p class="poster-card__title">GLOOM-IES</p>
-        <p class="poster-card__studio">Independent Short Film</p>
-        <p class="poster-card__meta">Cleanup &amp; Compositing</p>
+        <p class="poster-card__studio" data-i18n="vfx.poster9.studio">Independent Short Film</p>
+        <p class="poster-card__meta" data-i18n="vfx.poster9.meta">Cleanup &amp; Compositing</p>
       </div>
       <div class="poster-card poster-card--more">
-        <div class="poster-card__image"><span>More<br>coming soon</span></div>
+        <div class="poster-card__image"><span data-i18n="vfx.posterMore">More<br>coming soon</span></div>
       </div>
     </div>
   </section>
@@ -313,7 +316,7 @@
        MORE OF MY WORK — cross-promo to other sections
        ============================================================ -->
   <div class="also-header">
-    <h2 class="also-header__title">More of my work</h2>
+    <h2 class="also-header__title" data-i18n="shared.also.title">More of my work</h2>
     <span class="star star--gold" style="--float-delay:-1.5s; --star-off:var(--bg-mid);" data-star>
       <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
     </span>
@@ -321,7 +324,7 @@
   <div class="also-row">
     <a class="also-card" href="../illustration/index.html">
       <div class="also-card__label">
-        You may also like
+        <span data-i18n="shared.also.youMayAlsoLike">You may also like</span>
         <span class="star star--white" data-star>
           <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
         </span>
@@ -335,20 +338,20 @@
       <div class="also-card__section">
         <span class="also-card__icon">◉</span>
         <div class="also-card__section-text">
-          <p class="also-card__num">Section 03</p>
-          <p class="also-card__title">Illustration</p>
+          <p class="also-card__num" data-i18n="shared.section.03">Section 03</p>
+          <p class="also-card__title" data-i18n="shared.dropdown.illustration">Illustration</p>
         </div>
         <span class="also-card__arrow">↗</span>
       </div>
       <div class="also-card__rule also-card__rule--light"></div>
       <div class="also-card__bottom">
-        <p class="also-card__tags">Concept Art · Visual Development · Photoshop</p>
+        <p class="also-card__tags" data-i18n="vfx.also1.tags">Concept Art · Visual Development · Photoshop</p>
       </div>
     </a>
 
     <a class="also-card" href="../motion/index.html#motion-graphics">
       <div class="also-card__label">
-        You may also like
+        <span data-i18n="shared.also.youMayAlsoLike">You may also like</span>
         <span class="star star--white" data-star>
           <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
         </span>
@@ -362,15 +365,15 @@
       <div class="also-card__section">
         <span class="also-card__icon">◉</span>
         <div class="also-card__section-text">
-          <p class="also-card__num">Section 02</p>
+          <p class="also-card__num" data-i18n="shared.section.02">Section 02</p>
           <p class="also-card__title">Motion Graphics</p>
         </div>
         <span class="also-card__arrow">↗</span>
       </div>
       <div class="also-card__rule also-card__rule--light"></div>
       <div class="also-card__bottom">
-        <p class="also-card__tags">Lighting reel · Lookdev · Maya · Arnold</p>
-        <p class="also-card__sub">Day/Night Lookdev · CG · Additive method</p>
+        <p class="also-card__tags" data-i18n="vfx.also2.tags">Lighting reel · Lookdev · Maya · Arnold</p>
+        <p class="also-card__sub" data-i18n="vfx.also2.sub">Day/Night Lookdev · CG · Additive method</p>
       </div>
     </a>
   </div>
@@ -385,7 +388,7 @@
       </video>
       <div class="container footer__inner">
         <div class="footer__top">
-          <h2 class="footer__title">Let's create<br>ART together!</h2>
+          <h2 class="footer__title" data-i18n="home.footer.title">Let's create<br>ART together!</h2>
 
           <div class="contact-card">
             <p class="contact-card__name">Andrea Guerrero Aviña</p>
@@ -393,7 +396,7 @@
             <a class="contact-row" href="mailto:a.guerreavi@gmail.com">
               <span class="contact-row__icon"><svg viewBox="0 0 37 35" fill="var(--color-ocean)"><use href="#icon-envelope"></use></svg></span>
               <span class="contact-row__text">
-                <span class="contact-row__label">Email</span>
+                <span class="contact-row__label" data-i18n="home.contact.email">Email</span>
                 <span class="contact-row__value">a.guerreavi@gmail.com</span>
               </span>
               <span class="contact-row__go">↗</span>
@@ -411,7 +414,7 @@
             <a class="contact-row" href="https://andreagvfx.github.io" target="_blank" rel="noopener">
               <span class="contact-row__icon is-text" style="font-size:20px;">✦</span>
               <span class="contact-row__text">
-                <span class="contact-row__label">Portfolio</span>
+                <span class="contact-row__label" data-i18n="home.contact.portfolio">Portfolio</span>
                 <span class="contact-row__value">andreagvfx.github.io</span>
               </span>
               <span class="contact-row__go">↗</span>
@@ -420,7 +423,7 @@
         </div>
 
         <div class="footer__bottom">
-          <span class="avail-pill"><span class="avail-pill__dot"></span>Open to work</span>
+          <span class="avail-pill"><span class="avail-pill__dot"></span><span data-i18n="shared.availPill">Open to work</span></span>
         </div>
       </div>
 
@@ -438,20 +441,22 @@
   <div class="section-footer-nav">
     <a class="section-footer-nav__back" href="../index.html">
       <span class="section-footer-nav__back-icon">←</span>
-      Back to Portfolio
+      <span data-i18n="shared.footerNav.backToPortfolio">Back to Portfolio</span>
     </a>
     <div class="section-footer-nav__next">
-      <p class="section-footer-nav__next-label">Next section</p>
-      <a class="section-footer-nav__next-title" href="../motion/index.html">Video Editing &amp; Mograph</a>
+      <p class="section-footer-nav__next-label" data-i18n="shared.footerNav.nextSection">Next section</p>
+      <a class="section-footer-nav__next-title" href="../motion/index.html" data-i18n="shared.dropdown.motion">Video Editing &amp; Mograph</a>
     </div>
-    <a class="section-footer-nav__vimeo" href="https://vimeo.com/1078520028" target="_blank" rel="noopener">View full reel on Vimeo ↗</a>
+    <a class="section-footer-nav__vimeo" href="https://vimeo.com/1078520028" target="_blank" rel="noopener" data-i18n="vfx.footerNav.viewFullReel">View full reel on Vimeo ↗</a>
   </div>
 
 </main>
 
-<a href="#top" class="back-to-top" aria-label="Back to top">
+<a href="#top" class="back-to-top" aria-label="Back to top" data-i18n-attr="aria-label:shared.backToTopAria">
   <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
+
+<button class="lang-toggle" type="button" aria-label="Switch the portfolio to Spanish">ES</button>
 
 <!-- ============================================================
      SIDE DRAWER
@@ -460,41 +465,41 @@
 <aside class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer__top">
     <span class="drawer__logo">AG</span>
-    <button class="drawer__close" id="drawerClose" aria-label="Close navigation">✕</button>
+    <button class="drawer__close" id="drawerClose" aria-label="Close navigation" data-i18n-attr="aria-label:shared.drawer.closeAria">✕</button>
   </div>
   <div class="drawer__rule"></div>
   <div style="height:20px;"></div>
-  <p class="drawer__label">Navigate</p>
+  <p class="drawer__label" data-i18n="shared.drawer.navigate">Navigate</p>
 
   <a class="drawer__item" href="../index.html">
     <span class="drawer__item-num">00</span>
-    <span class="drawer__item-label">Portfolio Home</span>
+    <span class="drawer__item-label" data-i18n="shared.drawer.portfolioHome">Portfolio Home</span>
   </a>
 
   <a class="drawer__item is-active" href="#compositing-reel">
     <span class="drawer__item-num">01</span>
-    <span class="drawer__item-label">VFX Compositing &amp; Lighting</span>
+    <span class="drawer__item-label" data-i18n="shared.crumb.vfx">VFX Compositing &amp; Lighting</span>
     <span class="star star--gold drawer__item-star" style="--star-size:22px;" data-star>
       <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
     </span>
   </a>
   <div class="drawer__subitems">
-    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#compositing-reel">Compositing Reel</a></div>
-    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#lighting-reel">Lighting Reel</a></div>
-    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#credits">Credits</a></div>
+    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#compositing-reel" data-i18n="vfx.drawer.compositingReel">Compositing Reel</a></div>
+    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#lighting-reel" data-i18n="vfx.drawer.lightingReel">Lighting Reel</a></div>
+    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#credits" data-i18n="shared.credits">Credits</a></div>
   </div>
 
   <a class="drawer__item" href="../motion/index.html">
     <span class="drawer__item-num">02</span>
-    <span class="drawer__item-label">Video Editing &amp; Mograph</span>
+    <span class="drawer__item-label" data-i18n="shared.dropdown.motion">Video Editing &amp; Mograph</span>
   </a>
   <a class="drawer__item" href="../illustration/index.html">
     <span class="drawer__item-num">03</span>
-    <span class="drawer__item-label">Illustration</span>
+    <span class="drawer__item-label" data-i18n="shared.dropdown.illustration">Illustration</span>
   </a>
   <a class="drawer__item" href="../design/index.html">
     <span class="drawer__item-num">04</span>
-    <span class="drawer__item-label">Design &amp; UX/UI</span>
+    <span class="drawer__item-label" data-i18n="shared.dropdown.design">Design &amp; UX/UI</span>
   </a>
 
   <div class="drawer__spacer"></div>
@@ -503,5 +508,6 @@
 </aside>
 
 <script src="../js/section.js?v=7"></script>
+<script src="../js/i18n.js?v=2"></script>
 </body>
 </html>

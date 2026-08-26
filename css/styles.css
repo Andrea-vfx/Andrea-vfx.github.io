@@ -54,9 +54,11 @@ ul { list-style: none; }
   --radius-sm:    12px;
   --radius-stack: clamp(28px, 5vw, 100px);
   --radius-stack-sm: clamp(20px, 3vw, 80px);
-  /* Sticky nav's own bottom-corner curve (see .section-nav) — smaller
-     than --radius-stack since it has to fit inside a 95px bar. */
-  --radius-nav: clamp(16px, 2.5vw, 28px);
+  /* Sticky nav's own bottom-corner curve (see .section-nav) — same
+     100px ceiling as every other stacked curve on the site; the
+     browser naturally caps the rendered radius at the nav bar's own
+     90px height, so it always reads as a full, generous sweep. */
+  --radius-nav: clamp(16px, 2.5vw, 100px);
 
   --transition: 0.3s ease;
 }
@@ -1057,4 +1059,37 @@ main { position: relative; }
   .about__eyebrow { font-size: 2rem; }
   .btn-download { padding: 12px 18px; }
   .exp-item__head { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+
+/* ── LANGUAGE TOGGLE ─────────────────────────────────────── */
+/* Same fixed/always-in-front language as .back-to-top (section.css),
+   stacked directly above it on section pages that have one; on the
+   homepage (no back-to-top) it just sits alone in the same spot.
+   Shared here in styles.css instead of section.css since it loads
+   on every page, including the homepage. Shows the language you'd
+   SWITCH TO (see js/i18n.js), not the current one. */
+.lang-toggle {
+  position: fixed;
+  right: clamp(20px, 4vw, 40px);
+  bottom: calc(clamp(20px, 4vw, 40px) + 76px);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-iris);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 24px rgba(59,34,76,0.35);
+  z-index: 90;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--bg-light);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.lang-toggle:hover {
+  background: var(--bg-mid);
+  color: var(--color-iris);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(59,34,76,0.4);
 }

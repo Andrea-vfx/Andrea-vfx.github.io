@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrea Guerrero Aviña — Portfolio</title>
+<title data-i18n="home.title">Andrea Guerrero Aviña — Portfolio</title>
 <meta name="description" content="Compositing & Lighting Artist — VFX, 3D, Motion, Illustration and UX/UI portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="css/styles.css?v=12">
+<link rel="stylesheet" href="css/styles.css?v=13">
 </head>
 <body>
 
@@ -36,14 +36,14 @@
      ============================================================ -->
 <nav class="nav" id="siteNav">
   <div class="nav__links">
-    <a href="#about" class="nav__pill is-active" data-nav-pill="about">about · CV</a>
+    <a href="#about" class="nav__pill is-active" data-nav-pill="about" data-i18n="shared.nav.about">about · CV</a>
     <div class="nav__work">
-      <a href="#work" class="nav__pill" data-nav-pill="work">work</a>
-      <button class="nav__work-toggle" id="workToggle" aria-expanded="false" aria-controls="workDropdown" aria-label="Work sections menu">
+      <a href="#work" class="nav__pill" data-nav-pill="work" data-i18n="shared.nav.work">work</a>
+      <button class="nav__work-toggle" id="workToggle" aria-expanded="false" aria-controls="workDropdown" aria-label="Work sections menu" data-i18n-attr="aria-label:shared.nav.workMenuAria">
         <span class="nav__work-arrow">↓</span>
       </button>
     </div>
-    <a href="#contact" class="nav__pill" data-nav-pill="contact">contact</a>
+    <a href="#contact" class="nav__pill" data-nav-pill="contact" data-i18n="shared.nav.contact">contact</a>
   </div>
   <div class="nav__logo star star--gold" style="--star-size:46px; --star-off: rgba(94,56,120,0.4);" data-star>
     <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
@@ -52,22 +52,22 @@
   <div class="work-dropdown" id="workDropdown" role="menu">
     <a class="work-dropdown__item" role="menuitem" href="vfx/index.html">
       <span class="work-dropdown__num">01</span>
-      <span class="work-dropdown__label">VFX Compositing & Lighting</span>
+      <span class="work-dropdown__label" data-i18n="shared.dropdown.vfx">VFX Compositing & Lighting</span>
       <span class="work-dropdown__arrow">↗</span>
     </a>
     <a class="work-dropdown__item" role="menuitem" href="motion/index.html">
       <span class="work-dropdown__num">02</span>
-      <span class="work-dropdown__label">Video Editing & Mograph</span>
+      <span class="work-dropdown__label" data-i18n="shared.dropdown.motion">Video Editing & Mograph</span>
       <span class="work-dropdown__arrow">↗</span>
     </a>
     <a class="work-dropdown__item" role="menuitem" href="illustration/index.html">
       <span class="work-dropdown__num">03</span>
-      <span class="work-dropdown__label">Illustration</span>
+      <span class="work-dropdown__label" data-i18n="shared.dropdown.illustration">Illustration</span>
       <span class="work-dropdown__arrow">↗</span>
     </a>
     <a class="work-dropdown__item" role="menuitem" href="design/index.html">
       <span class="work-dropdown__num">04</span>
-      <span class="work-dropdown__label">Design & UX/UI</span>
+      <span class="work-dropdown__label" data-i18n="shared.dropdown.design">Design & UX/UI</span>
       <span class="work-dropdown__arrow">↗</span>
     </a>
   </div>
@@ -95,21 +95,21 @@
 
         <div class="about__hero">
           <div>
-            <p class="about__eyebrow">About me</p>
+            <p class="about__eyebrow" data-i18n="home.about.eyebrow">About me</p>
             <p class="about__name">Andrea Guerrero Aviña</p>
           </div>
           <a class="btn-download" href="assets/cv/Andrea-Guerrero-Avina-CV.pdf" download>
-            <span aria-hidden="true">↓</span> Download CV <span class="pdf-tag">PDF</span>
+            <span aria-hidden="true">↓</span> <span data-i18n="home.about.downloadCv">Download CV</span> <span class="pdf-tag">PDF</span>
           </a>
         </div>
       </div>
 
       <div class="ticker" aria-hidden="true">
         <div class="ticker__track">
-          <span>VFX Compositing ✦</span><span>3D Lookdev ✦</span><span>Motion Graphics ✦</span><span>Illustration ✦</span><span>Film &amp; TV ✦</span><span>Nuke · After Effects ✦</span><span>CUSMA Eligible ✦</span>
-          <span>VFX Compositing ✦</span><span>3D Lookdev ✦</span><span>Motion Graphics ✦</span><span>Illustration ✦</span><span>Film &amp; TV ✦</span><span>Nuke · After Effects ✦</span><span>CUSMA Eligible ✦</span>
-          <span>VFX Compositing ✦</span><span>3D Lookdev ✦</span><span>Motion Graphics ✦</span><span>Illustration ✦</span><span>Film &amp; TV ✦</span><span>Nuke · After Effects ✦</span><span>CUSMA Eligible ✦</span>
-          <span>VFX Compositing ✦</span><span>3D Lookdev ✦</span><span>Motion Graphics ✦</span><span>Illustration ✦</span><span>Film &amp; TV ✦</span><span>Nuke · After Effects ✦</span><span>CUSMA Eligible ✦</span>
+          <span data-i18n="home.ticker.vfx">VFX Compositing ✦</span><span data-i18n="home.ticker.lookdev">3D Lookdev ✦</span><span data-i18n="home.ticker.motion">Motion Graphics ✦</span><span data-i18n="home.ticker.illustration">Illustration ✦</span><span data-i18n="home.ticker.filmTv">Film &amp; TV ✦</span><span data-i18n="home.ticker.software">Nuke · After Effects ✦</span><span data-i18n="home.ticker.cusma">CUSMA Eligible ✦</span>
+          <span data-i18n="home.ticker.vfx">VFX Compositing ✦</span><span data-i18n="home.ticker.lookdev">3D Lookdev ✦</span><span data-i18n="home.ticker.motion">Motion Graphics ✦</span><span data-i18n="home.ticker.illustration">Illustration ✦</span><span data-i18n="home.ticker.filmTv">Film &amp; TV ✦</span><span data-i18n="home.ticker.software">Nuke · After Effects ✦</span><span data-i18n="home.ticker.cusma">CUSMA Eligible ✦</span>
+          <span data-i18n="home.ticker.vfx">VFX Compositing ✦</span><span data-i18n="home.ticker.lookdev">3D Lookdev ✦</span><span data-i18n="home.ticker.motion">Motion Graphics ✦</span><span data-i18n="home.ticker.illustration">Illustration ✦</span><span data-i18n="home.ticker.filmTv">Film &amp; TV ✦</span><span data-i18n="home.ticker.software">Nuke · After Effects ✦</span><span data-i18n="home.ticker.cusma">CUSMA Eligible ✦</span>
+          <span data-i18n="home.ticker.vfx">VFX Compositing ✦</span><span data-i18n="home.ticker.lookdev">3D Lookdev ✦</span><span data-i18n="home.ticker.motion">Motion Graphics ✦</span><span data-i18n="home.ticker.illustration">Illustration ✦</span><span data-i18n="home.ticker.filmTv">Film &amp; TV ✦</span><span data-i18n="home.ticker.software">Nuke · After Effects ✦</span><span data-i18n="home.ticker.cusma">CUSMA Eligible ✦</span>
         </div>
       </div>
 
@@ -118,18 +118,18 @@
 
           <!-- Col 1 — Bio + Skills -->
           <div class="col-bio">
-            <p class="col-title">About</p>
-            <p class="about__bio">Artist with experience in Film &amp; TV, highly skilled in the fundamental principles of cinematography. I work to place each visual element with intention — achieving scenes and compositions that capture the viewer's gaze and emotions.</p>
-            <p class="about__bio-star">✦ ...like stars in space. ✦</p>
+            <p class="col-title" data-i18n="home.col.about">About</p>
+            <p class="about__bio" data-i18n="home.about.bio">Artist with experience in Film &amp; TV, highly skilled in the fundamental principles of cinematography. I work to place each visual element with intention — achieving scenes and compositions that capture the viewer's gaze and emotions.</p>
+            <p class="about__bio-star" data-i18n="home.about.bioStar">✦ ...like stars in space. ✦</p>
 
             <hr class="divider">
 
-            <p class="col-title">Skills</p>
+            <p class="col-title" data-i18n="home.col.skills">Skills</p>
 
             <div class="skill-row">
               <div class="skill-row__head">
                 <div>
-                  <p class="skill-row__cat">Compositing &amp; VFX</p>
+                  <p class="skill-row__cat" data-i18n="home.skills.comp.cat">Compositing &amp; VFX</p>
                   <p class="skill-row__tools">Nuke · After Effects · Mocha · Photoshop</p>
                 </div>
                 <div class="skill-badges">
@@ -144,7 +144,7 @@
             <div class="skill-row">
               <div class="skill-row__head">
                 <div>
-                  <p class="skill-row__cat">3D &amp; Lighting</p>
+                  <p class="skill-row__cat" data-i18n="home.skills.3d.cat">3D &amp; Lighting</p>
                   <p class="skill-row__tools">Maya · Arnold · Blender</p>
                 </div>
                 <div class="skill-badges">
@@ -158,7 +158,7 @@
             <div class="skill-row">
               <div class="skill-row__head">
                 <div>
-                  <p class="skill-row__cat">Motion &amp; Editing</p>
+                  <p class="skill-row__cat" data-i18n="home.skills.motion.cat">Motion &amp; Editing</p>
                   <p class="skill-row__tools">Premiere Pro · After Effects · CapCut</p>
                 </div>
                 <div class="skill-badges">
@@ -169,98 +169,98 @@
             </div>
 
             <div class="skill-row">
-              <p class="skill-row__cat">Design &amp; Tools</p>
-              <p class="skill-row__tools">Figma · Illustrator · UX/UI</p>
+              <p class="skill-row__cat" data-i18n="home.skills.design.cat">Design &amp; Tools</p>
+              <p class="skill-row__tools" data-i18n="home.skills.design.tools">Figma · Illustrator · UX/UI</p>
             </div>
 
             <div class="skill-row">
-              <p class="skill-row__cat">Pipeline &amp; Dev</p>
-              <p class="skill-row__tools">Ftrack · ShotGrid · Python · Slack</p>
+              <p class="skill-row__cat" data-i18n="home.skills.pipeline.cat">Pipeline &amp; Dev</p>
+              <p class="skill-row__tools" data-i18n="home.skills.pipeline.tools">Ftrack · ShotGrid · Python · Slack</p>
             </div>
           </div>
 
           <!-- Col 2 — Experience -->
           <div class="col-exp">
-            <p class="col-title">Experience</p>
+            <p class="col-title" data-i18n="home.col.experience">Experience</p>
 
             <div class="exp-item">
               <div class="exp-item__head">
-                <p class="exp-item__role">VFX Compositing Artist ·</p>
-                <p class="exp-item__date">FEB 2026–PRESENT</p>
+                <p class="exp-item__role" data-i18n="home.exp1.role">VFX Compositing Artist ·</p>
+                <p class="exp-item__date" data-i18n="home.exp1.date">FEB 2026–PRESENT</p>
               </div>
-              <p class="exp-item__company">Taller Chucho — Guillermo del Toro</p>
-              <p class="exp-item__desc">Rig removal, 2D/3D tracking and matte painting for "Munstro" (2027) — team pipeline runs in After Effects. Volunteered to mentor the team on Nuke fundamentals and core compositing principles.</p>
+              <p class="exp-item__company" data-i18n="home.exp1.company">Taller Chucho — Guillermo del Toro</p>
+              <p class="exp-item__desc" data-i18n="home.exp1.desc">Rig removal, 2D/3D tracking and matte painting for "Munstro" (2027) — team pipeline runs in After Effects. Volunteered to mentor the team on Nuke fundamentals and core compositing principles.</p>
               <div class="exp-item__chips">
                 <span class="chip">After Effects</span>
                 <span class="chip">Matte Painting</span>
-                <span class="chip">Mentoring</span>
+                <span class="chip" data-i18n="home.exp1.chip.mentoring">Mentoring</span>
               </div>
             </div>
 
             <div class="exp-item">
               <div class="exp-item__head">
-                <p class="exp-item__role">VFX Compositing Artist</p>
-                <p class="exp-item__date">OCT 2022–MAR 2025</p>
+                <p class="exp-item__role" data-i18n="home.exp2.role">VFX Compositing Artist</p>
+                <p class="exp-item__date" data-i18n="home.exp2.date">OCT 2022–MAR 2025</p>
               </div>
               <p class="exp-item__company">Welab Animation &amp; Post-Production</p>
-              <p class="exp-item__desc">Built the dawn look for "The Guadalupana" (2024 stop-motion short) directly with the art department, from concept art to background plates. Tipline Mysteries (Hallmark 2024): CG comp from Unreal in Nuke. ACES pipeline, Python gizmos.</p>
+              <p class="exp-item__desc" data-i18n="home.exp2.desc">Built the dawn look for "The Guadalupana" (2024 stop-motion short) directly with the art department, from concept art to background plates. Tipline Mysteries (Hallmark 2024): CG comp from Unreal in Nuke. ACES pipeline, Python gizmos.</p>
               <div class="exp-item__chips">
                 <span class="chip">Nuke</span>
-                <span class="chip">ACES Pipeline</span>
+                <span class="chip" data-i18n="home.exp2.chip.aces">ACES Pipeline</span>
                 <span class="chip">Python</span>
               </div>
             </div>
 
             <div class="exp-item">
               <div class="exp-item__head">
-                <p class="exp-item__role">Compositing · 3D · Illustration</p>
-                <p class="exp-item__date">2020–PRESENT</p>
+                <p class="exp-item__role" data-i18n="home.exp3.role">Compositing · 3D · Illustration</p>
+                <p class="exp-item__date" data-i18n="home.exp3.date">2020–PRESENT</p>
               </div>
               <p class="exp-item__company">Freelance</p>
-              <p class="exp-item__desc">"Teatro Secreto" (Taller Chucho): shadow cleanup &amp; light enhancement in Nuke (Inpaint) — Annecy 2024 official selection. 3D lookdev for FEBRA. Streampack &amp; illustration for @DRE_ow.</p>
+              <p class="exp-item__desc" data-i18n="home.exp3.desc">"Teatro Secreto" (Taller Chucho): shadow cleanup &amp; light enhancement in Nuke (Inpaint) — Annecy 2024 official selection. 3D lookdev for FEBRA. Streampack &amp; illustration for @DRE_ow.</p>
               <div class="exp-item__chips">
                 <span class="chip">Nuke</span>
                 <span class="chip">Lookdev 3D</span>
-                <span class="chip">Illustration</span>
+                <span class="chip" data-i18n="home.exp3.chip.illustration">Illustration</span>
               </div>
             </div>
 
             <div class="exp-item">
               <div class="exp-item__head">
-                <p class="exp-item__role">Content &amp; Project Manager</p>
-                <p class="exp-item__date">JAN 2021–FEB 2022</p>
+                <p class="exp-item__role" data-i18n="home.exp4.role">Content &amp; Project Manager</p>
+                <p class="exp-item__date" data-i18n="home.exp4.date">JAN 2021–FEB 2022</p>
               </div>
               <p class="exp-item__company">Tecnológico de Monterrey</p>
-              <p class="exp-item__desc">Management of @PrepatecGDL &amp; @BorregosGDL. Video editing, motion graphics for IG, TikTok, YouTube.</p>
+              <p class="exp-item__desc" data-i18n="home.exp4.desc">Management of @PrepatecGDL &amp; @BorregosGDL. Video editing, motion graphics for IG, TikTok, YouTube.</p>
               <div class="exp-item__chips">
                 <span class="chip">Premiere Pro</span>
                 <span class="chip">After Effects</span>
-                <span class="chip">Social Media</span>
+                <span class="chip" data-i18n="home.exp4.chip.social">Social Media</span>
               </div>
             </div>
           </div>
 
           <!-- Col 3 — Education + Languages -->
           <div class="col-edu">
-            <p class="col-title">Education</p>
+            <p class="col-title" data-i18n="home.col.education">Education</p>
 
             <div class="edu-item">
-              <p class="edu-item__title">BA Animation &amp; Digital Art</p>
-              <p class="edu-item__subtitle">Visual Dev &amp; Compositing VFX</p>
+              <p class="edu-item__title" data-i18n="home.edu1.title">BA Animation &amp; Digital Art</p>
+              <p class="edu-item__subtitle" data-i18n="home.edu1.subtitle">Visual Dev &amp; Compositing VFX</p>
               <p class="edu-item__meta">Tecnológico de Monterrey · 2018–2023</p>
             </div>
 
             <div class="edu-item">
-              <p class="edu-item__title">Visual Effects Workshop</p>
+              <p class="edu-item__title" data-i18n="home.edu2.title">Visual Effects Workshop</p>
               <p class="edu-item__meta">Vancouver Film School · Oct 2022</p>
             </div>
 
             <hr class="divider">
 
-            <p class="col-title">Languages</p>
-            <div class="lang-row"><span class="lang-row__name">Spanish</span><span class="lang-row__level">Native</span></div>
-            <div class="lang-row"><span class="lang-row__name">English</span><span class="lang-row__level">B2 — Cambridge</span></div>
-            <div class="lang-row"><span class="lang-row__name">French</span><span class="lang-row__level">A1</span></div>
+            <p class="col-title" data-i18n="home.col.languages">Languages</p>
+            <div class="lang-row"><span class="lang-row__name" data-i18n="home.lang.es">Spanish</span><span class="lang-row__level" data-i18n="home.lang.esLevel">Native</span></div>
+            <div class="lang-row"><span class="lang-row__name" data-i18n="home.lang.en">English</span><span class="lang-row__level" data-i18n="home.lang.enLevel">B2 — Cambridge</span></div>
+            <div class="lang-row"><span class="lang-row__name" data-i18n="home.lang.fr">French</span><span class="lang-row__level">A1</span></div>
 
             <hr class="divider">
 
@@ -269,8 +269,8 @@
                 <svg viewBox="0 0 73 59" fill="var(--color-ocean)"><use href="#icon-planet"></use></svg>
               </div>
               <div>
-                <p class="cusma-badge__title">CUSMA / USMCA Eligible</p>
-                <p class="cusma-badge__desc">Open to work remote &amp; relocation available</p>
+                <p class="cusma-badge__title" data-i18n="home.cusma.title">CUSMA / USMCA Eligible</p>
+                <p class="cusma-badge__desc" data-i18n="home.cusma.desc">Open to work remote &amp; relocation available</p>
               </div>
             </div>
           </div>
@@ -288,8 +288,8 @@
       <div class="container">
         <div class="work__header">
           <div>
-            <p class="work__eyebrow">Category</p>
-            <h2 class="work__title">Work</h2>
+            <p class="work__eyebrow" data-i18n="home.work.eyebrow">Category</p>
+            <h2 class="work__title" data-i18n="home.work.title">Work</h2>
           </div>
         </div>
 
@@ -303,11 +303,11 @@
                   <span class="card__arrow">↗</span>
                 </div>
                 <div class="card__tags">
-                  <span>VFX</span><span>2D/3D Comp</span><span>50+ shots</span><span>Render</span><span>Hallmark</span>
+                  <span>VFX</span><span data-i18n="home.card1.tag.comp">2D/3D Comp</span><span data-i18n="home.card1.tag.shots">50+ shots</span><span>Render</span><span>Hallmark</span>
                 </div>
               </div>
               <div class="card__info">
-                <h3>VFX Compositing &amp; Lighting<br>3D &amp; Lookdev</h3>
+                <h3 data-i18n="home.card1.title">VFX Compositing &amp; Lighting<br>3D &amp; Lookdev</h3>
                 <p>Nuke · Maya · After Effects</p>
                 <div class="card__accent"></div>
               </div>
@@ -320,11 +320,11 @@
                   <span class="card__arrow">↗</span>
                 </div>
                 <div class="card__tags">
-                  <span>Hallmark</span><span>50+ shots</span><span>CG Comp</span>
+                  <span>Hallmark</span><span data-i18n="home.card2.tag.shots">50+ shots</span><span data-i18n="home.card2.tag.cgcomp">CG Comp</span>
                 </div>
               </div>
               <div class="card__info">
-                <h3>Video Editing &amp; Mograph</h3>
+                <h3 data-i18n="home.card2.title">Video Editing &amp; Mograph</h3>
                 <p>Premiere · After Effects · CapCut</p>
                 <div class="card__accent"></div>
               </div>
@@ -337,11 +337,11 @@
                   <span class="card__arrow">↗</span>
                 </div>
                 <div class="card__tags">
-                  <span>Hallmark</span><span>50+ shots</span><span>CG Comp</span>
+                  <span>Hallmark</span><span data-i18n="home.card3.tag.shots">50+ shots</span><span data-i18n="home.card3.tag.cgcomp">CG Comp</span>
                 </div>
               </div>
               <div class="card__info">
-                <h3>Illustration<br>Visual Development</h3>
+                <h3 data-i18n="home.card3.title">Illustration<br>Visual Development</h3>
                 <p>Photoshop · ClipStudio Paint · Illustrator · Blender</p>
                 <div class="card__accent"></div>
               </div>
@@ -354,11 +354,11 @@
                   <span class="card__arrow">↗</span>
                 </div>
                 <div class="card__tags">
-                  <span>Hallmark</span><span>50+ shots</span><span>CG Comp</span>
+                  <span>Hallmark</span><span data-i18n="home.card4.tag.shots">50+ shots</span><span data-i18n="home.card4.tag.cgcomp">CG Comp</span>
                 </div>
               </div>
               <div class="card__info">
-                <h3>Design<br>&amp; UX/UI</h3>
+                <h3 data-i18n="home.card4.title">Design<br>&amp; UX/UI</h3>
                 <p>Figma · Illustrator · Photoshop</p>
                 <div class="card__accent"></div>
               </div>
@@ -371,9 +371,9 @@
               <div class="social-box__head">
                 <div class="social-box__name-row">
                   <p class="social-box__name">Andrea<br>Guerrero<br>Aviña</p>
-                  <span class="avail-pill"><span class="avail-pill__dot"></span>Open to work</span>
+                  <span class="avail-pill"><span class="avail-pill__dot"></span><span data-i18n="shared.availPill">Open to work</span></span>
                 </div>
-                <p class="social-box__label">Find me on</p>
+                <p class="social-box__label" data-i18n="home.social.findMe">Find me on</p>
               </div>
 
               <a class="social-row" href="https://vimeo.com/andreagvfx" target="_blank" rel="noopener">
@@ -439,7 +439,7 @@
       </video>
       <div class="container footer__inner">
         <div class="footer__top">
-          <h2 class="footer__title">Let's create<br>ART together!</h2>
+          <h2 class="footer__title" data-i18n="home.footer.title">Let's create<br>ART together!</h2>
 
           <div class="contact-card">
             <p class="contact-card__name">Andrea Guerrero Aviña</p>
@@ -447,7 +447,7 @@
             <a class="contact-row" href="mailto:a.guerreavi@gmail.com">
               <span class="contact-row__icon"><svg viewBox="0 0 37 35" fill="var(--color-ocean)"><use href="#icon-envelope"></use></svg></span>
               <span class="contact-row__text">
-                <span class="contact-row__label">Email</span>
+                <span class="contact-row__label" data-i18n="home.contact.email">Email</span>
                 <span class="contact-row__value">a.guerreavi@gmail.com</span>
               </span>
               <span class="contact-row__go">↗</span>
@@ -465,7 +465,7 @@
             <a class="contact-row" href="https://andreagvfx.github.io" target="_blank" rel="noopener">
               <span class="contact-row__icon is-text" style="font-size:20px;">✦</span>
               <span class="contact-row__text">
-                <span class="contact-row__label">Portfolio</span>
+                <span class="contact-row__label" data-i18n="home.contact.portfolio">Portfolio</span>
                 <span class="contact-row__value">andreagvfx.github.io</span>
               </span>
               <span class="contact-row__go">↗</span>
@@ -474,7 +474,7 @@
         </div>
 
         <div class="footer__bottom">
-          <span class="avail-pill"><span class="avail-pill__dot"></span>Open to work</span>
+          <span class="avail-pill"><span class="avail-pill__dot"></span><span data-i18n="shared.availPill">Open to work</span></span>
         </div>
       </div>
 
@@ -488,6 +488,9 @@
 
 </main>
 
+<button class="lang-toggle" type="button" aria-label="Switch the portfolio to Spanish">ES</button>
+
 <script src="js/main.js?v=11"></script>
+<script src="js/i18n.js?v=2"></script>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design &amp; UX/UI · Andrea Guerrero Aviña</title>
+<title data-i18n="design.title">Design &amp; UX/UI · Andrea Guerrero Aviña</title>
 <meta name="description" content="Product design, e-commerce UI, and branding work — Figma, Shopify, HTML/CSS.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../css/styles.css?v=12">
-<link rel="stylesheet" href="../css/section.css?v=21">
+<link rel="stylesheet" href="../css/styles.css?v=13">
+<link rel="stylesheet" href="../css/section.css?v=23">
 </head>
 <body>
 
@@ -32,20 +32,23 @@
      NAV
      ============================================================ -->
 <nav class="section-nav section-nav--muted" id="top">
-  <a href="../index.html" class="section-nav__logo">
-    <span class="star star--gold" style="--star-size:40px; --star-off:rgba(94,56,120,0.4);" data-star>
-      <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
-    </span>
-    <span>AG</span>
-  </a>
-  <div class="section-nav__crumb">
-    <a href="../index.html">Portfolio</a>
-    <span class="sep">/</span>
-    <span class="current">Design &amp; UX/UI</span>
+  <div class="section-nav__inner">
+    <a href="../index.html" class="section-nav__logo">
+      <span class="star star--gold" style="--star-size:40px; --star-off:rgba(94,56,120,0.4);" data-star>
+        <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
+      </span>
+      <span>AG</span>
+    </a>
+    <div class="section-nav__crumb">
+      <a href="../index.html" data-i18n="shared.crumb.portfolio">Portfolio</a>
+      <span class="sep">/</span>
+      <span class="current" data-i18n="shared.crumb.design">Design &amp; UX/UI</span>
+    </div>
+    <button class="section-nav__hamburger" id="hamburger" aria-expanded="false" aria-controls="drawer" aria-label="Open navigation" data-i18n-attr="aria-label:shared.menuAria">
+      <span class="section-nav__hamburger-label" data-i18n="shared.menuLabel">Portfolio Menu</span>
+      <span class="section-nav__hamburger-bars"><span></span><span></span><span></span></span>
+    </button>
   </div>
-  <button class="section-nav__hamburger" id="hamburger" aria-expanded="false" aria-controls="drawer" aria-label="Open navigation">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
 <main>
@@ -56,8 +59,8 @@
   <div class="motion-title">
     <div class="motion-title__layout">
       <div>
-        <p class="motion-title__eyebrow">Section 05</p>
-        <h1 class="motion-title__heading">Design &amp; UX/UI</h1>
+        <p class="motion-title__eyebrow" data-i18n="shared.section.05">Section 05</p>
+        <h1 class="motion-title__heading" data-i18n="shared.dropdown.design">Design &amp; UX/UI</h1>
       </div>
       <div class="title-tools">
         <img src="../assets/icons/Figma-logo.svg" alt="Figma">
@@ -82,8 +85,8 @@
   <section class="brand-board" id="brand-identity">
     <div class="content-header content-header--purple-sub">
       <div>
-        <h2 class="content-header__title">AG. Brand Concept Identity</h2>
-        <p class="content-header__sub">Mascot logo, color system, and applications, designed for own brand identity.</p>
+        <h2 class="content-header__title" data-i18n="design.brand.title">AG. Brand Concept Identity</h2>
+        <p class="content-header__sub" data-i18n="design.brand.sub">Mascot logo, color system, and applications, designed for own brand identity.</p>
       </div>
     </div>
 
@@ -105,8 +108,8 @@
   <section class="segunda-oportunidad" id="rebranding">
     <div class="content-header content-header--purple-sub">
       <div>
-        <h2 class="content-header__title">Rebranding for social good</h2>
-        <p class="content-header__sub">Rebranding work for women-led small businesses, part of a social service program supporting entrepreneurship in Segunda Oportunidad Organization.</p>
+        <h2 class="content-header__title" data-i18n="design.rebrand.title">Rebranding for social good</h2>
+        <p class="content-header__sub" data-i18n="design.rebrand.sub">Rebranding work for women-led small businesses, part of a social service program supporting entrepreneurship in Segunda Oportunidad Organization.</p>
       </div>
     </div>
     <div class="board-image">
@@ -127,12 +130,12 @@
   <section class="behance-section" id="streampack">
     <div class="content-header content-header--purple-sub">
       <div>
-        <h2 class="content-header__title">Streampack for @DRE_ow</h2>
-        <p class="content-header__sub">Branding · Illustration · Valorant-style · Freelance 2024</p>
+        <h2 class="content-header__title" data-i18n="illustration.proj6.title">Streampack for @DRE_ow</h2>
+        <p class="content-header__sub" data-i18n="illustration.proj6.cat">Branding · Illustration · Valorant-style · Freelance 2024</p>
       </div>
       <a class="content-header__cta content-header__cta--behance" href="https://www.behance.net/gallery/106751553/" target="_blank" rel="noopener">
         <span class="content-header__cta-badge">Bē</span>
-        View full project on Behance ↗
+        <span data-i18n="illustration.omega.cta">View full project on Behance ↗</span>
       </a>
     </div>
     <div class="behance-embed">
@@ -169,8 +172,8 @@
       </div>
     </div>
     <div class="ui-design-intro">
-      <p class="ui-design-intro__meta">3 projects · Product design · E-commerce · B2B</p>
-      <p class="ui-design-intro__lead">Each project links to its live page.</p>
+      <p class="ui-design-intro__meta" data-i18n="design.ui.meta">3 projects · Product design · E-commerce · B2B</p>
+      <p class="ui-design-intro__lead" data-i18n="design.ui.lead">Each project links to its live page.</p>
     </div>
 
     <div class="ui-grid">
@@ -178,15 +181,15 @@
       <div class="ui-card">
         <div class="ui-card__thumb"><img src="../assets/media/design/thumbs/bys-ui.png" alt="BYS Cosmetics — Kiss Drip Lip Oil" loading="lazy"></div>
         <div class="ui-card__body">
-          <p class="ui-card__cat">Case Study · E-commerce</p>
+          <p class="ui-card__cat" data-i18n="design.bys.cat">Case Study · E-commerce</p>
           <h3 class="ui-card__title">BYS Cosmetics</h3>
-          <p class="ui-card__desc">Redesign of the Kiss Drip Lip Oil product page, with a soft feminine visual direction.</p>
+          <p class="ui-card__desc" data-i18n="design.bys.desc">Redesign of the Kiss Drip Lip Oil product page, with a soft feminine visual direction.</p>
           <div class="ui-card__tags">
-            <span class="tech-chip">Product Page</span>
+            <span class="tech-chip" data-i18n="design.bys.tag.productPage">Product Page</span>
             <span class="tech-chip">E-commerce</span>
           </div>
           <div class="ui-card__buttons">
-            <a class="ui-card__btn-primary" href="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/BYS/" target="_blank" rel="noopener">View project ↗</a>
+            <a class="ui-card__btn-primary" href="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/BYS/" target="_blank" rel="noopener" data-i18n="design.viewProject">View project ↗</a>
             <button class="ui-card__btn-gallery" type="button" data-lightbox-trigger
                     data-lightbox-eyebrow="Case Study · E-commerce"
                     data-lightbox-title="BYS Cosmetics"
@@ -194,7 +197,9 @@
                     data-lightbox-desc="Redesign of the Kiss Drip Lip Oil product page, with a soft feminine visual direction, hierarchy optimized for conversion, with a full documented case study."
                     data-lightbox-images="../assets/media/design/thumbs/bys-ui.png"
                     data-lightbox-link="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/BYS/"
-                    data-lightbox-link-label="View live project ↗">View in Figma ⤢</button>
+                    data-lightbox-link-label="View live project ↗"
+                    data-i18n="design.viewFigma"
+                    data-i18n-attr="data-lightbox-eyebrow:design.bys.cat|data-lightbox-tags:design.bys.lightboxTags|data-lightbox-desc:design.bys.lightboxDesc|data-lightbox-link-label:design.viewLive">View in Figma ⤢</button>
           </div>
         </div>
       </div>
@@ -202,15 +207,15 @@
       <div class="ui-card">
         <div class="ui-card__thumb"><img src="../assets/media/design/thumbs/sonnet-ui.png" alt="Sonnet — Bare Earth Facial Cleanser" loading="lazy"></div>
         <div class="ui-card__body">
-          <p class="ui-card__cat">Product · Collection Page · Skincare</p>
-          <h3 class="ui-card__title">Sonnet — Bare Earth</h3>
-          <p class="ui-card__desc">Product and landing page for a skincare line (desktop and mobile), with a documented design system.</p>
+          <p class="ui-card__cat" data-i18n="design.sonnet.cat">Product · Collection Page · Skincare</p>
+          <h3 class="ui-card__title" data-i18n="design.sonnet.title">Sonnet — Bare Earth</h3>
+          <p class="ui-card__desc" data-i18n="design.sonnet.desc">Product and landing page for a skincare line (desktop and mobile), with a documented design system.</p>
           <div class="ui-card__tags">
-            <span class="tech-chip tech-chip--muted">Design System</span>
-            <span class="tech-chip tech-chip--muted">Skincare</span>
+            <span class="tech-chip tech-chip--muted" data-i18n="design.sonnet.tag.designSystem">Design System</span>
+            <span class="tech-chip tech-chip--muted" data-i18n="design.sonnet.tag.skincare">Skincare</span>
           </div>
           <div class="ui-card__buttons">
-            <a class="ui-card__btn-primary" href="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/SONNET/" target="_blank" rel="noopener">View project ↗</a>
+            <a class="ui-card__btn-primary" href="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/SONNET/" target="_blank" rel="noopener" data-i18n="design.viewProject">View project ↗</a>
             <button class="ui-card__btn-gallery" type="button" data-lightbox-trigger
                     data-lightbox-eyebrow="Product · Collection Page · Skincare"
                     data-lightbox-title="Sonnet — Bare Earth"
@@ -218,7 +223,9 @@
                     data-lightbox-desc="Product and collection landing page for a skincare line (desktop and mobile), with a documented design system. Includes a Klaviyo email campaign design as a bonus."
                     data-lightbox-images="../assets/media/design/thumbs/sonnet-ui.png"
                     data-lightbox-link="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/SONNET/"
-                    data-lightbox-link-label="View live project ↗">View in Figma ⤢</button>
+                    data-lightbox-link-label="View live project ↗"
+                    data-i18n="design.viewFigma"
+                    data-i18n-attr="data-lightbox-eyebrow:design.sonnet.cat|data-lightbox-title:design.sonnet.title|data-lightbox-tags:design.sonnet.lightboxTags|data-lightbox-desc:design.sonnet.lightboxDesc|data-lightbox-link-label:design.viewLive">View in Figma ⤢</button>
           </div>
         </div>
       </div>
@@ -226,15 +233,15 @@
       <div class="ui-card">
         <div class="ui-card__thumb"><img src="../assets/media/design/thumbs/lazarus-ui.png" alt="Lazarus ODF — fiber optic distributor" loading="lazy"></div>
         <div class="ui-card__body">
-          <p class="ui-card__cat">Catalog · Fiber Optics · B2B</p>
+          <p class="ui-card__cat" data-i18n="design.lazarus.cat">Catalog · Fiber Optics · B2B</p>
           <h3 class="ui-card__title">Lazarus ODF</h3>
-          <p class="ui-card__desc">Product catalog for a real client — fiber optic distributor — with accumulating quote list.</p>
+          <p class="ui-card__desc" data-i18n="design.lazarus.desc">Product catalog for a real client — fiber optic distributor — with accumulating quote list.</p>
           <div class="ui-card__tags">
-            <span class="tech-chip">Real Client</span>
+            <span class="tech-chip" data-i18n="design.lazarus.tag.realClient">Real Client</span>
             <span class="tech-chip">B2B</span>
           </div>
           <div class="ui-card__buttons">
-            <a class="ui-card__btn-primary" href="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/LAZARUS/" target="_blank" rel="noopener">View project ↗</a>
+            <a class="ui-card__btn-primary" href="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/LAZARUS/" target="_blank" rel="noopener" data-i18n="design.viewProject">View project ↗</a>
             <button class="ui-card__btn-gallery" type="button" data-lightbox-trigger
                     data-lightbox-eyebrow="Catalog · Fiber Optics · B2B"
                     data-lightbox-title="Lazarus ODF"
@@ -242,7 +249,9 @@
                     data-lightbox-desc="Product catalog for a fiber optic distributor — a real client project. Includes an accumulating quote list, documented design system, and downloadable PDF catalog."
                     data-lightbox-images="../assets/media/design/thumbs/lazarus-ui.png"
                     data-lightbox-link="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/LAZARUS/"
-                    data-lightbox-link-label="View live project ↗">View in Figma ⤢</button>
+                    data-lightbox-link-label="View live project ↗"
+                    data-i18n="design.viewFigma"
+                    data-i18n-attr="data-lightbox-eyebrow:design.lazarus.cat|data-lightbox-tags:design.lazarus.lightboxTags|data-lightbox-desc:design.lazarus.lightboxDesc|data-lightbox-link-label:design.viewLive">View in Figma ⤢</button>
           </div>
         </div>
       </div>
@@ -254,7 +263,7 @@
        MORE OF MY WORK — cross-promo to other sections
        ============================================================ -->
   <div class="also-header">
-    <h2 class="also-header__title">More of my work</h2>
+    <h2 class="also-header__title" data-i18n="shared.also.title">More of my work</h2>
     <span class="star star--gold" style="--float-delay:-1.5s; --star-off:var(--bg-mid);" data-star>
       <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
     </span>
@@ -262,7 +271,7 @@
   <div class="also-row">
     <a class="also-card" href="../vfx/index.html#compositing-reel">
       <div class="also-card__label">
-        You may also like
+        <span data-i18n="shared.also.youMayAlsoLike">You may also like</span>
         <span class="star star--white" data-star>
           <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
         </span>
@@ -276,21 +285,21 @@
       <div class="also-card__section">
         <span class="also-card__icon">◉</span>
         <div class="also-card__section-text">
-          <p class="also-card__num">Section 01</p>
-          <p class="also-card__title">VFX &amp; Compositing</p>
+          <p class="also-card__num" data-i18n="shared.section.01">Section 01</p>
+          <p class="also-card__title" data-i18n="motion.also1.title">VFX &amp; Compositing</p>
         </div>
         <span class="also-card__arrow">↗</span>
       </div>
       <div class="also-card__rule also-card__rule--light"></div>
       <div class="also-card__bottom">
-        <p class="also-card__tags">Compositing reel · Film &amp; TV · Nuke</p>
+        <p class="also-card__tags" data-i18n="motion.also1.tags">Compositing reel · Film &amp; TV · Nuke</p>
         <p class="also-card__sub">WeLab · Hallmark · El Taller del Chucho</p>
       </div>
     </a>
 
     <a class="also-card" href="../vfx/index.html#lighting-reel">
       <div class="also-card__label">
-        You may also like
+        <span data-i18n="shared.also.youMayAlsoLike">You may also like</span>
         <span class="star star--white" data-star>
           <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
         </span>
@@ -304,15 +313,15 @@
       <div class="also-card__section">
         <span class="also-card__icon">◉</span>
         <div class="also-card__section-text">
-          <p class="also-card__num">Section 02</p>
-          <p class="also-card__title">Lighting &amp; 3D</p>
+          <p class="also-card__num" data-i18n="shared.section.02">Section 02</p>
+          <p class="also-card__title" data-i18n="vfx.reel2.title">Lighting &amp; 3D</p>
         </div>
         <span class="also-card__arrow">↗</span>
       </div>
       <div class="also-card__rule also-card__rule--light"></div>
       <div class="also-card__bottom">
-        <p class="also-card__tags">Lighting reel · Lookdev · Maya · Arnold</p>
-        <p class="also-card__sub">Day/Night Lookdev · CG · Additive method</p>
+        <p class="also-card__tags" data-i18n="vfx.also2.tags">Lighting reel · Lookdev · Maya · Arnold</p>
+        <p class="also-card__sub" data-i18n="vfx.also2.sub">Day/Night Lookdev · CG · Additive method</p>
       </div>
     </a>
   </div>
@@ -327,7 +336,7 @@
       </video>
       <div class="container footer__inner">
         <div class="footer__top">
-          <h2 class="footer__title">Let's create<br>ART together!</h2>
+          <h2 class="footer__title" data-i18n="home.footer.title">Let's create<br>ART together!</h2>
 
           <div class="contact-card">
             <p class="contact-card__name">Andrea Guerrero Aviña</p>
@@ -335,7 +344,7 @@
             <a class="contact-row" href="mailto:a.guerreavi@gmail.com">
               <span class="contact-row__icon"><svg viewBox="0 0 37 35" fill="var(--color-ocean)"><use href="#icon-envelope"></use></svg></span>
               <span class="contact-row__text">
-                <span class="contact-row__label">Email</span>
+                <span class="contact-row__label" data-i18n="home.contact.email">Email</span>
                 <span class="contact-row__value">a.guerreavi@gmail.com</span>
               </span>
               <span class="contact-row__go">↗</span>
@@ -353,7 +362,7 @@
             <a class="contact-row" href="https://andreagvfx.github.io" target="_blank" rel="noopener">
               <span class="contact-row__icon is-text" style="font-size:20px;">✦</span>
               <span class="contact-row__text">
-                <span class="contact-row__label">Portfolio</span>
+                <span class="contact-row__label" data-i18n="home.contact.portfolio">Portfolio</span>
                 <span class="contact-row__value">andreagvfx.github.io</span>
               </span>
               <span class="contact-row__go">↗</span>
@@ -362,7 +371,7 @@
         </div>
 
         <div class="footer__bottom">
-          <span class="avail-pill"><span class="avail-pill__dot"></span>Open to work</span>
+          <span class="avail-pill"><span class="avail-pill__dot"></span><span data-i18n="shared.availPill">Open to work</span></span>
         </div>
       </div>
 
@@ -380,10 +389,10 @@
   <div class="section-footer-nav">
     <a class="section-footer-nav__back" href="../index.html">
       <span class="section-footer-nav__back-icon">←</span>
-      Back to Portfolio
+      <span data-i18n="shared.footerNav.backToPortfolio">Back to Portfolio</span>
     </a>
     <div class="section-footer-nav__next">
-      <p class="section-footer-nav__next-label">Portafolio completo</p>
+      <p class="section-footer-nav__next-label" data-i18n="design.footerNav.fullPortfolio">Full Portfolio</p>
       <a class="section-footer-nav__next-title" href="../index.html">andrea-vfx.github.io</a>
     </div>
     <a class="section-footer-nav__vimeo" href="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/" target="_blank" rel="noopener">andrea-vfx.github.io/portfolio-ui-AndreaGuerrero ↗</a>
@@ -391,16 +400,18 @@
 
 </main>
 
-<a href="#top" class="back-to-top" aria-label="Back to top">
+<a href="#top" class="back-to-top" aria-label="Back to top" data-i18n-attr="aria-label:shared.backToTopAria">
   <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
+
+<button class="lang-toggle" type="button" aria-label="Switch the portfolio to Spanish">ES</button>
 
 <!-- ============================================================
      LIGHTBOX (shared modal, populated via JS from data-lightbox-*)
      ============================================================ -->
 <div class="lightbox-overlay" id="lightboxOverlay">
   <div class="lightbox">
-    <button class="lightbox__close" aria-label="Close gallery">✕</button>
+    <button class="lightbox__close" aria-label="Close gallery" data-i18n-attr="aria-label:shared.lightbox.closeAria">✕</button>
     <div class="lightbox__viewer">
       <div class="lightbox__main">
         <span class="lightbox__arrow lightbox__arrow--prev">‹</span>
@@ -427,40 +438,40 @@
 <aside class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer__top">
     <span class="drawer__logo">AG</span>
-    <button class="drawer__close" id="drawerClose" aria-label="Close navigation">✕</button>
+    <button class="drawer__close" id="drawerClose" aria-label="Close navigation" data-i18n-attr="aria-label:shared.drawer.closeAria">✕</button>
   </div>
   <div class="drawer__rule"></div>
   <div style="height:20px;"></div>
-  <p class="drawer__label">Navigate</p>
+  <p class="drawer__label" data-i18n="shared.drawer.navigate">Navigate</p>
 
   <a class="drawer__item" href="../index.html">
     <span class="drawer__item-num">00</span>
-    <span class="drawer__item-label">Portfolio Home</span>
+    <span class="drawer__item-label" data-i18n="shared.drawer.portfolioHome">Portfolio Home</span>
   </a>
 
   <a class="drawer__item" href="../vfx/index.html">
     <span class="drawer__item-num">01</span>
-    <span class="drawer__item-label">VFX Compositing &amp; Lighting</span>
+    <span class="drawer__item-label" data-i18n="shared.crumb.vfx">VFX Compositing &amp; Lighting</span>
   </a>
   <a class="drawer__item" href="../motion/index.html">
     <span class="drawer__item-num">02</span>
-    <span class="drawer__item-label">Video Editing &amp; Mograph</span>
+    <span class="drawer__item-label" data-i18n="shared.dropdown.motion">Video Editing &amp; Mograph</span>
   </a>
   <a class="drawer__item" href="../illustration/index.html">
     <span class="drawer__item-num">03</span>
-    <span class="drawer__item-label">Illustration</span>
+    <span class="drawer__item-label" data-i18n="shared.dropdown.illustration">Illustration</span>
   </a>
 
   <a class="drawer__item is-active" href="#brand-identity">
     <span class="drawer__item-num">04</span>
-    <span class="drawer__item-label">Design &amp; UX/UI</span>
+    <span class="drawer__item-label" data-i18n="shared.dropdown.design">Design &amp; UX/UI</span>
     <span class="star star--gold drawer__item-star" style="--star-size:22px;" data-star>
       <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
     </span>
   </a>
   <div class="drawer__subitems">
-    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#brand-identity">AG. Brand Identity</a></div>
-    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#rebranding">Rebranding for Social Good</a></div>
+    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#brand-identity" data-i18n="design.drawer.brandIdentity">AG. Brand Identity</a></div>
+    <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#rebranding" data-i18n="design.drawer.rebranding">Rebranding for Social Good</a></div>
     <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#streampack">Streampack</a></div>
     <div class="drawer__subitem"><span class="drawer__subitem-bar"></span><a href="#ui-design">UI Design</a></div>
   </div>
@@ -471,5 +482,6 @@
 </aside>
 
 <script src="../js/section.js?v=7"></script>
+<script src="../js/i18n.js?v=2"></script>
 </body>
 </html>

@@ -10,12 +10,14 @@ body { background: var(--bg-mid); }
 
 /* ── SECTION NAV ─────────────────────────────────────────── */
 /* Figma's nav frame is a flat 88px; Andrea asked for a visibly
-   bigger one, settled at 95px, with real breathing room under the
-   hamburger. Padding is asymmetric (20px top, 31px bottom) so the
-   extra room lands below the content: 20+44+31=95px total.
+   bigger one, settled at 90px, with real breathing room under the
+   hamburger. Padding is asymmetric (18px top, 28px bottom) so the
+   extra room lands below the content: 18+44+28=90px total.
    Sticky + a z-index above every section's own (1-4) means nav is
-   always the top paint layer, so the little rounded-corner cutout
-   below (--radius-nav) can safely overlap the title band behind it —
+   always the top paint layer, so the bottom-corner cutout (--radius-
+   nav, now scaled up to match every other "curva de 100" on the
+   site — the browser naturally caps the rendered curve at this bar's
+   own 90px height) can safely overlap the title band behind it —
    nav's own opaque fill never gets covered, since z-index protects
    its content regardless of what slides up underneath. That overlap
    is also what makes the curve itself visible: it lets the title
@@ -27,11 +29,20 @@ body { background: var(--bg-mid); }
   top: 0;
   z-index: 100;
   background: var(--bg-light);
+  padding: 18px var(--padding-page) 28px;
+  border-radius: 0 0 var(--radius-nav) var(--radius-nav);
+}
+/* Logo/crumb/menu sit inside the same max-width column as the rest of
+   the page's content (not just page-padding off the raw viewport
+   edge) — at ultrawide viewports --padding-page tops out at 80px,
+   which left them noticeably further out than the content column
+   below once the viewport got much wider than --content-max. */
+.section-nav__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px var(--padding-page) 31px;
-  border-radius: 0 0 var(--radius-nav) var(--radius-nav);
+  max-width: var(--content-max);
+  margin: 0 auto;
 }
 .section-nav__logo {
   display: flex;
@@ -58,20 +69,38 @@ body { background: var(--bg-mid); }
 .section-nav__crumb span.sep { color: rgba(94,56,120,0.3); }
 .section-nav__crumb span.current { color: var(--color-iris); font-weight: 500; }
 
+/* A text CTA ("Portfolio Menu") on desktop invites the click more than
+   a bare icon does; it collapses back to an icon-only square on
+   mobile (see the 720px breakpoint) where there's no room for a
+   label. Same control/handler either way — only its skin changes. */
 .section-nav__hamburger {
   background: var(--bg-mid);
   border-radius: var(--radius-btn);
-  width: 64px;
   height: 44px;
+  padding: 0 22px 0 26px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  gap: 12px;
   cursor: pointer;
   transition: background var(--transition);
 }
 .section-nav__hamburger:hover { background: var(--color-iris); }
+.section-nav__hamburger-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-iris);
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+.section-nav__hamburger:hover .section-nav__hamburger-label { color: var(--bg-light); }
+.section-nav__hamburger-bars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
 .section-nav__hamburger span {
   display: block;
   height: 2px;
@@ -80,9 +109,9 @@ body { background: var(--bg-mid); }
   transition: background var(--transition);
 }
 .section-nav__hamburger:hover span { background: var(--bg-light); }
-.section-nav__hamburger span:nth-child(1) { width: 22px; }
-.section-nav__hamburger span:nth-child(2) { width: 14px; }
-.section-nav__hamburger span:nth-child(3) { width: 22px; }
+.section-nav__hamburger span:nth-child(1) { width: 18px; }
+.section-nav__hamburger span:nth-child(2) { width: 12px; }
+.section-nav__hamburger span:nth-child(3) { width: 18px; }
 
 /* Motion page only: per Figma its nav sits on bg-mid instead of the
    default bg-light — hamburger pill + separator invert to read
@@ -90,8 +119,10 @@ body { background: var(--bg-mid); }
 .section-nav--muted { background: var(--bg-mid); }
 .section-nav--muted .section-nav__crumb span.sep { color: rgba(94,56,120,0.25); }
 .section-nav--muted .section-nav__hamburger { background: var(--bg-light); }
+.section-nav--muted .section-nav__hamburger-label { color: var(--bg-mid); }
 .section-nav--muted .section-nav__hamburger span { background: var(--bg-mid); }
 .section-nav--muted .section-nav__hamburger:hover { background: var(--color-iris); }
+.section-nav--muted .section-nav__hamburger:hover .section-nav__hamburger-label { color: var(--bg-light); }
 .section-nav--muted .section-nav__hamburger:hover span { background: var(--bg-light); }
 
 /* ── REEL HERO ───────────────────────────────────────────── */
@@ -1348,6 +1379,10 @@ body { background: var(--bg-mid); }
 @media (max-width: 720px) {
   .section-nav { padding: 20px; }
   .section-nav__crumb { display: none; }
+  /* No room for the "Portfolio Menu" label at this width — collapse
+     back to a plain icon-only square, same as before. */
+  .section-nav__hamburger { width: 44px; padding: 0; justify-content: center; }
+  .section-nav__hamburger-label { display: none !important; }
   .stats-row { flex-wrap: wrap; gap: 16px 28px; }
   .credit-row { flex-direction: column; gap: 4px; }
   .drawer { top: 0; right: 0; bottom: 0; border-radius: 0; border-width: 0; padding: 28px; width: 100%; }
