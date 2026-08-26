@@ -1364,6 +1364,12 @@ body { background: var(--bg-mid); }
 .content-header--on-dark .content-header__title { color: var(--bg-light); }
 .content-header--on-dark .content-header__sub { color: rgba(245,232,245,0.7); }
 .content-header__cta--behance { background: #05378a; }
+/* Design page's headers (Brand, Rebranding, Streampack) all use solid
+   accent.purple for the subtitle — checked 2 of 3 directly against
+   Figma text nodes (804:431, 843:2824), both #9b6bd0 — vs the
+   translucent iris Illustration's headers use. Page-specific, so a
+   modifier rather than changing the shared default. */
+.content-header--purple-sub .content-header__sub { color: var(--color-purple); }
 
 /* ── ILLUSTRATION — intro bio band ── */
 .intro-bio {
@@ -1624,9 +1630,8 @@ body { background: var(--bg-mid); }
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: #fff;
-  border-radius: 14px;
-  border: 1px solid rgba(184,136,184,0.5);
+  background: var(--bg-light);
+  border-radius: 6px;
   overflow: hidden;
   padding-bottom: 24px;
 }
@@ -1668,7 +1673,7 @@ body { background: var(--bg-mid); }
 .ui-card__buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .ui-card__btn-primary {
   padding: 10px 18px;
-  border-radius: var(--radius-btn);
+  border-radius: 6px;
   background: var(--color-iris);
   font-family: var(--font-display);
   font-weight: 700;
@@ -1680,7 +1685,7 @@ body { background: var(--bg-mid); }
 .ui-card__btn-gallery {
   padding: 10px 18px;
   border-radius: var(--radius-btn);
-  border: 0.5px solid var(--color-iris);
+  border: none;
   background: none;
   font-family: var(--font-body);
   font-weight: 500;
@@ -1690,14 +1695,59 @@ body { background: var(--bg-mid); }
   transition: background var(--transition);
 }
 .ui-card__btn-gallery:hover { background: rgba(94,56,120,0.06); }
-.ui-card__figma-link {
-  font-family: var(--font-body);
-  font-size: 12px;
-  color: rgba(94,56,120,0.45);
+/* UI Design's own dark sub-section (843:2819) — bg-mid, same
+   corner-stacking reveal used everywhere a bg-mid panel overlaps the
+   bg-light section before it (see .mg-section on the Motion page for
+   the fullest write-up of this mechanic). Its "05" is inline in its
+   own title (no separate .section-label bar, unlike 01/02/04 on this
+   page — checked directly, Figma really does mix both patterns). */
+.ui-design-section {
+  position: relative;
+  z-index: 2;
+  margin-top: -100px;
+  background: var(--bg-mid);
+  border-radius: 100px 100px 0 0;
+  padding-bottom: 160px; /* room for .also-header's own 100px overlap on top of this section's content */
 }
+.ui-design-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 52px var(--padding-page) 36px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.ui-design-title__num {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: var(--color-ocean);
+  margin-bottom: 8px;
+}
+.ui-design-title__heading {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--bg-light);
+}
+.ui-design-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 var(--padding-page) 40px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.ui-design-intro__meta { font-family: var(--font-body); font-size: 14px; letter-spacing: 0.04em; color: var(--color-iris); }
+.ui-design-intro__lead { font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: -0.01em; color: var(--color-iris); }
 
 /* ── DESIGN PAGE — AG. personal brand board ── */
-.brand-board { background: #f7f7f7; padding-bottom: 20px; }
+.brand-board { background: var(--bg-light); padding-bottom: 20px; }
 .brand-board__top {
   display: grid;
   grid-template-columns: minmax(280px, 480px) 1fr;
@@ -1760,7 +1810,7 @@ body { background: var(--bg-mid); }
 }
 
 /* ── DESIGN PAGE — Segunda Oportunidad rail (reuses .poster-card) ── */
-.segunda-oportunidad { background: #f7f7f7; padding-bottom: 60px; }
+.segunda-oportunidad { background: var(--bg-light); padding-bottom: 60px; }
 .segunda-rail {
   display: flex;
   gap: 20px;
