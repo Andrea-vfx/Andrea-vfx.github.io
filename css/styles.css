@@ -54,17 +54,6 @@ ul { list-style: none; }
   --radius-sm:    12px;
   --radius-stack: clamp(28px, 5vw, 100px);
   --radius-stack-sm: clamp(20px, 3vw, 80px);
-  /* For a stacked-corner reveal against a short predecessor (e.g. the
-     88px-tall section-page nav): the negative margin-top overlap
-     MUST be >= the border-radius, or the curve only partially reveals
-     and cuts off into a visible straight edge partway through. Nav
-     doesn't have room for a 100px overlap, so this stays intentionally
-     small — always paired 1:1 with margin-top: calc(-1 * this).
-     Capped at 28px (not 40px) because .section-nav's own padding only
-     leaves a 28px gap below its tallest child (the 44px hamburger)
-     before the overlap starts eating into real nav content — see
-     .section-nav's own comment. */
-  --radius-stack-tight: clamp(20px, 3vw, 28px);
 
   --transition: 0.3s ease;
 }
@@ -972,7 +961,9 @@ main { position: relative; }
 }
 .star__shape {
   fill: var(--star-off, rgba(245,232,245,0.35));
-  transition: fill .5s steps(6, end);
+  stroke: transparent;
+  stroke-width: 2px;
+  transition: fill .5s steps(6, end), stroke .5s steps(6, end);
 }
 
 /* Ambient glow — a soft halo that sits behind the star and washes the
@@ -1006,7 +997,13 @@ main { position: relative; }
   filter: drop-shadow(0 0 16px var(--star-glow, rgba(255,225,150,0.75)));
 }
 .star:hover .star__shape,
-.star.is-lit .star__shape { fill: var(--star-on, #ffe9a8); }
+.star.is-lit .star__shape {
+  fill: var(--star-on, #ffe9a8);
+  /* On top of the glow (drawn on the shape itself, not the blurred
+     halo behind it) so the star's own silhouette doesn't wash out
+     into its glow when lit. */
+  stroke: var(--bg-mid);
+}
 
 @keyframes star-float {
   0%, 100% { translate: 0 0; }

@@ -42,7 +42,7 @@
      persists after mouseleave, 8fps/12fps stepped motion via CSS.
   --------------------------------------------------------- */
   const stars = document.querySelectorAll('[data-star]');
-  const MAX_DRIFT = 13;
+  const MAX_DRIFT = 19.5; // 13 * 1.5 — 50% wider roam radius per Andrea
   const MAX_ROT = 18; // degrees of tilt at the edge of the touch radius
   const COLOR_VARIANTS = ['star--gold', 'star--pink', 'star--white', 'star--green', 'star--blue'];
 
@@ -86,7 +86,7 @@
         // — reading the ::after pseudo's own computed inset (which is
         // built from --hit-pad) gives the browser-resolved pixel value.
         const hitPad = -parseFloat(getComputedStyle(star, '::after').top) || 0;
-        const touchRadius = Math.max(rect.width, rect.height) * 0.9 + hitPad;
+        const touchRadius = Math.max(rect.width, rect.height) * 1.35 + hitPad; // 0.9 * 1.5
         if (Math.hypot(distX, distY) <= touchRadius) {
           const dx = (distX / touchRadius) * MAX_DRIFT;
           const dy = (distY / touchRadius) * MAX_DRIFT;
