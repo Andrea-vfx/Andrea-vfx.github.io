@@ -993,10 +993,16 @@ main { position: relative; }
 .star:hover::before,
 .star.is-lit::before { opacity: 0.55; }
 
+/* No automatic hover animation on purpose — the star's rotate/
+   translate (see .star__svg's own transform, above) is driven
+   continuously by the cursor position (section.js/main.js write
+   --drift-x/--drift-y/--star-rot on mousemove), like it's being
+   nudged/tilted by the mouse rather than shaking on its own. On
+   mouseleave those custom properties are deliberately left as-is —
+   the star just stays wherever the cursor last left it, like
+   something picked up and set back down, instead of snapping home. */
 .star:hover .star__svg,
 .star.is-lit .star__svg {
-  /* 1s * 1.3 = 1.3s (30% slower); steps = 1.3s * 8fps ≈ 10 */
-  animation: star-wiggle 1.3s steps(10, end) infinite;
   filter: drop-shadow(0 0 16px var(--star-glow, rgba(255,225,150,0.75)));
 }
 .star:hover .star__shape,
@@ -1006,13 +1012,10 @@ main { position: relative; }
   0%, 100% { translate: 0 0; }
   50%      { translate: 0 -10px; }
 }
-@keyframes star-wiggle {
-  0%, 100% { transform: translate(var(--drift-x, 0px), var(--drift-y, 0px)) rotate(calc(var(--star-rot, 0deg) - 9deg)) scale(1.12); }
-  50%      { transform: translate(var(--drift-x, 0px), var(--drift-y, 0px)) rotate(calc(var(--star-rot, 0deg) + 9deg)) scale(1.18); }
-}
 @media (prefers-reduced-motion: reduce) {
   .star { animation: none; }
-  .star:hover .star__svg, .star.is-lit .star__svg { animation: none; transform: scale(1.1); }
+  .star__svg { transition: filter .5s steps(6, end); }
+  .star:hover .star__svg, .star.is-lit .star__svg { transform: none; }
 }
 
 /* Star color palette — randomly assigned per star by main.js */

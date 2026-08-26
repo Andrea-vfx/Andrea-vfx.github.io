@@ -9,19 +9,20 @@
 body { background: var(--bg-mid); }
 
 /* ── SECTION NAV ─────────────────────────────────────────── */
-/* Figma's nav frame is a flat 88px. With the tallest child (the 44px
-   hamburger) centered by align-items, symmetric 28px/28px padding
-   pushes total height to 100px — 12px over. Padding is asymmetric
-   (16px top, 28px bottom) instead of just shrinking both sides, so
-   the full 28px of slack lands below the content, matching
-   --radius-stack-tight's max exactly — the title band's corner
-   overlap can never reach up into the logo/crumb/hamburger. */
+/* Figma's nav frame is a flat 88px, but Andrea found the hamburger
+   sitting exactly flush against the title band's curve (zero gap,
+   even though technically uncut) reads as too tight — asked for a
+   visibly bigger nav, ~100px. Padding is asymmetric (20px top, 36px
+   bottom) rather than just scaling both sides up, so the extra room
+   lands below the content: 20+44+36=100px total, with 36px of clear
+   space under the hamburger — comfortably past --radius-stack-tight's
+   28px max overlap, leaving a real visible gap instead of a touch. */
 .section-nav {
   background: var(--bg-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px var(--padding-page) 28px;
+  padding: 20px var(--padding-page) 36px;
 }
 .section-nav__logo {
   display: flex;
@@ -501,15 +502,15 @@ body { background: var(--bg-mid); }
   z-index: 0;
 }
 .poster-gallery__star .star--lg { --star-size: clamp(120px, 12vw, 190px); }
-/* Big decorative stars (poster-gallery, "more of my work" header) are
-   ambient/passive in Figma — always glowing, not a hover state like
-   the small interactive nav/CTA stars. */
-.star--lg .star__svg,
-.also-header .star__svg {
+/* Big ambient poster-gallery star stays always-glowing/passive per
+   Figma. The "More of my work" header star is NOT ambient — Andrea
+   wants it off/muted by default like the small interactive stars,
+   only lighting on hover (handled by the shared .star:hover/.is-lit
+   rules below, nothing special needed here). */
+.star--lg .star__svg {
   filter: drop-shadow(0 0 20px var(--star-glow, rgba(255,255,255,0.75)));
 }
-.star--lg .star__shape,
-.also-header .star__shape {
+.star--lg .star__shape {
   fill: var(--star-on, #ffffff);
 }
 
@@ -746,8 +747,17 @@ body { background: var(--bg-mid); }
 /* Small, plain, muted-purple — not the big glowing ambient stars used
    elsewhere (poster-gallery, also-header), which only glow on a DARK
    fill. This one sits on bg-light. */
-.motion-title__star { position: absolute; right: clamp(20px, 8vw, 160px); top: 30%; z-index: 0; }
-.motion-title__star .star { --star-size: clamp(70px, 7vw, 126px); --star-off: var(--bg-mid); }
+/* Positioned over the format-pills area per Andrea's reference — that
+   whole region (not just the small star icon) is the roam zone the
+   cursor can drag/tilt it around in, via the big --hit-pad below
+   (see section.js/main.js: touchRadius = icon size + --hit-pad, and
+   drift/tilt are normalized against that full radius). */
+.motion-title__star { position: absolute; right: clamp(280px, 24vw, 480px); top: 20%; z-index: 0; }
+.motion-title__star .star {
+  --star-size: clamp(70px, 7vw, 126px);
+  --star-off: var(--bg-mid);
+  --hit-pad: clamp(120px, 16vw, 260px);
+}
 .motion-title__star .star__svg { filter: none; }
 
 /* Illustration title band's tool-icon row (Figma: ClipStudioPaint,
@@ -805,9 +815,18 @@ body { background: var(--bg-mid); }
   max-width: var(--content-max);
   margin: 0 auto;
 }
+/* Two side-by-side pairs only really has room once each pair's own
+   column is wide enough for the now-351px phone (+35%, see below)
+   AND a legible info column next to it — below ~1400px (most laptop
+   screens) that math doesn't work and the grid was squeezing the
+   info column down to ~160px, wrapping titles onto 5 lines. Stacking
+   to one column below that gives each pair the full row width. */
+@media (max-width: 1400px) {
+  .vertical-row__grid { grid-template-columns: 1fr; }
+}
 .video-pair {
   display: grid;
-  grid-template-columns: minmax(200px, 260px) 1fr;
+  grid-template-columns: minmax(270px, 351px) 1fr; /* was 200-260px; +35% per Andrea so the video reads better */
   gap: clamp(20px, 3vw, 40px);
   align-items: center;
 }
@@ -859,7 +878,7 @@ body { background: var(--bg-mid); }
 .video-info__title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-size: clamp(1.7rem, 3.2vw, 3rem); /* nudged up alongside the +35% phone size, kept short of a full 1:1 scale so it doesn't overrun the now-narrower info column */
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--color-iris);
@@ -883,7 +902,7 @@ body { background: var(--bg-mid); }
 .video-info__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 .video-info__tools { display: flex; gap: 8px; }
 .video-info__tools img,
-.video-info__tools .tool-icon-fallback { width: 48px; height: 48px; border-radius: 10px; }
+.video-info__tools .tool-icon-fallback { width: 56px; height: 56px; border-radius: 10px; }
 
 /* ── HORIZONTAL VIDEO SECTION ────────────────────────────── */
 .horizontal-row {
@@ -1055,11 +1074,29 @@ body { background: var(--bg-mid); }
 .campaign-tools {
   display: flex;
   gap: 8px;
-  padding: 0 var(--padding-page) 40px;
+  padding: 0 var(--padding-page) 24px;
   max-width: var(--content-max);
   margin: 0 auto;
 }
 .campaign-tools img { width: 46px; height: 46px; border-radius: 10px; }
+.campaign-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 20px var(--padding-page) 40px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  border-top: 1px solid rgba(94,56,120,0.1);
+}
+.campaign-footer__desc {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(94,56,120,0.8);
+  max-width: 600px;
+}
 
 /* ── MOTION GRAPHICS GRID ─────────────────────────────────── */
 .mg-section {

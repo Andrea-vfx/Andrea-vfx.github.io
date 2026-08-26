@@ -45,6 +45,7 @@
   --------------------------------------------------------- */
   const stars = document.querySelectorAll('[data-star]');
   const MAX_DRIFT = 13; // px (10 * 1.3 — 30% wider drift radius)
+  const MAX_ROT = 18; // degrees of tilt at the edge of the touch radius
   const COLOR_VARIANTS = ['star--gold', 'star--pink', 'star--white', 'star--green', 'star--blue'];
 
   // Randomly color any star that doesn't already carry a fixed variant
@@ -81,18 +82,27 @@
         const cy = rect.top + rect.height / 2;
         const distX = e.clientX - cx;
         const distY = e.clientY - cy;
-        // Lighting up works across the whole (possibly much bigger)
-        // --hit-pad zone, but the star should only visually nudge/drift
-        // once the cursor is actually near the icon itself — otherwise
-        // it'd look like it teleports to the mouse the instant you enter
-        // a wide hit zone. Outside this radius, position is left alone
-        // (it stays wherever it last was, like a real loose object).
-        const touchRadius = Math.max(rect.width, rect.height) * 0.9;
+        // --hit-pad extends how far the cursor can roam and still drag
+        // the star along (see .motion-title__star for a star with a
+        // much bigger roam zone than its own visual size). Drift/tilt
+        // are normalized against that full roam radius, not the icon's
+        // own small box, so they scale 0 -> max smoothly across
+        // whatever the actual roam area is instead of maxing out the
+        // instant the cursor leaves the tiny icon itself. Outside the
+        // radius, position is left alone (it stays wherever it last
+        // was, like a real loose object).
+        // getPropertyValue('--hit-pad') would return the raw unresolved
+        // value, not a px number — reading ::after's own computed inset
+        // (built from --hit-pad) gives the browser-resolved pixel value.
+        const hitPad = -parseFloat(getComputedStyle(star, '::after').top) || 0;
+        const touchRadius = Math.max(rect.width, rect.height) * 0.9 + hitPad;
         if (Math.hypot(distX, distY) <= touchRadius) {
-          const dx = (distX / (rect.width / 2)) * MAX_DRIFT;
-          const dy = (distY / (rect.height / 2)) * MAX_DRIFT;
+          const dx = (distX / touchRadius) * MAX_DRIFT;
+          const dy = (distY / touchRadius) * MAX_DRIFT;
+          const rot = (distX / touchRadius) * MAX_ROT;
           star.style.setProperty('--drift-x', `${dx}px`);
           star.style.setProperty('--drift-y', `${dy}px`);
+          star.style.setProperty('--star-rot', `${rot}deg`);
         }
         star.classList.add('is-lit');
         raf = null;
@@ -100,9 +110,9 @@
     });
 
     star.addEventListener('mouseleave', () => {
-      // Deliberately NOT resetting --drift-x/--drift-y here — the star
-      // stays put at the last spot the cursor pushed it to within its
-      // radius, like it's actually loose, instead of snapping back to
+      // Deliberately NOT resetting --drift-x/--drift-y/--star-rot here
+      // — the star stays put at the last position/tilt the cursor left
+      // it at, like it's actually loose, instead of snapping back to
       // center. Only the lit/glow state turns off.
       star.classList.remove('is-lit');
     });

@@ -43,6 +43,7 @@
   --------------------------------------------------------- */
   const stars = document.querySelectorAll('[data-star]');
   const MAX_DRIFT = 13;
+  const MAX_ROT = 18; // degrees of tilt at the edge of the touch radius
   const COLOR_VARIANTS = ['star--gold', 'star--pink', 'star--white', 'star--green', 'star--blue'];
 
   stars.forEach((star) => {
@@ -73,18 +74,34 @@
         const cy = rect.top + rect.height / 2;
         const distX = e.clientX - cx;
         const distY = e.clientY - cy;
-        const touchRadius = Math.max(rect.width, rect.height) * 0.9;
+        // --hit-pad extends how far the cursor can roam and still drag
+        // the star along (see .motion-title__star for a star with a
+        // much bigger roam zone than its own visual size). Drift/tilt
+        // are normalized against that full roam radius, not the icon's
+        // own small box, so they scale 0 -> max smoothly across
+        // whatever the actual roam area is instead of maxing out the
+        // instant the cursor leaves the tiny icon itself.
+        // getPropertyValue('--hit-pad') would return the raw unresolved
+        // value (e.g. the literal string "clamp(...)"), not a px number
+        // — reading the ::after pseudo's own computed inset (which is
+        // built from --hit-pad) gives the browser-resolved pixel value.
+        const hitPad = -parseFloat(getComputedStyle(star, '::after').top) || 0;
+        const touchRadius = Math.max(rect.width, rect.height) * 0.9 + hitPad;
         if (Math.hypot(distX, distY) <= touchRadius) {
-          const dx = (distX / (rect.width / 2)) * MAX_DRIFT;
-          const dy = (distY / (rect.height / 2)) * MAX_DRIFT;
+          const dx = (distX / touchRadius) * MAX_DRIFT;
+          const dy = (distY / touchRadius) * MAX_DRIFT;
+          const rot = (distX / touchRadius) * MAX_ROT;
           star.style.setProperty('--drift-x', `${dx}px`);
           star.style.setProperty('--drift-y', `${dy}px`);
+          star.style.setProperty('--star-rot', `${rot}deg`);
         }
         star.classList.add('is-lit');
         raf = null;
       });
     });
 
+    // --drift-x/--drift-y/--star-rot are deliberately NOT reset here —
+    // see the .star:hover comment in styles.css.
     star.addEventListener('mouseleave', () => {
       star.classList.remove('is-lit');
     });
