@@ -9,12 +9,19 @@
 body { background: var(--bg-mid); }
 
 /* ── SECTION NAV ─────────────────────────────────────────── */
+/* Figma's nav frame is a flat 88px. With the tallest child (the 44px
+   hamburger) centered by align-items, symmetric 28px/28px padding
+   pushes total height to 100px — 12px over. Padding is asymmetric
+   (16px top, 28px bottom) instead of just shrinking both sides, so
+   the full 28px of slack lands below the content, matching
+   --radius-stack-tight's max exactly — the title band's corner
+   overlap can never reach up into the logo/crumb/hamburger. */
 .section-nav {
   background: var(--bg-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px var(--padding-page);
+  padding: 16px var(--padding-page) 28px;
 }
 .section-nav__logo {
   display: flex;
