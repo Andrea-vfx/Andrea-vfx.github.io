@@ -21,6 +21,11 @@ design/pdfs references figma/
 # Unused stray export, not referenced anywhere in the site
 illustration/thumb.png
 
+# Raw source folder for the Design page's brand boards (working files,
+# old logo drafts, PDFs) — the final composited boards actually used by
+# the site are copied into assets/media/design/brand/ and ARE tracked.
+assets/Design & UXUI/
+
 # OS cruft
 .DS_Store
 Thumbs.db
