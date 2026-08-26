@@ -54,6 +54,9 @@ ul { list-style: none; }
   --radius-sm:    12px;
   --radius-stack: clamp(28px, 5vw, 100px);
   --radius-stack-sm: clamp(20px, 3vw, 80px);
+  /* Sticky nav's own bottom-corner curve (see .section-nav) — smaller
+     than --radius-stack since it has to fit inside a 95px bar. */
+  --radius-nav: clamp(16px, 2.5vw, 28px);
 
   --transition: 0.3s ease;
 }
@@ -956,14 +959,17 @@ main { position: relative; }
   height: 100%;
   display: block;
   transform: translate(var(--drift-x, 0px), var(--drift-y, 0px)) rotate(var(--star-rot, 0deg));
-  transition: transform .5s steps(6, end), filter .5s steps(6, end);
+  /* 6 steps / .25s = 24fps (was 6/.5s = 12fps) — twice as smooth, and
+     half the catch-up lag so it reads as a light marble following the
+     cursor instead of a heavy object dragging behind it. */
+  transition: transform .25s steps(6, end), filter .25s steps(6, end);
   filter: drop-shadow(0 0 0 rgba(255,225,150,0));
 }
 .star__shape {
   fill: var(--star-off, rgba(245,232,245,0.35));
   stroke: transparent;
   stroke-width: 2px;
-  transition: fill .5s steps(6, end), stroke .5s steps(6, end);
+  transition: fill .25s steps(6, end), stroke .25s steps(6, end);
 }
 
 /* Ambient glow — a soft halo that sits behind the star and washes the
@@ -977,7 +983,7 @@ main { position: relative; }
   background: radial-gradient(circle, var(--star-on, #ffe9a8) 0%, transparent 68%);
   opacity: 0;
   filter: blur(14px);
-  transition: opacity .5s steps(6, end);
+  transition: opacity .25s steps(6, end);
   pointer-events: none;
   z-index: -1;
 }
@@ -1011,7 +1017,7 @@ main { position: relative; }
 }
 @media (prefers-reduced-motion: reduce) {
   .star { animation: none; }
-  .star__svg { transition: filter .5s steps(6, end); }
+  .star__svg { transition: filter .25s steps(6, end); }
   .star:hover .star__svg, .star.is-lit .star__svg { transform: none; }
 }
 

@@ -10,15 +10,18 @@ body { background: var(--bg-mid); }
 
 /* ── SECTION NAV ─────────────────────────────────────────── */
 /* Figma's nav frame is a flat 88px; Andrea asked for a visibly
-   bigger one (~100px) with real breathing room under the hamburger,
-   plus sticky positioning so it's always available. Padding is
-   asymmetric (20px top, 36px bottom) so the extra room lands below
-   the content rather than splitting evenly: 20+44+36=100px total.
-   Sticky + a z-index above every section's own (1-4) is what makes
-   the title band's corner curve safe to use the full --radius-stack
-   now too (see .reel-hero/.motion-title) — nav floats independently
-   on top instead of being the thing revealed behind that curve, so
-   there's no nav content left for an overlap to ever eat into. */
+   bigger one, settled at 95px, with real breathing room under the
+   hamburger. Padding is asymmetric (20px top, 31px bottom) so the
+   extra room lands below the content: 20+44+31=95px total.
+   Sticky + a z-index above every section's own (1-4) means nav is
+   always the top paint layer, so the little rounded-corner cutout
+   below (--radius-nav) can safely overlap the title band behind it —
+   nav's own opaque fill never gets covered, since z-index protects
+   its content regardless of what slides up underneath. That overlap
+   is also what makes the curve itself visible: it lets the title
+   band's color peek through nav's bottom corners, the same reveal
+   mechanic used everywhere else on the site, just owned by nav now
+   instead of by the section below it (see .reel-hero/.motion-title). */
 .section-nav {
   position: sticky;
   top: 0;
@@ -27,7 +30,8 @@ body { background: var(--bg-mid); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px var(--padding-page) 36px;
+  padding: 20px var(--padding-page) 31px;
+  border-radius: 0 0 var(--radius-nav) var(--radius-nav);
 }
 .section-nav__logo {
   display: flex;
@@ -91,27 +95,22 @@ body { background: var(--bg-mid); }
 .section-nav--muted .section-nav__hamburger:hover span { background: var(--bg-light); }
 
 /* ── REEL HERO ───────────────────────────────────────────── */
-/* position:relative + negative margin-top + z-index: without this,
-   the rounded top corner has nothing behind it to reveal but the
-   plain <body> background — which is the same --bg-mid purple as
-   this section's own fill, so the "rounding" is invisible even
-   though border-radius is correctly applied. The overlap is what
-   makes the previous (lighter) section peek through the curve —
-   same mechanic as the homepage's .panel--about/work/footer stack. */
+/* position:relative + negative margin-top: without this, the rounded
+   top corner has nothing behind it to reveal but the plain <body>
+   background — same --bg-mid purple as this section's own fill, so
+   the "rounding" would be invisible even though border-radius is
+   correctly applied. The overlap tucks this section up underneath
+   nav so nav's own bottom-corner curve (--radius-nav) reveals THIS
+   section's color instead — safe now because nav's z-index:100 keeps
+   its content on top regardless of the overlap. Radius here matches
+   --radius-nav exactly (not the bigger --radius-stack) so the curve
+   is fully spent within the hidden overlap and the visible part of
+   this section stays a plain flat rectangle underneath. */
 .reel-hero {
   position: relative;
-  /* Nav is now position:sticky (see .section-nav) — it floats above
-     everything on its own z-index rather than being "the thing
-     revealed behind the curve", so this no longer needs to overlap
-     nav at all. The curve just reveals plain <body> bg (bg-mid),
-     which is a different color from this section's own bg-light...
-     wait, this section IS bg-mid — same as body, so its own curve is
-     naturally invisible here, matching .motion-title's equivalent
-     top curve. No overlap needed either way; full --radius-stack
-     (100px, same as every other stacked curve on the page) is safe
-     now regardless, since there's no nav content to clip. */
   background: var(--bg-mid);
-  border-radius: var(--radius-stack) var(--radius-stack) 0 0;
+  border-radius: var(--radius-nav) var(--radius-nav) 0 0;
+  margin-top: calc(-1 * var(--radius-nav));
   padding: 64px var(--padding-page) 88px;
 }
 .reel-hero__layout {
@@ -708,17 +707,13 @@ body { background: var(--bg-mid); }
 /* ── MOTION PAGE — title band ────────────────────────────── */
 .motion-title {
   position: relative;
-  /* Nav is position:sticky now (see .section-nav) — it floats above
-     everything on its own z-index instead of being "the thing
-     revealed behind the curve", so this no longer overlaps nav at
-     all. The curve reveals plain <body> bg instead, which is the
-     same bg-mid purple the muted nav used to be, so the visible
-     result (muted-purple peeking through the curve) is identical —
-     and it's now safe to use the full --radius-stack (100px, same as
-     every other stacked curve on the page) with zero risk of eating
-     into nav content, since there's no nav content to eat into. */
+  /* Same overlap mechanic as .reel-hero above: tucks up under nav by
+     --radius-nav so nav's bottom-corner curve reveals this section's
+     bg-light instead of the plain body bg-mid. Safe regardless of
+     overlap size because nav's z-index:100 always wins the overlap. */
   background: var(--bg-light);
-  border-radius: var(--radius-stack) var(--radius-stack) 0 0;
+  border-radius: var(--radius-nav) var(--radius-nav) 0 0;
+  margin-top: calc(-1 * var(--radius-nav));
   padding: 68px var(--padding-page) 40px;
   overflow: hidden;
 }
@@ -774,7 +769,7 @@ body { background: var(--bg-mid); }
 .motion-title__star .star {
   --star-size: clamp(70px, 7vw, 126px);
   --star-off: var(--bg-mid);
-  --hit-pad: clamp(180px, 24vw, 390px); /* *1.5, same 50% roam-radius bump as the shared drift/touch-radius constants */
+  --hit-pad: clamp(270px, 36vw, 585px); /* *1.5 again — two rounds of the shared 50% roam-radius bump */
 }
 .motion-title__star .star__svg { filter: none; }
 
@@ -1994,8 +1989,8 @@ body { background: var(--bg-mid); }
   position: fixed;
   right: clamp(20px, 4vw, 40px);
   bottom: clamp(20px, 4vw, 40px);
-  width: 52px;
-  height: 52px;
+  width: 62px; /* 52 * 1.2 */
+  height: 62px;
   border-radius: 50%;
   background: var(--color-iris);
   display: grid;
@@ -2009,5 +2004,5 @@ body { background: var(--bg-mid); }
   transform: translateY(-3px);
   box-shadow: 0 12px 28px rgba(59,34,76,0.4);
 }
-.back-to-top svg { width: 22px; height: 22px; }
+.back-to-top svg { width: 26px; height: 26px; } /* 22 * 1.2 */
 .back-to-top path { stroke: var(--bg-light); }

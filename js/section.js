@@ -36,13 +36,26 @@
   }
 
   /* ---------------------------------------------------------
+     BACK TO TOP — href="#top" alone was unreliable here: its target
+     is the sticky nav, and jumping to an element that's already
+     pinned in place via position:sticky doesn't reliably scroll the
+     page the way jumping to a normal in-flow element does. Driving
+     the scroll explicitly guarantees it always lands at the very top.
+  --------------------------------------------------------- */
+  const backToTop = document.querySelector('.back-to-top');
+  backToTop?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ---------------------------------------------------------
      STARS — same behavior as the homepage: random color palette,
      bigger optional hit zone via --hit-pad, drift only when the
      cursor is actually near the icon (no teleporting), position
      persists after mouseleave, 8fps/12fps stepped motion via CSS.
   --------------------------------------------------------- */
   const stars = document.querySelectorAll('[data-star]');
-  const MAX_DRIFT = 19.5; // 13 * 1.5 — 50% wider roam radius per Andrea
+  const MAX_DRIFT = 29.25; // 13 * 1.5 * 1.5 — two rounds of +50% roam radius per Andrea
   const MAX_ROT = 18; // degrees of tilt at the edge of the touch radius
   const COLOR_VARIANTS = ['star--gold', 'star--pink', 'star--white', 'star--green', 'star--blue'];
 
@@ -86,7 +99,7 @@
         // — reading the ::after pseudo's own computed inset (which is
         // built from --hit-pad) gives the browser-resolved pixel value.
         const hitPad = -parseFloat(getComputedStyle(star, '::after').top) || 0;
-        const touchRadius = Math.max(rect.width, rect.height) * 1.35 + hitPad; // 0.9 * 1.5
+        const touchRadius = Math.max(rect.width, rect.height) * 2.025 + hitPad; // 0.9 * 1.5 * 1.5
         if (Math.hypot(distX, distY) <= touchRadius) {
           const dx = (distX / touchRadius) * MAX_DRIFT;
           const dy = (distY / touchRadius) * MAX_DRIFT;
