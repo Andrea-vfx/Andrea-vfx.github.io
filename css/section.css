@@ -166,15 +166,16 @@ body { background: var(--bg-mid); }
 }
 /* The reel-hero directly under nav: smaller nav-safe overlap instead
    of the generic one above. padding-top uses max() so it always
-   grows to at least cover the overlap + a little breathing room —
-   at typical widths --radius-nav is well under 64px so this is a
-   no-op, but at very wide/ultrawide viewports (where --radius-nav
-   approaches its 100px ceiling) it guarantees the hidden overlap
-   never eats into real content, only decorative padding. */
+   grows to at least cover the overlap + Andrea's requested ~35px of
+   extra breathing room under the nav (64px -> 99px) — at typical
+   widths --radius-nav is well under 99px so this floor is what
+   applies, but at very wide/ultrawide viewports (where --radius-nav
+   approaches its 100px ceiling) it grows further so the hidden
+   overlap never eats into real content, only decorative padding. */
 main > .reel-hero:first-of-type {
   border-radius: var(--radius-nav) var(--radius-nav) 0 0;
   margin-top: calc(-1 * var(--radius-nav));
-  padding-top: max(64px, calc(var(--radius-nav) + 8px));
+  padding-top: max(99px, calc(var(--radius-nav) + 8px));
 }
 .reel-hero__layout {
   display: grid;
@@ -785,9 +786,10 @@ main > .reel-hero:first-of-type {
   border-radius: var(--radius-nav) var(--radius-nav) 0 0;
   margin-top: calc(-1 * var(--radius-nav));
   /* max() so padding-top always covers at least the hidden overlap +
-     a little breathing room — see .reel-hero's :first-of-type comment
-     above for why this matters at very wide/ultrawide viewports. */
-  padding: max(68px, calc(var(--radius-nav) + 8px)) var(--padding-page) 40px;
+     Andrea's requested ~35px of extra breathing room under the nav
+     (68px -> 103px) — see .reel-hero's :first-of-type comment above
+     for why this matters at very wide/ultrawide viewports. */
+  padding: max(103px, calc(var(--radius-nav) + 8px)) var(--padding-page) 40px;
   overflow: hidden;
 }
 .motion-title__layout {
@@ -916,6 +918,15 @@ main > .reel-hero:first-of-type {
   gap: clamp(20px, 3vw, 40px);
   align-items: center;
 }
+/* The phone's own 270px floor doesn't leave room for a legible info
+   column once the viewport itself is phone-sized — found on a mobile
+   audit crushing the title/desc/chips down to ~97px wide. Stack:
+   phone on top (full width, still capped by its own aspect-ratio),
+   info below. */
+@media (max-width: 720px) {
+  .video-pair { grid-template-columns: 1fr; }
+  .phone-frame { max-width: 351px; margin: 0 auto; }
+}
 /* phone-mockup.png (Andrea's newer export, 760x1462) is a flat raster
    with the phone body/bezel AND a solid placeholder "screen" fill
    baked into one image — there's no transparent cutout. So instead of
@@ -1007,6 +1018,12 @@ main > .reel-hero:first-of-type {
   max-width: var(--content-max);
   margin: 0 auto;
   align-items: start;
+}
+/* Same fix as .vertical-row__grid above (same 1400px threshold): the
+   video's 320px floor was squeezing the info column down to ~149px
+   on a mobile audit. Stack to one column below that. */
+@media (max-width: 1400px) {
+  .horizontal-row__layout { grid-template-columns: 1fr; }
 }
 /* Plain flat rectangle, no border/radius/shadow — Figma's "Video
    Block" (712:439) is an unstyled placeholder box, nothing else. */
@@ -1253,6 +1270,13 @@ main > .reel-hero:first-of-type {
   margin: 0 auto 14px;
   padding: 0 var(--padding-page);
 }
+/* Fluid fr split has no hard floor so it never crushes/overflows, but
+   by ~720px the tiles shrink to thumbnail-sized (~130px) — full width
+   stacked reads much better on a phone for a work-showcase grid. */
+@media (max-width: 720px) {
+  .mg-grid { grid-template-columns: 1fr; }
+  .mg-bottom-row { grid-template-columns: 1fr; }
+}
 .mg-grid__col { display: flex; flex-direction: column; gap: 14px; }
 .mg-item {
   position: relative;
@@ -1433,6 +1457,13 @@ main > .reel-hero:first-of-type {
   .section-nav__hamburger-bars { display: flex !important; }
   .stats-row { flex-wrap: wrap; gap: 16px 28px; }
   .credit-row { flex-direction: column; gap: 4px; }
+  .intro-bio__inner { flex-direction: column; align-items: flex-start; }
+  .intro-bio__avatar { width: min(240px, 55vw); }
+  /* The long "behance.net/..." link (nowrap, by design) was squeezing
+     .behance-embed__bar-left's project name down to ~59px — stack
+     instead of forcing both onto one row. */
+  .behance-embed__bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .behance-embed__bar-left { flex-wrap: wrap; }
   .drawer { top: 0; right: 0; bottom: 0; border-radius: 0; border-width: 0; padding: 28px; width: 100%; }
   .section-footer-nav { flex-direction: column; text-align: center; }
 }
@@ -1527,8 +1558,14 @@ main > .reel-hero:first-of-type {
 .intro-bio__text { max-width: 900px; }
 .intro-bio__avatar {
   flex-shrink: 0;
-  width: 300px;
-  height: 291px; /* Figma's ellipse is 361x350 (0.97 ratio), scaled down to fit this column */
+  /* Fluid instead of a hard 300px: at narrower desktop/tablet widths
+     it now shrinks with the viewport instead of staying pinned at
+     300px and crushing .intro-bio__text down to nothing (found on a
+     mobile audit — at 375px this was squeezing the bio text into an
+     ~88px column). aspect-ratio keeps Figma's ellipse proportions
+     (361x350) without needing a separate height rule per breakpoint. */
+  width: min(300px, 34vw);
+  aspect-ratio: 300 / 291;
   border-radius: 50%;
   overflow: hidden;
 }
