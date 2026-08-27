@@ -55,8 +55,10 @@
      persists after mouseleave, 8fps/12fps stepped motion via CSS.
   --------------------------------------------------------- */
   const stars = document.querySelectorAll('[data-star]');
-  const MAX_DRIFT = 29.25; // 13 * 1.5 * 1.5 — two rounds of +50% roam radius per Andrea
-  const MAX_ROT = 18; // degrees of tilt at the edge of the touch radius
+  const MAX_DRIFT = 73; // 29.25 * 2.5 — "sigan mucho más al cursor": the roam AREA (touchRadius)
+                         // was already huge, but the star's own visible travel distance was
+                         // still capped tiny, so it barely looked like it was following anything.
+  const MAX_ROT = 27; // 18 * 1.5, scaled up to match the bigger drift
   const COLOR_VARIANTS = ['star--gold', 'star--pink', 'star--white', 'star--green', 'star--blue'];
 
   stars.forEach((star) => {

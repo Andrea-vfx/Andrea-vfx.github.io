@@ -44,8 +44,9 @@
      so they feel loose/floating rather than glued in place.
   --------------------------------------------------------- */
   const stars = document.querySelectorAll('[data-star]');
-  const MAX_DRIFT = 29.25; // px (13 * 1.5 * 1.5 — two rounds of +50% roam radius per Andrea)
-  const MAX_ROT = 18; // degrees of tilt at the edge of the touch radius
+  const MAX_DRIFT = 73; // px (29.25 * 2.5 — "sigan mucho más al cursor": the star's own visible
+                         // travel distance was still tiny even though the roam AREA was huge)
+  const MAX_ROT = 27; // degrees of tilt at the edge of the touch radius (18 * 1.5, scaled to match)
   const COLOR_VARIANTS = ['star--gold', 'star--pink', 'star--white', 'star--green', 'star--blue'];
 
   // Randomly color any star that doesn't already carry a fixed variant

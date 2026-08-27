@@ -166,16 +166,17 @@ body { background: var(--bg-mid); }
 }
 /* The reel-hero directly under nav: smaller nav-safe overlap instead
    of the generic one above. padding-top uses max() so it always
-   grows to at least cover the overlap + Andrea's requested ~35px of
-   extra breathing room under the nav (64px -> 99px) — at typical
-   widths --radius-nav is well under 99px so this floor is what
-   applies, but at very wide/ultrawide viewports (where --radius-nav
-   approaches its 100px ceiling) it grows further so the hidden
-   overlap never eats into real content, only decorative padding. */
+   grows to at least cover the overlap + Andrea's requested breathing
+   room under the nav (64px -> 99px -> 139px, two rounds of "still too
+   close") — at typical widths --radius-nav is well under 139px so
+   this floor is what applies, but at very wide/ultrawide viewports
+   (where --radius-nav approaches its 100px ceiling) it grows further
+   so the hidden overlap never eats into real content, only
+   decorative padding. */
 main > .reel-hero:first-of-type {
   border-radius: var(--radius-nav) var(--radius-nav) 0 0;
   margin-top: calc(-1 * var(--radius-nav));
-  padding-top: max(99px, calc(var(--radius-nav) + 8px));
+  padding-top: max(139px, calc(var(--radius-nav) + 8px));
 }
 .reel-hero__layout {
   display: grid;
@@ -786,11 +787,19 @@ main > .reel-hero:first-of-type {
   border-radius: var(--radius-nav) var(--radius-nav) 0 0;
   margin-top: calc(-1 * var(--radius-nav));
   /* max() so padding-top always covers at least the hidden overlap +
-     Andrea's requested ~35px of extra breathing room under the nav
-     (68px -> 103px) — see .reel-hero's :first-of-type comment above
-     for why this matters at very wide/ultrawide viewports. */
-  padding: max(103px, calc(var(--radius-nav) + 8px)) var(--padding-page) 40px;
-  overflow: hidden;
+     Andrea's requested breathing room under the nav (68px -> 103px ->
+     143px, two rounds of "still too close") — see .reel-hero's
+     :first-of-type comment above for why this matters at very
+     wide/ultrawide viewports. */
+  padding: max(143px, calc(var(--radius-nav) + 8px)) var(--padding-page) 40px;
+  /* No overflow:hidden here (removed) — it was silently clipping the
+     roaming star's huge --hit-pad hit-zone (up to ~700px radius at
+     wide viewports), since a clipped element stops receiving pointer
+     events outside the clip entirely. That's what made the star feel
+     "stuck"/barely responsive: almost the whole roam circle fell
+     outside this section's own (much smaller) box and simply never
+     saw the cursor. Nothing else here needs the clip — no full-bleed
+     child pokes past the rounded corners. */
 }
 .motion-title__layout {
   display: flex;
