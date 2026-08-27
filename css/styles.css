@@ -276,11 +276,18 @@ main { position: relative; }
 
 .hero {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1.84 / 1;
-  max-height: calc(100vh - 120px);
-  max-height: calc(100dvh - 120px);
-  min-height: 420px;
+  /* Width-driven instead of height-capped: the old max-height (plus a
+     1.84:1 ratio that wasn't quite 16:9) let the card's actual shape
+     drift away from the video's true 16:9, which is what showed up as
+     empty letterboxed space once the video stopped being cropped to
+     fill it. Deriving width from the same vh budget the old max-height
+     used, combined with a real 16:9 aspect-ratio, means the card's own
+     shape always exactly matches the video — there's no mismatch left
+     to show up as a gap. Declared twice (vh, then dvh) so browsers
+     without dvh support just keep the vh version. */
+  width: min(100%, calc((100vh - 120px) * 16 / 9));
+  width: min(100%, calc((100dvh - 120px) * 16 / 9));
+  aspect-ratio: 16 / 9;
   margin: 0 auto;
   border-radius: clamp(24px, 4vw, 48px);
   border: clamp(6px, 1vw, 14px) solid var(--bg-light);

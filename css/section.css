@@ -9,27 +9,25 @@
 body { background: var(--bg-mid); }
 
 /* ── SECTION NAV ─────────────────────────────────────────── */
-/* Figma's nav frame is a flat 88px; Andrea asked for a visibly
-   bigger one, settled at 90px, with real breathing room under the
-   hamburger. Padding is asymmetric (18px top, 28px bottom) so the
-   extra room lands below the content: 18+44+28=90px total.
+/* Back to Figma's flat 88px per Andrea (tried bigger for a few rounds,
+   didn't stick) — symmetric 22px top/bottom padding: 22+44+22=88px.
    Sticky + a z-index above every section's own (1-4) means nav is
    always the top paint layer, so the bottom-corner cutout (--radius-
-   nav, now scaled up to match every other "curva de 100" on the
-   site — the browser naturally caps the rendered curve at this bar's
-   own 90px height) can safely overlap the title band behind it —
-   nav's own opaque fill never gets covered, since z-index protects
-   its content regardless of what slides up underneath. That overlap
-   is also what makes the curve itself visible: it lets the title
-   band's color peek through nav's bottom corners, the same reveal
-   mechanic used everywhere else on the site, just owned by nav now
-   instead of by the section below it (see .reel-hero/.motion-title). */
+   nav, scaled up to match every other "curva de 100" on the site —
+   the browser naturally caps the rendered curve at this bar's own
+   88px height) can safely overlap the title band behind it — nav's
+   own opaque fill never gets covered, since z-index protects its
+   content regardless of what slides up underneath. That overlap is
+   also what makes the curve itself visible: it lets the title band's
+   color peek through nav's bottom corners, the same reveal mechanic
+   used everywhere else on the site, just owned by nav now instead of
+   by the section below it (see .reel-hero/.motion-title). */
 .section-nav {
   position: sticky;
   top: 0;
   z-index: 100;
   background: var(--bg-light);
-  padding: 18px var(--padding-page) 28px;
+  padding: 22px var(--padding-page);
   border-radius: 0 0 var(--radius-nav) var(--radius-nav);
 }
 /* Logo/crumb/menu sit inside the same max-width column as the rest of
@@ -920,6 +918,25 @@ main > .reel-hero:first-of-type {
    to one column below that gives each pair the full row width. */
 @media (max-width: 1400px) {
   .vertical-row__grid { grid-template-columns: 1fr; }
+}
+/* 3 more phone mockups (Andrea's Figma addition, node 944:445) — just
+   the mockups, no info column, so they can sit 3-up without needing
+   .video-pair's phone+text math at all. */
+.vertical-row__more {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 56px);
+  max-width: var(--content-max);
+  margin: 40px auto 0;
+}
+/* Capped so a 3-up column (much wider than the phone+info pair's own
+   270-351px column) doesn't blow the phone mockup up oversized. */
+.vertical-row__more .phone-frame { max-width: 351px; margin: 0 auto; }
+@media (max-width: 900px) {
+  .vertical-row__more { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .vertical-row__more { grid-template-columns: 1fr; max-width: 351px; }
 }
 .video-pair {
   display: grid;
