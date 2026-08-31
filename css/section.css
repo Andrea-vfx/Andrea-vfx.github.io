@@ -1454,6 +1454,10 @@ main > .reel-hero:first-of-type {
 .drawer__item.is-active .drawer__item-label,
 .drawer__item.is-active .drawer__item-num { color: var(--color-ocean); }
 .drawer__item.is-active .star { --star-size: 22px; }
+/* .drawer's own panel is --bg-light, so this follows the same DARK.svg
+   pairing as the nav logo/also-header stars — was falling back to the
+   global translucent default, which nearly disappears on a light panel. */
+.drawer__item-star { --star-off: var(--bg-mid); --star-backing: var(--bg-light); }
 
 .drawer__subitems { display: flex; flex-direction: column; width: 100%; }
 .drawer__subitem {

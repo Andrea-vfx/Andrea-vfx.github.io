@@ -700,7 +700,9 @@ main { position: relative; }
   gap: clamp(4px, 1vw, 16px);
   padding-right: clamp(4px, 2vw, 24px);
 }
-.work__stars .star { --star-off: rgba(255,255,255,0.92); }
+/* .work sits on --bg-mid, so these use LIGHT.svg's pairing (bg-light
+   body, bg-mid backing) — same contrast principle as the nav logo. */
+.work__stars .star { --star-off: var(--bg-light); --star-backing: var(--bg-mid); }
 
 /* ============================================================
    FOOTER / CONTACT
