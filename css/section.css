@@ -52,14 +52,13 @@ body { background: var(--bg-mid); }
   gap: 8px;
 }
 /* Resting-state colors matching Andrea's KOMPEITO v2 reference files
-   exactly — LIGHT.svg's own body/backing pair (bg-light body, bg-mid
-   backing) on the light/home nav, swapped to DARK.svg's pair (bg-mid
-   body, bg-light backing) on the muted nav so it still has contrast
-   against that darker fill. Previously this was a flat translucent
-   iris tint left over from the old single-path star, which is why it
-   was reading as "a different, muddier color" than the reference. */
-.section-nav__logo .star { --star-size: 40px; --star-off: var(--bg-light); }
-.section-nav--muted .section-nav__logo .star { --star-off: var(--bg-mid); --star-backing: var(--bg-light); }
+   exactly — DARK.svg's own body/backing pair (bg-mid body, bg-light
+   backing) on the light/home nav (bg.base #F5E8F5), swapped to
+   LIGHT.svg's pair (bg-light body, bg-mid backing) on the muted nav
+   (#B888B8), so each star's dominant body color always contrasts
+   against its own background instead of blending into it. */
+.section-nav__logo .star { --star-size: 40px; --star-off: var(--bg-mid); --star-backing: var(--bg-light); }
+.section-nav--muted .section-nav__logo .star { --star-off: var(--bg-light); --star-backing: var(--bg-mid); }
 .section-nav__logo span {
   font-family: var(--font-display);
   font-weight: 900;
