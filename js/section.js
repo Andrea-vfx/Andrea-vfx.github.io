@@ -78,7 +78,16 @@
     let raf = null;
 
     star.addEventListener('mouseenter', () => {
-      if (star.classList.contains('nav__logo') || star.classList.contains('drawer__item-star')) return;
+      // The nav logo star's class is on ITSELF (star star--gold) while
+      // its wrapper <a> carries .section-nav__logo — .closest() finds
+      // that ancestor. (This used to check classList.contains
+      // ('nav__logo') directly on the star, which only worked on the
+      // homepage's old single-element nav logo; it silently never
+      // matched the section pages' two-element version, so their nav
+      // logos have been randomly recoloring on every hover this whole
+      // time. Fixed here for real now that the homepage shares the
+      // same two-element markup.)
+      if (star.closest('.section-nav__logo') || star.classList.contains('drawer__item-star')) return;
       const current = COLOR_VARIANTS.find((c) => star.classList.contains(c));
       const choices = COLOR_VARIANTS.filter((c) => c !== current);
       const pick = choices[Math.floor(Math.random() * choices.length)];

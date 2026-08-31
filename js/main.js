@@ -69,9 +69,10 @@
 
     // Each time the cursor lands on a star, swap it to a fresh random
     // color (never repeating the one it just had) — the nav logo stays
-    // its fixed brand gold.
+    // its fixed brand gold. .closest() since the star's own class is
+    // "star star--gold"; .section-nav__logo is on its wrapper <a>.
     star.addEventListener('mouseenter', () => {
-      if (star.classList.contains('nav__logo')) return;
+      if (star.closest('.section-nav__logo')) return;
       const current = COLOR_VARIANTS.find((c) => star.classList.contains(c));
       const choices = COLOR_VARIANTS.filter((c) => c !== current);
       const pick = choices[Math.floor(Math.random() * choices.length)];

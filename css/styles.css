@@ -883,8 +883,8 @@ main { position: relative; }
    - .star__face is the two little "eyes" drawn ON TOP of the body,
      always a soft translucent tint so the mark reads as the same
      cute character at a glance in either state. */
-.star__backing { fill: var(--bg-mid); }
-.star__face { fill: var(--bg-mid); opacity: .54; }
+.star__backing { fill: var(--star-backing, var(--bg-mid)); }
+.star__face { fill: var(--star-backing, var(--bg-mid)); opacity: .54; }
 
 /* Ambient glow — a soft halo that sits behind the star and washes the
    page background around it a little when lit, not just the star
