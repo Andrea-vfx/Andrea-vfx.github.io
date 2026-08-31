@@ -7,35 +7,39 @@
   'use strict';
 
   /* ---------------------------------------------------------
-     WORK DROPDOWN
+     SIDE DRAWER — same component/behavior as the section pages
+     (js/section.js), duplicated here rather than shared: main.js
+     already runs its own star mousemove/hover loop, and loading
+     section.js on top would double up listeners on every star.
+     The old inline work-dropdown is gone — "Work" now opens this
+     drawer, same as clicking the icon on mobile does on every other
+     page.
   --------------------------------------------------------- */
-  const workToggle = document.getElementById('workToggle');
-  const workDropdown = document.getElementById('workDropdown');
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  const drawerOverlay = document.getElementById('drawerOverlay');
+  const drawerClose = document.getElementById('drawerClose');
 
-  function closeDropdown() {
-    workToggle.setAttribute('aria-expanded', 'false');
-    workDropdown.classList.remove('is-open');
+  function openDrawer() {
+    drawer.classList.add('is-open');
+    drawerOverlay.classList.add('is-open');
+    hamburger?.setAttribute('aria-expanded', 'true');
   }
-  function openDropdown() {
-    workToggle.setAttribute('aria-expanded', 'true');
-    workDropdown.classList.add('is-open');
+  function closeDrawer() {
+    drawer.classList.remove('is-open');
+    drawerOverlay.classList.remove('is-open');
+    hamburger?.setAttribute('aria-expanded', 'false');
   }
 
-  if (workToggle && workDropdown) {
-    workToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = workToggle.getAttribute('aria-expanded') === 'true';
-      isOpen ? closeDropdown() : openDropdown();
+  if (drawer && drawerOverlay) {
+    hamburger?.addEventListener('click', openDrawer);
+    document.querySelectorAll('[data-open-drawer]').forEach((btn) => {
+      btn.addEventListener('click', openDrawer);
     });
-
-    document.addEventListener('click', (e) => {
-      if (!workDropdown.contains(e.target) && e.target !== workToggle) {
-        closeDropdown();
-      }
-    });
-
+    drawerClose?.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeDropdown();
+      if (e.key === 'Escape') closeDrawer();
     });
   }
 
@@ -132,7 +136,7 @@
   --------------------------------------------------------- */
   const navSections = ['about', 'work', 'contact']
     .map((name) => ({
-      pill: document.querySelector(`.nav__pill[data-nav-pill="${name}"]`),
+      pill: document.querySelector(`[data-nav-pill="${name}"]`),
       el: document.getElementById(name),
     }))
     .filter((s) => s.pill && s.el);

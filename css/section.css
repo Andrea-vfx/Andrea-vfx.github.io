@@ -30,11 +30,14 @@ body { background: var(--bg-mid); }
   padding: 22px var(--padding-page);
   border-radius: 0 0 var(--radius-nav) var(--radius-nav);
 }
-/* Logo/crumb/menu sit inside the same max-width column as the rest of
-   the page's content (not just page-padding off the raw viewport
-   edge) — at ultrawide viewports --padding-page tops out at 80px,
-   which left them noticeably further out than the content column
-   below once the viewport got much wider than --content-max. */
+/* Logo/links sit inside the same max-width column as the rest of the
+   page's content (not just page-padding off the raw viewport edge) —
+   at ultrawide viewports --padding-page tops out at 80px, which left
+   them noticeably further out than the content column below once the
+   viewport got much wider than --content-max. Section pages keep the
+   logo left / links right split; .section-nav--home (homepage) pulls
+   both into one centered cluster instead (Figma: no breadcrumb, no
+   "A.G." wordmark next to the logo, everything centered together). */
 .section-nav__inner {
   display: flex;
   align-items: center;
@@ -42,6 +45,7 @@ body { background: var(--bg-mid); }
   max-width: var(--content-max);
   margin: 0 auto;
 }
+.section-nav--home .section-nav__inner { justify-content: center; gap: 48px; }
 .section-nav__logo {
   display: flex;
   align-items: center;
@@ -54,31 +58,48 @@ body { background: var(--bg-mid); }
   font-size: 26px;
   color: var(--color-iris);
 }
-.section-nav__crumb {
+
+/* Breadcrumb and the old desktop "Portfolio Menu" CTA are both gone —
+   replaced everywhere (homepage included, now that it shares this
+   same nav component) by the same 3-item nav Figma shows: a
+   CV·about/Work/Contact row is what actually reads as navigation, so
+   the section name up in the title band below does the "where am I"
+   job the breadcrumb used to. Desktop shows this row; mobile swaps to
+   the plain icon button below (same breakpoint as always). */
+.section-nav__links {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  white-space: nowrap;
+  gap: 48px;
 }
-.section-nav__crumb a { color: rgba(94,56,120,0.5); transition: color var(--transition); }
-.section-nav__crumb a:hover { color: var(--color-iris); }
-.section-nav__crumb span.sep { color: rgba(94,56,120,0.3); }
-.section-nav__crumb span.current { color: var(--color-iris); font-weight: 500; }
+.section-nav__pill,
+.section-nav__link-btn {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-iris);
+  white-space: nowrap;
+  padding: 10px 22px;
+  border-radius: 30px;
+}
+.section-nav__link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+/* Only the homepage's "CV · about" pill ever gets the colored-pill
+   highlight (Figma: section-page variants render all 3 items as
+   plain text, since you're never really "on" CV/Work/Contact from a
+   section page the way you can be on the homepage). */
+.section-nav--home .section-nav__pill.is-active {
+  background: var(--bg-mid);
+  color: var(--bg-light);
+}
 
-/* A text CTA ("Portfolio Menu") fully REPLACES the hamburger icon on
-   desktop — not combined with it, which is what caused the cramped/
-   wrapped pill Andrea saw (the icon-column and the text fighting for
-   room in the same row at in-between widths). The two skins are now
-   mutually exclusive: label shown + bars hidden by default, flipped
-   under the 720px breakpoint where there's no room for a label.
-   Same control/handler either way. */
 .section-nav__hamburger {
   background: var(--bg-mid);
   border-radius: var(--radius-btn);
+  width: 44px;
   height: 44px;
-  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,29 +107,13 @@ body { background: var(--bg-mid); }
   transition: background var(--transition);
 }
 .section-nav__hamburger:hover { background: var(--color-iris); }
-.section-nav__hamburger-label {
-  flex: none; /* never shrink below the text's natural width */
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--color-iris);
-  white-space: nowrap;
-  transition: color var(--transition);
-}
-.section-nav__hamburger:hover .section-nav__hamburger-label { color: var(--bg-light); }
 .section-nav__hamburger-bars {
-  display: none !important; /* see the mobile override below for why this needs !important */
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
 }
-/* Scoped to .section-nav__hamburger-bars specifically, not the whole
-   button — the old unscoped ".section-nav__hamburger span" selector
-   was also matching .section-nav__hamburger-label (it's the button's
-   actual first <span> child now), pinning the label itself to the
-   first bar-line's 18px width. That was the real bug behind the
-   cramped/truncated "Menú del portafolio" pill Andrea saw. */
 .section-nav__hamburger-bars span {
   display: block;
   height: 2px;
@@ -121,17 +126,24 @@ body { background: var(--bg-mid); }
 .section-nav__hamburger-bars span:nth-child(2) { width: 12px; }
 .section-nav__hamburger-bars span:nth-child(3) { width: 18px; }
 
-/* Motion page only: per Figma its nav sits on bg-mid instead of the
-   default bg-light — hamburger pill + separator invert to read
-   against the darker fill. */
+/* Desktop shows the links row and hides the icon button; mobile does
+   the opposite (matches the pre-existing 720px breakpoint used
+   everywhere else on the site). */
+@media (min-width: 721px) {
+  .section-nav__hamburger { display: none; }
+}
+@media (max-width: 720px) {
+  .section-nav__links { display: none; }
+}
+
+/* Motion/Illustration/Design pages: per Figma their nav sits on
+   bg-mid instead of the default bg-light — hamburger pill inverts to
+   read against the darker fill. Homepage's own nav is never muted. */
 .section-nav--muted { background: var(--bg-mid); }
-.section-nav--muted .section-nav__crumb span.sep { color: rgba(94,56,120,0.25); }
 .section-nav--muted .section-nav__hamburger { background: var(--bg-light); }
-.section-nav--muted .section-nav__hamburger-label { color: var(--bg-mid); }
 .section-nav--muted .section-nav__hamburger-bars span { background: var(--bg-mid); }
 .section-nav--muted .section-nav__hamburger:hover { background: var(--color-iris); }
-.section-nav--muted .section-nav__hamburger:hover .section-nav__hamburger-label { color: var(--bg-light); }
-.section-nav--muted .section-nav__hamburger:hover span { background: var(--bg-light); }
+.section-nav--muted .section-nav__hamburger:hover .section-nav__hamburger-bars span { background: var(--bg-light); }
 
 /* ── REEL HERO ───────────────────────────────────────────── */
 /* position:relative + negative margin-top: without this, the rounded
@@ -1475,12 +1487,6 @@ main > .reel-hero:first-of-type {
 
 @media (max-width: 720px) {
   .section-nav { padding: 20px; }
-  .section-nav__crumb { display: none; }
-  /* No room for the "Portfolio Menu" label at this width — swap back
-     to the plain icon-only square: hide the label, show the bars. */
-  .section-nav__hamburger { width: 44px; padding: 0; }
-  .section-nav__hamburger-label { display: none !important; }
-  .section-nav__hamburger-bars { display: flex !important; }
   .stats-row { flex-wrap: wrap; gap: 16px 28px; }
   .credit-row { flex-direction: column; gap: 4px; }
   .intro-bio__inner { flex-direction: column; align-items: flex-start; }

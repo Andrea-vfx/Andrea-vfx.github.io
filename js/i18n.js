@@ -22,10 +22,9 @@
      itself, and other repeated small UI strings.
   --------------------------------------------------------- */
   const shared = {
-    'shared.nav.about': 'Sobre mí · CV',
+    'shared.nav.about': 'CV · Sobre mí',
     'shared.nav.work': 'Trabajo',
     'shared.nav.contact': 'Contacto',
-    'shared.nav.workMenuAria': 'Menú de secciones de trabajo',
     'shared.dropdown.vfx': 'VFX, Compositing e Iluminación',
     'shared.dropdown.motion': 'Edición de Video y Motion Graphics',
     'shared.dropdown.illustration': 'Ilustración',
@@ -241,7 +240,6 @@
 
     'motion.also1.title': 'VFX y Compositing',
     'motion.also1.tags': 'Reel de compositing · Cine y TV · Nuke',
-    'motion.also2.title': 'VFX e Iluminación',
 
     'motion.footerNav.nextIllustration': 'Ilustración →',
     'motion.drawer.videoCampaign': 'Campaña de Video',

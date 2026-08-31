@@ -100,132 +100,12 @@ body {
 .svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 /* ============================================================
-   NAVIGATION
+   NAVIGATION — now shared with the section pages (see .section-nav
+   and its relatives in section.css, loaded here too). The homepage's
+   old floating-pill .nav / inline .work-dropdown are gone, replaced
+   by the same full-width sticky bar and side drawer every other page
+   uses (Figma nodes 968:458, 954:725, 977:428).
    ============================================================ */
-.nav {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 6px 8px 6px 24px;
-  background: rgba(245,232,245,0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: var(--radius-btn);
-  box-shadow: 0 8px 30px rgba(59,34,76,0.18);
-}
-
-.nav__links {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 3vw, 40px);
-}
-
-.nav__pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 22px;
-  border-radius: var(--radius-btn);
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 16px;
-  color: var(--bg-mid);
-  white-space: nowrap;
-  transition: background var(--transition), color var(--transition);
-}
-.nav__pill.is-active {
-  background: var(--bg-mid);
-  color: #fff;
-  font-weight: 500;
-}
-.nav__pill:not(.is-active):hover {
-  background: var(--iris-8);
-  color: var(--color-iris);
-}
-
-/* "work" is a real nav pill (same active/inactive treatment as
-   about/contact) with a small separate arrow button that opens the
-   sub-sections dropdown — two click targets, one visual unit. */
-.nav__work {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-}
-.nav__work-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  color: var(--bg-mid);
-  transition: background var(--transition), color var(--transition);
-}
-.nav__work-toggle:hover { background: var(--iris-8); color: var(--color-iris); }
-.nav__work-arrow { display: inline-block; transition: transform var(--transition); font-size: 13px; }
-.nav__work-toggle[aria-expanded="true"] { background: var(--iris-8); color: var(--color-iris); }
-.nav__work-toggle[aria-expanded="true"] .nav__work-arrow { transform: rotate(180deg); }
-
-.nav__logo {
-  width: 46px;
-  height: 46px;
-  margin-left: 8px;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-.nav__logo svg { width: 30px; height: 30px; transform: rotate(12deg); }
-
-/* Work dropdown */
-.work-dropdown {
-  position: absolute;
-  top: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-8px);
-  width: 300px;
-  background: var(--bg-light);
-  border-radius: 20px;
-  padding: 10px;
-  box-shadow: 0 20px 50px rgba(59,34,76,0.28);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .25s ease, transform .25s ease, visibility .25s;
-  z-index: 999;
-}
-.work-dropdown.is-open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-.work-dropdown__item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  border-radius: 12px;
-  transition: background var(--transition);
-}
-.work-dropdown__item:hover { background: rgba(30,104,152,0.1); }
-.work-dropdown__num {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--color-ocean);
-  width: 22px;
-}
-.work-dropdown__label {
-  flex: 1;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--color-iris);
-}
-.work-dropdown__arrow { color: var(--color-ocean); font-size: 14px; }
 
 /* ============================================================
    STACKING SECTIONS — shared
@@ -907,6 +787,10 @@ main { position: relative; }
   flex-shrink: 0;
 }
 .contact-row__icon svg { width: 20px; height: 18px; }
+/* Portfolio row's icon (Figma node 978:788) — the KOMPEITO mark
+   itself, not boxed like Email/LinkedIn's icons. */
+.contact-row__icon--star { background: transparent; }
+.contact-row__icon--star .star__svg { width: 28px; height: 27px; }
 .contact-row__icon.is-text {
   font-family: var(--font-body);
   font-weight: 600;
@@ -985,10 +869,22 @@ main { position: relative; }
 }
 .star__shape {
   fill: var(--star-off, rgba(245,232,245,0.35));
-  stroke: transparent;
-  stroke-width: 2px;
-  transition: fill .25s steps(6, end), stroke .25s steps(6, end);
+  transition: fill .25s steps(6, end);
 }
+/* KOMPEITO v2 mark: the body (.star__shape, above) is the dominant
+   shape and keeps the exact same --star-off/--star-on color system
+   every star instance already sets inline — nothing else needed to
+   change there. The other two layers are new, fixed at --bg-mid
+   regardless of context or lit state:
+   - .star__backing sits BEHIND the body, slightly larger/offset, so
+     it peeks out around the edges — a real vector version of what
+     the old 2px stroke was faking, and it works whether the body is
+     bright (lit) or dim (off) without needing a separate hover rule.
+   - .star__face is the two little "eyes" drawn ON TOP of the body,
+     always a soft translucent tint so the mark reads as the same
+     cute character at a glance in either state. */
+.star__backing { fill: var(--bg-mid); }
+.star__face { fill: var(--bg-mid); opacity: .54; }
 
 /* Ambient glow — a soft halo that sits behind the star and washes the
    page background around it a little when lit, not just the star
@@ -1023,10 +919,6 @@ main { position: relative; }
 .star:hover .star__shape,
 .star.is-lit .star__shape {
   fill: var(--star-on, #ffe9a8);
-  /* On top of the glow (drawn on the shape itself, not the blurred
-     halo behind it) so the star's own silhouette doesn't wash out
-     into its glow when lit. */
-  stroke: var(--bg-mid);
 }
 
 @keyframes star-float {
@@ -1057,11 +949,6 @@ main { position: relative; }
 }
 
 @media (max-width: 860px) {
-  .nav { top: 12px; padding: 6px 6px 6px 18px; gap: 2px; }
-  .nav__links { gap: 10px; }
-  .nav__pill { padding: 8px 14px; font-size: 14px; }
-  .nav__work { font-size: 14px; }
-
   .about__body { grid-template-columns: 1fr; }
   .work__cards { grid-template-columns: 1fr; }
   .work__header { flex-direction: column; align-items: flex-start; gap: 16px; }

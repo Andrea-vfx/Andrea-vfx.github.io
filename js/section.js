@@ -28,6 +28,11 @@
 
   if (hamburger && drawer && drawerOverlay) {
     hamburger.addEventListener('click', openDrawer);
+    // Desktop nav's "Work" link opens the same drawer as the mobile
+    // hamburger icon — two triggers, one drawer.
+    document.querySelectorAll('[data-open-drawer]').forEach((btn) => {
+      btn.addEventListener('click', openDrawer);
+    });
     drawerClose?.addEventListener('click', closeDrawer);
     drawerOverlay.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', (e) => {
