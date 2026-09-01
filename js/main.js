@@ -83,23 +83,33 @@
     star.addEventListener('mousemove', (e) => {
       if (raf) return;
       raf = requestAnimationFrame(() => {
-        const rect = star.getBoundingClientRect(); // the icon's own box
+        const rect = star.getBoundingClientRect(); // the icon's own (small) box
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
         const distX = e.clientX - cx;
         const distY = e.clientY - cy;
-        // Touch radius is just the icon's own visible half-size now —
-        // this listener only ever fires while the cursor is actually
-        // over the star (no more padded --hit-pad zone reacting from
-        // a distance), so dx/dy are already naturally bounded by the
-        // icon's own box and don't need a separate radius check.
-        const touchRadius = Math.max(rect.width, rect.height) / 2;
-        const dx = (distX / touchRadius) * MAX_DRIFT;
-        const dy = (distY / touchRadius) * MAX_DRIFT;
-        const rot = (distX / touchRadius) * MAX_ROT;
-        star.style.setProperty('--drift-x', `${dx}px`);
-        star.style.setProperty('--drift-y', `${dy}px`);
-        star.style.setProperty('--star-rot', `${rot}deg`);
+        // --hit-pad extends how far the cursor can roam and still drag
+        // the star along (see .motion-title__star for a star with a
+        // much bigger roam zone than its own visual size). Drift/tilt
+        // are normalized against that full roam radius, not the icon's
+        // own small box, so they scale 0 -> max smoothly across
+        // whatever the actual roam area is instead of maxing out the
+        // instant the cursor leaves the tiny icon itself. Outside the
+        // radius, position is left alone (it stays wherever it last
+        // was, like a real loose object).
+        // getPropertyValue('--hit-pad') would return the raw unresolved
+        // value, not a px number — reading ::after's own computed inset
+        // (built from --hit-pad) gives the browser-resolved pixel value.
+        const hitPad = -parseFloat(getComputedStyle(star, '::after').top) || 0;
+        const touchRadius = Math.max(rect.width, rect.height) * 2.025 + hitPad; // 0.9 * 1.5 * 1.5
+        if (Math.hypot(distX, distY) <= touchRadius) {
+          const dx = (distX / touchRadius) * MAX_DRIFT;
+          const dy = (distY / touchRadius) * MAX_DRIFT;
+          const rot = (distX / touchRadius) * MAX_ROT;
+          star.style.setProperty('--drift-x', `${dx}px`);
+          star.style.setProperty('--drift-y', `${dy}px`);
+          star.style.setProperty('--star-rot', `${rot}deg`);
+        }
         star.classList.add('is-lit');
         raf = null;
       });
