@@ -891,10 +891,12 @@ main { position: relative; }
   transition: opacity .25s steps(6, end);
   pointer-events: none;
   z-index: -1;
-  /* Offset like a light source casting illumination sideways, not a
+  /* Offset like a light source casting illumination from above, not a
      halo sitting perfectly centered behind the star — same idea as a
-     drop-shadow's offset, just glow instead of dark. */
-  transform: translate(10px, 14px);
+     drop-shadow's offset, just glow instead of dark. Y is negative
+     (was +14px/downward, read as glowing from underneath — flipped so
+     the wash reads as coming from on top of the star instead). */
+  transform: translate(10px, -14px);
 }
 .star:hover::before,
 .star.is-lit::before { opacity: 0.55; }

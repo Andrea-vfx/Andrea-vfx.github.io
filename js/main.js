@@ -54,8 +54,9 @@
   const COLOR_VARIANTS = ['star--gold', 'star--pink', 'star--white', 'star--green', 'star--blue'];
 
   // Randomly color any star that doesn't already carry a fixed variant
-  // (the nav logo keeps its brand gold; loose/decorative stars get a
-  // random pick from the palette each page load).
+  // (the nav logo starts on its brand gold; loose/decorative stars get a
+  // random pick from the palette each page load — all of them cycle
+  // color on hover, see below).
   stars.forEach((star) => {
     const hasColor = COLOR_VARIANTS.some((c) => star.classList.contains(c));
     if (!hasColor) {
@@ -68,11 +69,9 @@
     let raf = null;
 
     // Each time the cursor lands on a star, swap it to a fresh random
-    // color (never repeating the one it just had) — the nav logo stays
-    // its fixed brand gold. .closest() since the star's own class is
-    // "star star--gold"; .section-nav__logo is on its wrapper <a>.
+    // color (never repeating the one it just had) — nav logo included,
+    // same as every other star.
     star.addEventListener('mouseenter', () => {
-      if (star.closest('.section-nav__logo')) return;
       const current = COLOR_VARIANTS.find((c) => star.classList.contains(c));
       const choices = COLOR_VARIANTS.filter((c) => c !== current);
       const pick = choices[Math.floor(Math.random() * choices.length)];
