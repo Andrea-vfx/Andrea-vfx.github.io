@@ -420,27 +420,9 @@ main { position: relative; }
 .lang-row__name { color: var(--color-iris); }
 .lang-row__level { color: var(--color-purple); font-size: 13px; }
 
-.cusma-badge {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px;
-  background: var(--iris-8);
-  border: 0.5px solid var(--divider);
-  border-radius: var(--radius-card);
-  margin-top: 8px;
-}
-.cusma-badge__icon {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--bg-light);
-  flex-shrink: 0;
-}
-.cusma-badge__icon svg { width: 30px; height: auto; }
-.cusma-badge__title { font-family: var(--font-body); font-weight: 700; font-size: 13px; color: var(--color-iris); }
-.cusma-badge__desc { font-family: var(--font-body); font-weight: 400; font-size: 12.5px; color: var(--color-iris); opacity: .8; margin-top: 2px; }
+/* Homepage now reuses .cusma-badge-lg directly (section.css) instead
+   of its own smaller variant, so it's pixel-identical to the section
+   pages' badge — see that class there. */
 
 /* ============================================================
    WORK / SECTION NAV
@@ -517,9 +499,26 @@ main { position: relative; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(0deg, #1a4865, #0a1828);
+  background: linear-gradient(0deg, #1a4865, #0a1828); /* fallback while the image loads */
+}
+.card__thumb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+/* Brand board's good stuff (logo, typography) is up top; center-crop
+   would cut into the lower color-palette/mockup rows instead. */
+.card__thumb-img--top { object-position: top; }
+/* Darkens both ends (where the num/arrow and tags sit) while staying
+   lighter through the middle, so the photo still reads through but
+   the white overlay text keeps its contrast regardless of what's
+   underneath. */
+.card__thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,24,40,.55) 0%, rgba(10,24,40,.15) 45%, rgba(10,24,40,.6) 100%);
+  z-index: 1;
 }
 .card__thumb-top {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -545,7 +544,7 @@ main { position: relative; }
   transition: transform var(--transition);
 }
 .card:hover .card__arrow { transform: rotate(45deg); }
-.card__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.card__tags { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 6px; }
 .card__tags span {
   padding: 5px 12px;
   border-radius: 20px;

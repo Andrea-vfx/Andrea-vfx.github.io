@@ -8,10 +8,10 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="css/styles.css?v=22">
+<link rel="stylesheet" href="css/styles.css?v=23">
 <!-- Shared with the section pages: .section-nav (now used here too)
      and .drawer/.lightbox component styles. -->
-<link rel="stylesheet" href="css/section.css?v=41">
+<link rel="stylesheet" href="css/section.css?v=42">
 </head>
 <body>
 
@@ -47,7 +47,7 @@
     </a>
     <div class="section-nav__links">
       <a href="#about" class="section-nav__pill is-active" data-nav-pill="about" data-i18n="shared.nav.about">CV · about</a>
-      <button class="section-nav__link-btn" data-nav-pill="work" data-open-drawer data-i18n="shared.nav.work">Work</button>
+      <a href="#work" class="section-nav__link-btn" data-nav-pill="work" data-i18n="shared.nav.work">Work</a>
       <a href="#contact" class="section-nav__link-btn" data-nav-pill="contact" data-i18n="shared.nav.contact">Contact</a>
     </div>
     <button class="section-nav__hamburger" id="hamburger" aria-expanded="false" aria-controls="drawer" aria-label="Open navigation" data-i18n-attr="aria-label:shared.menuAria">
@@ -265,13 +265,11 @@
 
             <hr class="divider">
 
-            <div class="cusma-badge">
-              <div class="cusma-badge__icon" style="--star-off:var(--color-ocean);">
-                <svg class="star__svg" viewBox="0 0 254 233"><use class="star__shape" href="#star-shape"></use></svg>
-              </div>
+            <div class="cusma-badge-lg">
+              <svg viewBox="0 0 73 59" fill="var(--color-ocean)"><use href="#icon-planet"></use></svg>
               <div>
-                <p class="cusma-badge__title" data-i18n="home.cusma.title">CUSMA / USMCA Eligible</p>
-                <p class="cusma-badge__desc" data-i18n="home.cusma.desc">Open to work remote &amp; relocation available</p>
+                <p class="cusma-badge-lg__title" data-i18n="home.cusma.title">CUSMA / USMCA Eligible</p>
+                <p class="cusma-badge-lg__desc" data-i18n="home.cusma.desc">Open to work remote &amp; relocation available</p>
               </div>
             </div>
           </div>
@@ -299,6 +297,7 @@
 
             <a class="card" href="vfx/index.html">
               <div class="card__thumb">
+                <img class="card__thumb-img" src="assets/media/illustration/projects/daynight-3.jpg" alt="Day/night lookdev — caravan scene, night render" loading="lazy">
                 <div class="card__thumb-top">
                   <span class="card__num">01</span>
                   <span class="card__arrow">↗</span>
@@ -316,6 +315,7 @@
 
             <a class="card" href="motion/index.html">
               <div class="card__thumb">
+                <img class="card__thumb-img" src="assets/media/motion/also-thumbs/shiba.jpg" alt="Shiba Inu walk cycle animation" loading="lazy">
                 <div class="card__thumb-top">
                   <span class="card__num">02</span>
                   <span class="card__arrow">↗</span>
@@ -333,6 +333,7 @@
 
             <a class="card" href="illustration/index.html">
               <div class="card__thumb">
+                <img class="card__thumb-img" src="assets/media/illustration/projects/gloomies-2.jpg" alt="GLOOM-IES background exploration — bedroom scene" loading="lazy">
                 <div class="card__thumb-top">
                   <span class="card__num">03</span>
                   <span class="card__arrow">↗</span>
@@ -350,6 +351,7 @@
 
             <a class="card" href="design/index.html">
               <div class="card__thumb">
+                <img class="card__thumb-img card__thumb-img--top" src="assets/media/design/brand/ag-brand-board.png" alt="A.G. brand identity board — logo, typography, color palette" loading="lazy">
                 <div class="card__thumb-top">
                   <span class="card__num">04</span>
                   <span class="card__arrow">↗</span>

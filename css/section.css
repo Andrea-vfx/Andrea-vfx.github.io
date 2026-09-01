@@ -105,6 +105,19 @@ body { background: var(--bg-mid); }
   background: var(--bg-mid);
   color: var(--bg-light);
 }
+/* Section pages get a plainer click/active signal instead — an
+   underline, not the homepage's filled pill. :active covers the
+   instant-feedback case (CV·about navigates to another page, so a
+   persistent state isn't possible there); .is-active is toggled by
+   JS for the two that stay on this page — Work while the drawer's
+   open, Contact via scroll position (see section.js). */
+.section-nav:not(.section-nav--home) .section-nav__pill:active,
+.section-nav:not(.section-nav--home) .section-nav__link-btn:active,
+.section-nav:not(.section-nav--home) .section-nav__pill.is-active,
+.section-nav:not(.section-nav--home) .section-nav__link-btn.is-active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 
 .section-nav__hamburger {
   background: var(--bg-mid);

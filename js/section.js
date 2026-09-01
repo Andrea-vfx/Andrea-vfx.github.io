@@ -15,15 +15,19 @@
   const drawerOverlay = document.getElementById('drawerOverlay');
   const drawerClose = document.getElementById('drawerClose');
 
+  const workNavLink = document.querySelector('[data-nav-pill="work"]');
+
   function openDrawer() {
     drawer.classList.add('is-open');
     drawerOverlay.classList.add('is-open');
     hamburger.setAttribute('aria-expanded', 'true');
+    workNavLink?.classList.add('is-active');
   }
   function closeDrawer() {
     drawer.classList.remove('is-open');
     drawerOverlay.classList.remove('is-open');
     hamburger.setAttribute('aria-expanded', 'false');
+    workNavLink?.classList.remove('is-active');
   }
 
   if (hamburger && drawer && drawerOverlay) {
@@ -52,6 +56,30 @@
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  /* ---------------------------------------------------------
+     CONTACT SCROLL-SPY — underlines the nav's "Contact" link once
+     that section's actually scrolled into view (same threshold/
+     pattern as the homepage's scroll-spy in main.js, just for the
+     one real in-page anchor a section page has).
+  --------------------------------------------------------- */
+  const contactLink = document.querySelector('[data-nav-pill="contact"]');
+  const contactSection = document.getElementById('contact');
+  if (contactLink && contactSection) {
+    let ticking = false;
+    const updateContactActive = () => {
+      const inView = contactSection.getBoundingClientRect().top <= window.innerHeight * 0.5;
+      contactLink.classList.toggle('is-active', inView);
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateContactActive);
+    }, { passive: true });
+    window.addEventListener('load', updateContactActive);
+    updateContactActive();
+  }
 
   /* ---------------------------------------------------------
      STARS — same behavior as the homepage: random color palette,
