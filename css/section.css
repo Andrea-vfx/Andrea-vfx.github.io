@@ -455,7 +455,7 @@ main > .reel-hero:first-of-type {
   background: var(--color-ocean);
   border-radius: 6px;
   padding: 14px 22px;
-  margin-bottom: 20px;
+  margin-bottom: 32px; /* was 20px — too close to the CUSMA badge right under it */
   transition: transform var(--transition), box-shadow var(--transition);
 }
 .btn-contact-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(30,104,152,0.35); }
@@ -468,12 +468,20 @@ main > .reel-hero:first-of-type {
   font-size: 15px;
   color: var(--bg-light);
 }
-.btn-contact-cta__label .dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #4caf7d;
-  box-shadow: 0 0 0 3px rgba(76,175,125,0.3);
+/* Figma 896:586 — KOMPEITO star, ocean-blue, on a bg-light rounded
+   square (44px frame there; scaled down to sit inline with this
+   button's own 15px text). Reuses the shared star symbol but stays
+   fully static — no .star class/data-star, so none of the hover
+   drift/color-cycling system attaches to it. */
+.btn-contact-cta__icon {
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  background: var(--bg-light);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
 }
+.btn-contact-cta__icon .star__svg { width: 18px; height: 18px; }
 .btn-contact-cta__go {
   font-family: var(--font-body);
   font-weight: 900;
