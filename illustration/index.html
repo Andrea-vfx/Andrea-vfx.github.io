@@ -8,8 +8,8 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../css/styles.css?v=25">
-<link rel="stylesheet" href="../css/section.css?v=44">
+<link rel="stylesheet" href="../css/styles.css?v=26">
+<link rel="stylesheet" href="../css/section.css?v=45">
 </head>
 <body>
 
@@ -318,32 +318,40 @@
   </section>
 
   <!-- ============================================================
-       OMEGA — BEHANCE EMBED
-       ============================================================ -->
-  <section class="behance-section">
+       OMEGA
+       Used to be a live Behance iframe embed — that Behance project
+       was taken down entirely (the gallery URL now 404s on Behance
+       itself, confirmed by loading it directly), so there was nothing
+       left to embed. Swapped for a local-image lightbox gallery (cover
+       poster, concept art, and the published comic pages), same
+       pattern as every other gallery on this site, with a CTA to the
+       ongoing webcomic on Webtoons instead of the dead Behance link. -->
+  <section class="solo-gallery-section">
     <div class="content-header">
       <div>
         <h2 class="content-header__title">Omega</h2>
-        <p class="content-header__sub" data-i18n="illustration.omega.sub">Branding · Logo Design · Gaming/Esports</p>
+        <p class="content-header__sub" data-i18n="illustration.omega.sub">Webcomic · Illustration · Action</p>
       </div>
-      <a class="content-header__cta content-header__cta--behance" href="https://www.behance.net/guerreroandrea" target="_blank" rel="noopener">
-        <span class="content-header__cta-badge">Bē</span>
-        <span data-i18n="illustration.omega.cta">View full project on Behance ↗</span>
+      <a class="content-header__cta content-header__cta--webtoons" href="https://www.webtoons.com/es/canvas/omega/list?title_no=594613" target="_blank" rel="noopener">
+        <span class="content-header__cta-badge">W</span>
+        <span data-i18n="illustration.omega.readCta">Read the webcomic on Webtoons ↗</span>
       </a>
     </div>
-    <div class="behance-embed">
-      <div class="behance-embed__window">
-        <div class="behance-embed__bar">
-          <div class="behance-embed__bar-left">
-            <span class="behance-embed__platform">Behance</span>
-            <span class="behance-embed__sep"></span>
-            <span class="behance-embed__proj">Omega · Andrea Guerrero</span>
-          </div>
-          <span class="behance-embed__link">behance.net/guerreroandrea ↗</span>
+    <div class="solo-gallery-section__showcase">
+      <div class="featured-card" data-lightbox-trigger
+           data-lightbox-eyebrow="Featured Project"
+           data-lightbox-title="Omega"
+           data-lightbox-tags="Webcomic · Illustration · Action"
+           data-lightbox-desc="Action webcomic — character art, cover, and published pages. Ongoing series on Webtoons."
+           data-lightbox-images="../assets/media/illustration/projects/omega/poster.jpg,../assets/media/illustration/projects/omega/PROPUESTA.png,../assets/media/illustration/projects/omega/1.jpg,../assets/media/illustration/projects/omega/2.jpg,../assets/media/illustration/projects/omega/3.jpg,../assets/media/illustration/projects/omega/4.jpg,../assets/media/illustration/projects/omega/5.jpg,../assets/media/illustration/projects/omega/6.jpg,../assets/media/illustration/projects/omega/7.jpg,../assets/media/illustration/projects/omega/8.jpg,../assets/media/illustration/projects/omega/9.jpg"
+           data-lightbox-link="https://www.webtoons.com/es/canvas/omega/list?title_no=594613"
+           data-lightbox-link-label="Read on Webtoons ↗"
+           data-i18n-attr="data-lightbox-tags:illustration.omega.sub|data-lightbox-desc:illustration.omega.lightboxDesc|data-lightbox-link-label:illustration.omega.readCta">
+        <div class="featured-card__image">
+          <img src="../assets/media/illustration/projects/omega/poster.jpg" alt="Omega — cover art" loading="lazy">
+          <span class="featured-card__badge">11 images</span>
         </div>
-        <div class="behance-embed__frame">
-          <iframe src="https://www.behance.net/embed/project/123510243?ilo0=1" title="Omega — Andrea Guerrero" allowfullscreen loading="lazy" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
+        <p class="featured-card__hint" data-i18n="illustration.clickGallery">Click to view gallery →</p>
       </div>
     </div>
   </section>

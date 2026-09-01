@@ -879,11 +879,17 @@ main { position: relative; }
 
 /* Ambient glow — a soft halo that sits behind the star and washes the
    page background around it a little when lit, not just the star
-   shape itself. */
+   shape itself. Perfectly centered, no directional offset — a later
+   version pushed this off-center to read as "cast light from a
+   source", but that just made it look like a separate glowing blob
+   floating near the star instead of the star itself lighting up.
+   Back to the original: the halo stays centered/attached, and the
+   "it's the star that's glowing" read comes from the star's own fill
+   (--star-on) and the drop-shadow hugging its silhouette, below. */
 .star::before {
   content: "";
   position: absolute;
-  inset: -75%;
+  inset: -90%;
   border-radius: 50%;
   background: radial-gradient(circle, var(--star-on, #ffe9a8) 0%, transparent 68%);
   opacity: 0;
@@ -891,16 +897,6 @@ main { position: relative; }
   transition: opacity .25s steps(6, end);
   pointer-events: none;
   z-index: -1;
-  /* Offset like a light source sitting above the star, casting the
-     glow downward onto it — not a halo sitting perfectly centered
-     behind the star. A flat px offset used to do this (10px, 14px)
-     but read as barely-there on the bigger stars, since the halo box
-     scales with --star-size while the offset didn't — worse, the +14
-     was downward, which came across as the star glowing from
-     underneath rather than being lit from above. Using a % offset
-     (of this pseudo-element's own box, so it scales with every star
-     size) and pushing it further fixes both: negative Y = up. */
-  transform: translate(0%, -38%);
 }
 .star:hover::before,
 .star.is-lit::before { opacity: 0.55; }

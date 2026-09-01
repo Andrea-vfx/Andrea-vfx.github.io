@@ -315,8 +315,10 @@
     'illustration.process.steampunkProj': 'Personaje Steampunk',
     'illustration.process.steampunkCap': 'Exploración de siluetas y estilo',
 
-    'illustration.omega.sub': 'Branding · Diseño de Logo · Gaming/Esports',
+    'illustration.omega.sub': 'Webcómic · Ilustración · Acción',
     'illustration.omega.cta': 'Ver proyecto completo en Behance ↗',
+    'illustration.omega.readCta': 'Leer el webcómic en Webtoons ↗',
+    'illustration.omega.lightboxDesc': 'Webcómic de acción — arte de personajes, portada y páginas publicadas. Serie en curso en Webtoons.',
 
     'illustration.also1.tags': 'After Effects · Cine y TV · Gráficos',
 
@@ -367,6 +369,8 @@
     'design.lazarus.lightboxTags': 'Cliente Real · B2B',
     'design.lazarus.viewDesignSystem': 'Sistema de diseño',
     'design.lazarus.viewPdf': 'Catálogo (PDF)',
+
+    'design.streampack.lightboxDesc': 'Ilustración estilo Valorant para @DRE_ow, junto con StreamPack y diseño de logo inspirados en el agente principal del cliente dentro del juego, Sova. Set completo de entregables: marca, paneles, pantallas y overlays animados.',
 
     'design.footerNav.fullPortfolio': 'Portafolio completo',
     'design.drawer.brandIdentity': 'AG. Identidad de Marca',

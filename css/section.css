@@ -1573,6 +1573,7 @@ main > .reel-hero:first-of-type {
 .content-header--on-dark .content-header__title { color: var(--bg-light); }
 .content-header--on-dark .content-header__sub { color: rgba(245,232,245,0.7); }
 .content-header__cta--behance { background: #05378a; }
+.content-header__cta--webtoons { background: #00d564; } /* Webtoons brand green */
 /* Design page's headers (Brand, Rebranding, Streampack) all use solid
    accent.purple for the subtitle — checked 2 of 3 directly against
    Figma text nodes (804:431, 843:2824), both #9b6bd0 — vs the
@@ -1788,8 +1789,8 @@ main > .reel-hero:first-of-type {
    plus a max-width wrapper for the single .featured-card (that class
    is normally a grid cell inside .featured-grid, sized by the grid —
    standalone here, it needs its own width constraint). */
-.streampack-section { background: var(--bg-light); padding-bottom: 160px; }
-.streampack-section__showcase { max-width: var(--content-max); margin: 0 auto; padding: 0 var(--padding-page); }
+.solo-gallery-section { background: var(--bg-light); padding-bottom: 160px; }
+.solo-gallery-section__showcase { max-width: var(--content-max); margin: 0 auto; padding: 0 var(--padding-page); }
 .behance-embed {
   max-width: var(--content-max);
   margin: 0 auto;
