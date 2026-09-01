@@ -700,9 +700,9 @@ main { position: relative; }
   gap: clamp(4px, 1vw, 16px);
   padding-right: clamp(4px, 2vw, 24px);
 }
-/* .work sits on --bg-mid, so these use LIGHT.svg's pairing (bg-light
-   body, bg-mid backing) — same contrast principle as the nav logo. */
-.work__stars .star { --star-off: var(--bg-light); --star-backing: var(--bg-mid); }
+/* .work sits on --bg-mid, so this uses LIGHT v3's color (bg-light) —
+   same contrast principle as the nav logo. */
+.work__stars .star { --star-off: var(--bg-light); }
 
 /* ============================================================
    FOOTER / CONTACT
@@ -869,24 +869,14 @@ main { position: relative; }
   transition: transform .25s steps(6, end), filter .25s steps(6, end);
   filter: drop-shadow(0 0 0 rgba(255,225,150,0));
 }
+/* KOMPEITO v3 mark: back to a single flat-color shape (Andrea
+   simplified the asset — no more separate backing/face layers), so
+   this is the only fill rule the star needs. Same --star-off system
+   every star instance already sets inline/via CSS. */
 .star__shape {
   fill: var(--star-off, rgba(245,232,245,0.35));
   transition: fill .25s steps(6, end);
 }
-/* KOMPEITO v2 mark: the body (.star__shape, above) is the dominant
-   shape and keeps the exact same --star-off/--star-on color system
-   every star instance already sets inline — nothing else needed to
-   change there. The other two layers are new, fixed at --bg-mid
-   regardless of context or lit state:
-   - .star__backing sits BEHIND the body, slightly larger/offset, so
-     it peeks out around the edges — a real vector version of what
-     the old 2px stroke was faking, and it works whether the body is
-     bright (lit) or dim (off) without needing a separate hover rule.
-   - .star__face is the two little "eyes" drawn ON TOP of the body,
-     always a soft translucent tint so the mark reads as the same
-     cute character at a glance in either state. */
-.star__backing { fill: var(--star-backing, var(--bg-mid)); }
-.star__face { fill: var(--star-backing, var(--bg-mid)); opacity: .54; }
 
 /* Ambient glow — a soft halo that sits behind the star and washes the
    page background around it a little when lit, not just the star

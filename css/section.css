@@ -51,14 +51,13 @@ body { background: var(--bg-mid); }
   align-items: center;
   gap: 8px;
 }
-/* Resting-state colors matching Andrea's KOMPEITO v2 reference files
-   exactly — DARK.svg's own body/backing pair (bg-mid body, bg-light
-   backing) on the light/home nav (bg.base #F5E8F5), swapped to
-   LIGHT.svg's pair (bg-light body, bg-mid backing) on the muted nav
-   (#B888B8), so each star's dominant body color always contrasts
-   against its own background instead of blending into it. */
-.section-nav__logo .star { --star-size: 40px; --star-off: var(--bg-mid); --star-backing: var(--bg-light); }
-.section-nav--muted .section-nav__logo .star { --star-off: var(--bg-light); --star-backing: var(--bg-mid); }
+/* Resting-state color matching Andrea's KOMPEITO v3 reference files —
+   DARK v3's color (bg-mid) on the light/home nav (bg.base #F5E8F5),
+   swapped to LIGHT v3's color (bg-light) on the muted nav (#B888B8),
+   so the star's fill always contrasts against its own background
+   instead of blending into it. */
+.section-nav__logo .star { --star-size: 40px; --star-off: var(--bg-mid); }
+.section-nav--muted .section-nav__logo .star { --star-off: var(--bg-light); }
 /* "A.G." follows the same light/muted contrast swap as the star next
    to it (Figma 954:725 light nav = bg-mid text, 977:445 muted nav =
    bg-light text) — it was hardcoded to color-iris this whole time,
@@ -875,7 +874,6 @@ main > .reel-hero:first-of-type {
 .motion-title__star .star {
   --star-size: clamp(70px, 7vw, 126px);
   --star-off: var(--bg-mid);
-  --star-backing: var(--bg-light); /* DARK.svg pairing — was missing, so backing/face fell back to the same bg-mid as the body and the star read as one flat muted blob with no lines */
   --hit-pad: clamp(270px, 36vw, 585px); /* *1.5 again — two rounds of the shared 50% roam-radius bump */
 }
 .motion-title__star .star__svg { filter: none; }
@@ -1454,10 +1452,10 @@ main > .reel-hero:first-of-type {
 .drawer__item.is-active .drawer__item-label,
 .drawer__item.is-active .drawer__item-num { color: var(--color-ocean); }
 .drawer__item.is-active .star { --star-size: 22px; }
-/* .drawer's own panel is --bg-light, so this follows the same DARK.svg
-   pairing as the nav logo/also-header stars — was falling back to the
+/* .drawer's own panel is --bg-light, so this follows the same DARK v3
+   color as the nav logo/also-header stars — was falling back to the
    global translucent default, which nearly disappears on a light panel. */
-.drawer__item-star { --star-off: var(--bg-mid); --star-backing: var(--bg-light); }
+.drawer__item-star { --star-off: var(--bg-mid); }
 
 .drawer__subitems { display: flex; flex-direction: column; width: 100%; }
 .drawer__subitem {
