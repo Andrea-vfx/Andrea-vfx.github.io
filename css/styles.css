@@ -452,10 +452,8 @@ main { position: relative; }
   border-radius: var(--radius-stack) var(--radius-stack) 0 0;
   padding: clamp(48px, 7vw, 100px) 0 clamp(64px, 8vw, 120px);
   /* No overflow:hidden (removed) — same bug as .motion-title on the
-     section pages: it was clipping .work__stars' huge --hit-pad
-     hit-zones (up to ~445px radius here), so real cursor movement
-     outside this section's own box never reached the mousemove
-     listener at all. Nothing else here needed the clip. */
+     section pages: it was clipping .work__stars' drift/tilt travel
+     right at this section's edge. Nothing else here needed the clip. */
 }
 
 .work__header {
@@ -839,34 +837,27 @@ main { position: relative; }
   position: relative;
   width: var(--star-size);
   height: var(--star-size);
-  animation: star-float 6.5s steps(78, end) infinite;
+  /* Idle bob: a smooth ease-in-out curve (not the stepped/stop-motion
+     timing used elsewhere) and 20% slower than the original 6.5s, per
+     Andrea's request for the static/idle motion specifically. */
+  animation: star-float 7.8s ease-in-out infinite;
   animation-delay: var(--float-delay, 0s);
   cursor: pointer;
 }
-.star--sm { --star-size: clamp(34px, 3.2vw, 48px); animation-duration: 5s; animation-timing-function: steps(60, end); }
-.star--lg { --star-size: clamp(76px, 8.5vw, 150px); animation-duration: 8s; animation-timing-function: steps(96, end); }
+.star--sm { --star-size: clamp(34px, 3.2vw, 48px); animation-duration: 6s; animation-timing-function: ease-in-out; }
+.star--lg { --star-size: clamp(76px, 8.5vw, 150px); animation-duration: 9.6s; animation-timing-function: ease-in-out; }
 .star--floating { position: absolute; z-index: 3; }
-
-/* Invisible, oversized hover/hit zone — the star icon stays its normal
-   visual size, but the area that actually responds to the mouse is
-   much bigger (set per-instance via --hit-pad), so you don't have to
-   land the cursor precisely on the small icon to wake it up. */
-.star::after {
-  content: "";
-  position: absolute;
-  inset: calc(-1 * var(--hit-pad, 0px));
-  z-index: 1;
-}
 
 .star__svg {
   width: 100%;
   height: 100%;
   display: block;
   transform: translate(var(--drift-x, 0px), var(--drift-y, 0px)) rotate(var(--star-rot, 0deg));
-  /* 6 steps / .25s = 24fps (was 6/.5s = 12fps) — twice as smooth, and
-     half the catch-up lag so it reads as a light marble following the
-     cursor instead of a heavy object dragging behind it. */
-  transition: transform .25s steps(6, end), filter .25s steps(6, end);
+  /* Short + few steps so the star reads as tracking the cursor tightly
+     (was .25s/6 steps, which had a noticeable catch-up lag) — just
+     enough quantization left to keep a hint of the stop-motion feel
+     without it looking like the star is dragging behind the mouse. */
+  transition: transform .06s steps(2, end), filter .25s steps(6, end);
   filter: drop-shadow(0 0 0 rgba(255,225,150,0));
 }
 /* KOMPEITO v3 mark: back to a single flat-color shape (Andrea

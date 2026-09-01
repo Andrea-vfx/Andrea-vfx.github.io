@@ -813,14 +813,8 @@ main > .reel-hero:first-of-type {
      :first-of-type comment above for why this matters at very
      wide/ultrawide viewports. */
   padding: max(143px, calc(var(--radius-nav) + 8px)) var(--padding-page) 40px;
-  /* No overflow:hidden here (removed) — it was silently clipping the
-     roaming star's huge --hit-pad hit-zone (up to ~700px radius at
-     wide viewports), since a clipped element stops receiving pointer
-     events outside the clip entirely. That's what made the star feel
-     "stuck"/barely responsive: almost the whole roam circle fell
-     outside this section's own (much smaller) box and simply never
-     saw the cursor. Nothing else here needs the clip — no full-bleed
-     child pokes past the rounded corners. */
+  /* No overflow:hidden here (removed, kept off) — nothing full-bleed
+     pokes past the rounded corners so there's nothing to clip. */
 }
 .motion-title__layout {
   display: flex;
@@ -865,16 +859,11 @@ main > .reel-hero:first-of-type {
 /* Small, plain, muted-purple — not the big glowing ambient stars used
    elsewhere (poster-gallery, also-header), which only glow on a DARK
    fill. This one sits on bg-light. */
-/* Positioned over the format-pills area per Andrea's reference — that
-   whole region (not just the small star icon) is the roam zone the
-   cursor can drag/tilt it around in, via the big --hit-pad below
-   (see section.js/main.js: touchRadius = icon size + --hit-pad, and
-   drift/tilt are normalized against that full radius). */
+/* Positioned over the format-pills area per Andrea's reference. */
 .motion-title__star { position: absolute; right: clamp(280px, 24vw, 480px); top: 20%; z-index: 0; }
 .motion-title__star .star {
   --star-size: clamp(70px, 7vw, 126px);
   --star-off: var(--bg-mid);
-  --hit-pad: clamp(270px, 36vw, 585px); /* *1.5 again — two rounds of the shared 50% roam-radius bump */
 }
 .motion-title__star .star__svg { filter: none; }
 
