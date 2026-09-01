@@ -307,7 +307,7 @@ main > .reel-hero:first-of-type {
   transition: transform var(--transition), box-shadow var(--transition);
 }
 .btn-vimeo:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(59,34,76,0.35); }
-.btn-vimeo .star { --star-size: 30px; pointer-events: none; }
+.btn-vimeo .star { --star-size: 30px; --star-off: var(--bg-light); pointer-events: none; }
 
 .reel-window {
   position: relative;
@@ -328,21 +328,13 @@ main > .reel-hero:first-of-type {
 /* ── INFO BAND ───────────────────────────────────────────── */
 .info-band {
   background: var(--bg-light);
-  /* Bottom padding uses max() so it always covers at least whatever
-     the second .reel-hero below pulls up by (--radius-stack, up to
-     100px at very wide viewports) plus a little room — otherwise
-     that overlap eats past its own padding into real content here
-     (the CUSMA badge at the bottom), which is the clipping Andrea
-     caught. At typical widths --radius-stack is well under 64px so
-     this is a no-op and nothing about the normal layout changes. */
-  padding: 64px var(--padding-page) max(64px, calc(var(--radius-stack) + 8px));
-}
-/* Credits is immediately followed by .poster-gallery, whose rounded
-   top needs a full 100px overlap to reveal (see .poster-gallery) —
-   extra bottom room here so that overlap doesn't eat into the
-   credit-rows content above it. */
-#credits {
-  padding-bottom: 180px;
+  /* Bottom padding covers whatever the next section pulls up by
+     (--radius-stack, up to 100px) plus real breathing room on top —
+     same generous amount for both info-bands now (was only 64px on
+     the first one, which read as cramped against reel-hero #2 right
+     under it since that section shares no content of its own to
+     create visual distance the way poster-gallery's big header did). */
+  padding: 64px var(--padding-page) max(180px, calc(var(--radius-stack) + 8px));
 }
 .info-band__layout {
   display: grid;
@@ -624,18 +616,11 @@ main > .reel-hero:first-of-type {
   transform: translateY(-50%);
   z-index: 0;
 }
-.poster-gallery__star .star--lg { --star-size: clamp(120px, 12vw, 190px); }
-/* Big ambient poster-gallery star stays always-glowing/passive per
-   Figma. The "More of my work" header star is NOT ambient — Andrea
-   wants it off/muted by default like the small interactive stars,
-   only lighting on hover (handled by the shared .star:hover/.is-lit
-   rules below, nothing special needed here). */
-.star--lg .star__svg {
-  filter: drop-shadow(0 0 20px var(--star-glow, rgba(255,255,255,0.75)));
-}
-.star--lg .star__shape {
-  fill: var(--star-on, #ffffff);
-}
+/* Sits on .poster-gallery's --bg-mid, same LIGHT v3 mapping as every
+   other star on that background (work__stars). No more permanent
+   "always glowing" special-case — Andrea wants every star uniform:
+   dim/muted at rest, lit only on real hover, no exceptions. */
+.poster-gallery__star .star--lg { --star-size: clamp(120px, 12vw, 190px); --star-off: var(--bg-light); }
 
 /* ── "MORE OF MY WORK" cross-promo (bottom of section pages) ── */
 .also-header {
@@ -688,7 +673,7 @@ main > .reel-hero:first-of-type {
   text-transform: uppercase;
   color: var(--bg-light);
 }
-.also-card__label .star { --star-size: 22px; }
+.also-card__label .star { --star-size: 22px; --star-off: var(--bg-light); }
 .also-card__thumbs { display: flex; gap: 3px; height: 160px; }
 .also-card__thumb {
   position: relative;
@@ -883,21 +868,6 @@ main > .reel-hero:first-of-type {
   color: rgba(94,56,120,0.65);
   white-space: nowrap;
 }
-/* Small, plain, muted-purple — not the big glowing ambient stars used
-   elsewhere (poster-gallery, also-header), which only glow on a DARK
-   fill. This one sits on bg-light. */
-/* Positioned over the format-pills area per Andrea's reference — that
-   whole region (not just the small star icon) is the roam zone the
-   cursor can drag/tilt it around in, via the big --hit-pad below
-   (see section.js/main.js: touchRadius = icon size + --hit-pad, and
-   drift/tilt are normalized against that full radius). */
-.motion-title__star { position: absolute; right: clamp(280px, 24vw, 480px); top: 20%; z-index: 0; }
-.motion-title__star .star {
-  --star-size: clamp(70px, 7vw, 126px);
-  --star-off: var(--bg-mid);
-  --hit-pad: clamp(270px, 36vw, 585px); /* *1.5 again — two rounds of the shared 50% roam-radius bump */
-}
-.motion-title__star .star__svg { filter: none; }
 
 /* Illustration title band's tool-icon row (Figma: ClipStudioPaint,
    Photoshop, Blender at 94-114px in a 19px gap — scaled down ~0.7x

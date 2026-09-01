@@ -825,7 +825,7 @@ main { position: relative; }
   z-index: 2;
   pointer-events: none;
 }
-.footer__stars .star { pointer-events: auto; }
+.footer__stars .star { --star-off: var(--bg-light); pointer-events: auto; }
 
 /* ============================================================
    STARS — interactive component
