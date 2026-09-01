@@ -8,8 +8,8 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../css/styles.css?v=24">
-<link rel="stylesheet" href="../css/section.css?v=43">
+<link rel="stylesheet" href="../css/styles.css?v=25">
+<link rel="stylesheet" href="../css/section.css?v=44">
 </head>
 <body>
 
@@ -118,8 +118,15 @@
   </section>
 
   <!-- ============================================================
-       04 — STREAMPACK — BEHANCE
-       ============================================================ -->
+       04 — STREAMPACK
+       Used to be a live Behance iframe embed (behance.net/embed/project/…)
+       — Behance changed that embed to a static, non-interactive cover
+       card (confirmed by loading the embed URL directly, outside any
+       iframe: same static card, no scroll/click-through, nothing to
+       fix on our end). Swapped to the same local-image lightbox
+       gallery already used for this exact project on the Illustration
+       page (same 3 images, same data-lightbox-* config), with the
+       Behance CTA kept as a plain outbound link. -->
   <div class="section-label">
     <div class="section-label__row">
       <span>04</span>
@@ -127,7 +134,7 @@
     </div>
   </div>
 
-  <section class="behance-section" id="streampack">
+  <section class="streampack-section" id="streampack">
     <div class="content-header content-header--purple-sub">
       <div>
         <h2 class="content-header__title" data-i18n="illustration.proj6.title">Streampack for @DRE_ow</h2>
@@ -138,19 +145,19 @@
         <span data-i18n="illustration.omega.cta">View full project on Behance ↗</span>
       </a>
     </div>
-    <div class="behance-embed">
-      <div class="behance-embed__window">
-        <div class="behance-embed__bar">
-          <div class="behance-embed__bar-left">
-            <span class="behance-embed__platform">Behance</span>
-            <span class="behance-embed__sep"></span>
-            <span class="behance-embed__proj">Streampack for @DRE_ow · Andrea Guerrero Aviña</span>
-          </div>
-          <span class="behance-embed__link">behance.net/guerreroandrea ↗</span>
+    <div class="streampack-section__showcase">
+      <div class="featured-card" data-lightbox-trigger
+           data-lightbox-eyebrow="04 · Featured Project"
+           data-lightbox-title="Streampack for @DRE_ow"
+           data-lightbox-tags="Branding · Illustration · Valorant-style · Freelance 2024"
+           data-lightbox-desc="Illustration in Valorant style for @DRE_ow, along with StreamPack and logo design referencing the client's main in-game agent pick, Sova."
+           data-lightbox-images="../assets/media/illustration/projects/streampack.jpg,../assets/media/illustration/projects/streampack-2.jpg,../assets/media/illustration/projects/streampack-3.jpg"
+           data-i18n-attr="data-lightbox-title:illustration.proj6.title|data-lightbox-tags:illustration.proj6.cat|data-lightbox-desc:illustration.proj6.desc">
+        <div class="featured-card__image">
+          <img src="../assets/media/illustration/projects/streampack.jpg" alt="Streampack for @DRE_ow" loading="lazy">
+          <span class="featured-card__badge">3 images</span>
         </div>
-        <div class="behance-embed__frame">
-          <iframe src="https://www.behance.net/embed/project/106751553?ilo0=1" title="Streampack for @DRE_ow — Andrea Guerrero Aviña" allowfullscreen loading="lazy" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
+        <p class="featured-card__hint" data-i18n="illustration.clickGallery">Click to view gallery →</p>
       </div>
     </div>
   </section>
@@ -196,10 +203,10 @@
                     data-lightbox-tags="Product Page · E-commerce"
                     data-lightbox-desc="Redesign of the Kiss Drip Lip Oil product page, with a soft feminine visual direction, hierarchy optimized for conversion, with a full documented case study."
                     data-lightbox-images="../assets/media/design/thumbs/bys-ui.png"
-                    data-lightbox-link="https://andrea-vfx.github.io/portfolio-ui-AndreaGuerrero/BYS/"
-                    data-lightbox-link-label="View live project ↗"
+                    data-lightbox-link="https://www.figma.com/design/BEU3cPoRi90uvxjgRbAhJm/BYS-Cosmetics"
+                    data-lightbox-link-label="View in Figma ⤢"
                     data-i18n="design.viewFigma"
-                    data-i18n-attr="data-lightbox-eyebrow:design.bys.cat|data-lightbox-tags:design.bys.lightboxTags|data-lightbox-desc:design.bys.lightboxDesc|data-lightbox-link-label:design.viewLive">View in Figma ⤢</button>
+                    data-i18n-attr="data-lightbox-eyebrow:design.bys.cat|data-lightbox-tags:design.bys.lightboxTags|data-lightbox-desc:design.bys.lightboxDesc|data-lightbox-link-label:design.viewFigma">View in Figma ⤢</button>
           </div>
         </div>
       </div>

@@ -1780,6 +1780,16 @@ main > .reel-hero:first-of-type {
    iframe (.behance-embed__window and its children, below) is a
    deliberate device-mockup frame and stays dark regardless. */
 .behance-section { background: var(--bg-light); padding-bottom: 160px; } /* room for .also-header's up-to-100px overlap on top of the original 60px */
+/* Streampack used to be a .behance-section too (a live Behance iframe
+   embed), but Behance downgraded that embed to a static, non-clickable
+   cover card — no fix possible on our end, so it was swapped for the
+   same local-image lightbox gallery already used for this project on
+   the Illustration page. Same background/spacing as .behance-section,
+   plus a max-width wrapper for the single .featured-card (that class
+   is normally a grid cell inside .featured-grid, sized by the grid —
+   standalone here, it needs its own width constraint). */
+.streampack-section { background: var(--bg-light); padding-bottom: 160px; }
+.streampack-section__showcase { max-width: var(--content-max); margin: 0 auto; padding: 0 var(--padding-page); }
 .behance-embed {
   max-width: var(--content-max);
   margin: 0 auto;
