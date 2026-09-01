@@ -357,12 +357,16 @@
     'design.sonnet.tag.skincare': 'Cuidado de la Piel',
     'design.sonnet.lightboxDesc': 'Página de producto y colección para una línea de skincare (escritorio y móvil), con un sistema de diseño documentado. Incluye como extra el diseño de una campaña de email en Klaviyo.',
     'design.sonnet.lightboxTags': 'Sistema de Diseño · Cuidado de la Piel',
+    'design.sonnet.viewReflection': 'Nota de reflexión',
+    'design.sonnet.viewKlaviyo': 'Ver campaña de email (Klaviyo)',
 
     'design.lazarus.cat': 'Catálogo · Fibra Óptica · B2B',
     'design.lazarus.desc': 'Catálogo de producto para un cliente real (distribuidor de fibra óptica), con lista de cotización acumulable.',
     'design.lazarus.tag.realClient': 'Cliente Real',
     'design.lazarus.lightboxDesc': 'Catálogo de producto para un distribuidor de fibra óptica, un proyecto con cliente real. Incluye lista de cotización acumulable, sistema de diseño documentado y catálogo descargable en PDF.',
     'design.lazarus.lightboxTags': 'Cliente Real · B2B',
+    'design.lazarus.viewDesignSystem': 'Sistema de diseño',
+    'design.lazarus.viewPdf': 'Catálogo (PDF)',
 
     'design.footerNav.fullPortfolio': 'Portafolio completo',
     'design.drawer.brandIdentity': 'AG. Identidad de Marca',

@@ -883,7 +883,7 @@ main { position: relative; }
 .star::before {
   content: "";
   position: absolute;
-  inset: -90%;
+  inset: -75%;
   border-radius: 50%;
   background: radial-gradient(circle, var(--star-on, #ffe9a8) 0%, transparent 68%);
   opacity: 0;
@@ -891,12 +891,16 @@ main { position: relative; }
   transition: opacity .25s steps(6, end);
   pointer-events: none;
   z-index: -1;
-  /* Offset like a light source casting illumination from above, not a
-     halo sitting perfectly centered behind the star — same idea as a
-     drop-shadow's offset, just glow instead of dark. Y is negative
-     (was +14px/downward, read as glowing from underneath — flipped so
-     the wash reads as coming from on top of the star instead). */
-  transform: translate(10px, -14px);
+  /* Offset like a light source sitting above the star, casting the
+     glow downward onto it — not a halo sitting perfectly centered
+     behind the star. A flat px offset used to do this (10px, 14px)
+     but read as barely-there on the bigger stars, since the halo box
+     scales with --star-size while the offset didn't — worse, the +14
+     was downward, which came across as the star glowing from
+     underneath rather than being lit from above. Using a % offset
+     (of this pseudo-element's own box, so it scales with every star
+     size) and pushing it further fixes both: negative Y = up. */
+  transform: translate(0%, -38%);
 }
 .star:hover::before,
 .star.is-lit::before { opacity: 0.55; }
