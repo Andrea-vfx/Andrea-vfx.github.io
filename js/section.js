@@ -199,7 +199,9 @@
     function openLightbox(trigger) {
       const d = trigger.dataset;
       images = (d.lightboxImages || '').split(',').map((s) => s.trim()).filter(Boolean);
-      index = 0;
+      // Grid tiles (e.g. the Streampack grid) all share one images list but
+      // each opens the viewer already on its own picture, via data-lightbox-start.
+      index = parseInt(d.lightboxStart, 10) || 0;
       lightboxEyebrow.textContent = d.lightboxEyebrow || '';
       lightboxTitle.textContent = d.lightboxTitle || '';
       lightboxTags.textContent = d.lightboxTags || '';

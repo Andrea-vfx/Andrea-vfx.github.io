@@ -1791,6 +1791,43 @@ main > .reel-hero:first-of-type {
    standalone here, it needs its own width constraint). */
 .solo-gallery-section { background: var(--bg-light); padding-bottom: 160px; }
 .solo-gallery-section__showcase { max-width: var(--content-max); margin: 0 auto; padding: 0 var(--padding-page); }
+
+/* Streampack's own deliverable set (16 images) — a scroll-and-see grid
+   instead of one card you have to click to discover anything's inside.
+   Each tile still opens the same lightbox (data-lightbox-trigger),
+   starting on that exact tile via data-lightbox-start, so zooming/
+   paging through the full set is still one click away. */
+.solo-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.solo-gallery-grid__item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--bg-mid);
+  padding: 0;
+  background: var(--bg-mid);
+  cursor: pointer;
+  display: block;
+}
+.solo-gallery-grid__item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.solo-gallery-grid__item:hover img { transform: scale(1.05); }
+@media (max-width: 900px) {
+  .solo-gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 620px) {
+  .solo-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
 .behance-embed {
   max-width: var(--content-max);
   margin: 0 auto;

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="../css/styles.css?v=26">
-<link rel="stylesheet" href="../css/section.css?v=45">
+<link rel="stylesheet" href="../css/section.css?v=46">
 </head>
 <body>
 
@@ -146,21 +146,50 @@
       </a>
     </div>
     <div class="solo-gallery-section__showcase">
-      <div class="featured-card" data-lightbox-trigger
-           data-lightbox-eyebrow="04 · Featured Project"
-           data-lightbox-title="Streampack for @DRE_ow"
-           data-lightbox-tags="Branding · Illustration · Valorant-style · Freelance 2024"
-           data-lightbox-desc="Illustration in Valorant style for @DRE_ow, along with StreamPack and logo design referencing the client's main in-game agent pick, Sova. Full deliverable set: brand mark, panels, screens, and animated overlays."
-           data-lightbox-images="../assets/media/illustration/projects/streampack.jpg,../assets/media/illustration/projects/streampack-2.jpg,../assets/media/illustration/projects/streampack-3.jpg,../assets/media/design/streampack/streampack-behance-02.png,../assets/media/design/streampack/streampack-behance-03.png,../assets/media/design/streampack/streampack-behance-04.png,../assets/media/design/streampack/streampack-behance-05.jpg,../assets/media/design/streampack/streampack-behance-06.png,../assets/media/design/streampack/streampack-behance-07.gif,../assets/media/design/streampack/streampack-behance-08.gif,../assets/media/design/streampack/streampack-behance-09.gif,../assets/media/design/streampack/streampack-behance-10.jpg,../assets/media/design/streampack/streampack-behance-11.jpg,../assets/media/design/streampack/streampack-behance-12.jpg,../assets/media/design/streampack/streampack-behance-13.png,../assets/media/design/streampack/streampack-behance-14.png"
-           data-i18n-attr="data-lightbox-title:illustration.proj6.title|data-lightbox-tags:illustration.proj6.cat|data-lightbox-desc:design.streampack.lightboxDesc">
-        <div class="featured-card__image">
-          <img src="../assets/media/illustration/projects/streampack.jpg" alt="Streampack for @DRE_ow" loading="lazy">
-          <span class="featured-card__badge">16 images</span>
-        </div>
-        <p class="featured-card__hint" data-i18n="illustration.clickGallery">Click to view gallery →</p>
-      </div>
+      <div class="solo-gallery-grid" id="streampackGrid"></div>
     </div>
   </section>
+
+  <script>
+    // Streampack grid: one tile per deliverable, all sharing the same
+    // lightbox config/image list — only data-lightbox-start differs per
+    // tile, so clicking any one opens the viewer already on that image
+    // (still able to page through all 16 from there).
+    (() => {
+      const images = [
+        '../assets/media/illustration/projects/streampack.jpg',
+        '../assets/media/illustration/projects/streampack-2.jpg',
+        '../assets/media/illustration/projects/streampack-3.jpg',
+        '../assets/media/design/streampack/streampack-behance-02.png',
+        '../assets/media/design/streampack/streampack-behance-03.png',
+        '../assets/media/design/streampack/streampack-behance-04.png',
+        '../assets/media/design/streampack/streampack-behance-05.jpg',
+        '../assets/media/design/streampack/streampack-behance-06.png',
+        '../assets/media/design/streampack/streampack-behance-07.gif',
+        '../assets/media/design/streampack/streampack-behance-08.gif',
+        '../assets/media/design/streampack/streampack-behance-09.gif',
+        '../assets/media/design/streampack/streampack-behance-10.jpg',
+        '../assets/media/design/streampack/streampack-behance-11.jpg',
+        '../assets/media/design/streampack/streampack-behance-12.jpg',
+        '../assets/media/design/streampack/streampack-behance-13.png',
+        '../assets/media/design/streampack/streampack-behance-14.png',
+      ];
+      const grid = document.getElementById('streampackGrid');
+      const imagesAttr = images.join(',');
+      grid.innerHTML = images.map((src, i) => `
+        <button class="solo-gallery-grid__item" type="button" data-lightbox-trigger
+                data-lightbox-eyebrow="04 · Featured Project"
+                data-lightbox-title="Streampack for @DRE_ow"
+                data-lightbox-tags="Branding · Illustration · Valorant-style · Freelance 2024"
+                data-lightbox-desc="Illustration in Valorant style for @DRE_ow, along with StreamPack and logo design referencing the client's main in-game agent pick, Sova. Full deliverable set: brand mark, panels, screens, and animated overlays."
+                data-lightbox-images="${imagesAttr}"
+                data-lightbox-start="${i}"
+                data-i18n-attr="data-lightbox-title:illustration.proj6.title|data-lightbox-tags:illustration.proj6.cat|data-lightbox-desc:design.streampack.lightboxDesc">
+          <img src="${src}" alt="Streampack for @DRE_ow — asset ${i + 1}" loading="lazy">
+        </button>
+      `).join('');
+    })();
+  </script>
 
   <!-- ============================================================
        05 — UI DESIGN (own dark sub-section, "05" inline per Figma)
@@ -492,7 +521,7 @@
   <p class="drawer__copyright">© 2026 Andrea Guerrero Aviña</p>
 </aside>
 
-<script src="../js/section.js?v=11"></script>
-<script src="../js/i18n.js?v=3"></script>
+<script src="../js/section.js?v=12"></script>
+<script src="../js/i18n.js?v=4"></script>
 </body>
 </html>
