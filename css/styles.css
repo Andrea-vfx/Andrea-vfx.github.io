@@ -180,12 +180,15 @@ main { position: relative; }
   inset: 0;
   width: 100%;
   height: 100%;
-  /* contain instead of cover: the video always keeps its native 16:9
-     shape and scales as a whole to fit — never cropped. Any letterbox
-     sliver (the .hero card's own ratio is 1.84:1, close to but not
-     exactly 16:9) shows the card's own dark fallback background,
-     which reads as intentional rather than a gap. */
-  object-fit: contain;
+  /* cover, not contain: .hero's own box is aspect-ratio:16/9 (above),
+     matching the video's native 16:9, so in theory contain should
+     have zero letterbox space either way — but that depends on the
+     browser hitting that ratio pixel-perfectly, and any sub-pixel
+     rounding (flex/grid layout, non-integer viewport heights) showed
+     up as a thin black bar down one side. cover crops instead of
+     scaling-to-fit, so it always fills the frame edge-to-edge
+     regardless of any rounding mismatch — no bars possible. */
+  object-fit: cover;
 }
 
 /* ============================================================
