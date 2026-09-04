@@ -228,6 +228,9 @@
 
     'motion.pomo.subtitle': 'Campaña Publicitaria · Video de Marca · Motion Graphics',
     'motion.pomo.desc': 'Campaña publicitaria de delivery desarrollada de principio a fin, desde el concepto hasta la exportación final. Etalonaje cálido pensado para abrir el apetito, con motion graphics cinético sincronizado al ritmo de la música. Diseñada para redes sociales en formato 9:16 y 16:9.',
+
+    'motion.trailer.subtitle': 'Sizzle Reel · Suspenso · Edición de Video',
+    'motion.trailer.desc': 'Trailer dramático editado para generar tensión — ritmo ajustado y guiado por el suspenso, con un etalonaje sombrío que vende el tono de thriller conspirativo.',
     'motion.chip.brandingVideo': 'Video de Marca',
     'motion.chip.maskot': 'Mascota',
     'motion.software': 'Software',
